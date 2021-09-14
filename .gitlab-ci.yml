@@ -5,6 +5,14 @@ stages:
   - test
   - deploy
 
+build:
+  stage: build
+  script:
+    - mvn clean package -DskipTests
+  artifacts:
+    paths:
+      - target/*.jar
+
 maven_build:
   stage: test
 
@@ -12,3 +20,13 @@ maven_build:
     - echo "Building project with maven"
     - cd calendar
     - mvn verify
+       - cat target/site/jacoco/index.html | grep -o '<tfoot>.*</tfoot>'
+  artifacts:
+    when: always
+    reports:
+      junit: target/surefire-reports/TEST-*.xml
+
+analyze-source-code:
+  stage: analysis
+  script:
+    - mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
