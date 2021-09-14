@@ -1,0 +1,3 @@
+== Kjernelogikken
+
+En kan tenke på appen som delt i ulike lag, med 

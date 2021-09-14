@@ -1,5 +1,11 @@
 FROM gitpod/workspace-full-vnc
 
+USER root
+
+RUN add-apt-repository universe
+RUN apt update
+RUN apt -y install graphviz
+
 USER gitpod
 
 RUN bash -c ". /home/gitpod/.sdkman/bin/sdkman-init.sh \
