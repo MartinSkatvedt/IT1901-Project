@@ -1,9 +1,0 @@
-actor User
-User -> "~#newTodoItemButton: Button" as newTodoItemButton: click
-newTodoItemButton -> TodoController: handleNewTodoItemAction
-TodoController -> "~#newTodoItemText: TextField" as newTodoItemText: getText
-TodoController -> TodoList: addTodoItem
-TodoList -> TodoList: fireTodoListChanged
-TodoList -> TodoListListener: todoListChanged
-TodoListListener -> TodoController: autoSaveTodoList
-TodoListListener -> TodoController: updateTodoListView
