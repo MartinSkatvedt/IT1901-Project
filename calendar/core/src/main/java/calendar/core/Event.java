@@ -10,7 +10,7 @@ public class Event {
     public Event(String headerArg, String descArg, Date dateArg) {
         this.header = headerArg;
         this.description = descArg;
-        this.date = dateArg;
+        this.date = (Date) dateArg.clone();
     }
 
     public void setHeader(String newHeader) {
@@ -22,7 +22,7 @@ public class Event {
     }
 
     public void setDate(Date newDate) {
-        this.date = newDate;
+        this.date = (Date) newDate.clone();
     }
 
     public String getHeader() {
@@ -34,7 +34,7 @@ public class Event {
     }
 
     public Date getDate() {
-        return this.date;
+        return (Date) this.date.clone();
     }
 }
 

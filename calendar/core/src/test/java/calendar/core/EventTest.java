@@ -1,5 +1,5 @@
 package calendar.core;
 
-public class User {
+public class EventTest {
     
 }
