@@ -5,8 +5,6 @@ stages:
 
 maven_build:
   stage: test
-  tags:
-    - maven
 
   script:
     - echo "Building project with maven"
