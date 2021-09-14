@@ -4,6 +4,7 @@ stages:
   - build
   - test
   - deploy
+  - analysis
 
 build:
   stage: build
@@ -15,12 +16,11 @@ build:
 
 maven_build:
   stage: test
-
   script:
     - echo "Building project with maven"
     - cd calendar
     - mvn verify
-       - cat target/site/jacoco/index.html | grep -o '<tfoot>.*</tfoot>'
+    - cat target/site/jacoco/index.html | grep -o '<tfoot>.*</tfoot>'
   artifacts:
     when: always
     reports:
