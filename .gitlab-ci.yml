@@ -9,6 +9,7 @@ stages:
 build:
   stage: build
   script:
+    - cd calendar
     - mvn clean package -DskipTests
   artifacts:
     paths:
@@ -29,4 +30,5 @@ maven_build:
 analyze-source-code:
   stage: analysis
   script:
+    - cd calendar
     - mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
