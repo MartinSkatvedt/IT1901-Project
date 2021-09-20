@@ -1,28 +1,30 @@
 package calendar.core;
 
-import java.util.Date;
+import java.util.Calendar;
 
 public class Event {
     private String header;
     private String description;
-    private Date date;
+    private Calendar date;
 
-    public Event(String headerArg, String descArg, Date dateArg) {
+    public Event(String headerArg, String descArg, Calendar dateArg) {
         this.header = headerArg;
         this.description = descArg;
-        this.date = (Date) dateArg.clone();
+        this.date = (Calendar) dateArg.clone();
     }
 
     public void setHeader(String newHeader) {
+        if (newHeader.replaceAll("\\s", "").isEmpty()) throw new IllegalArgumentException("New Header cannot be empty");
         this.header = newHeader;
     }
 
     public void setDescription(String newDesc) {
+        if (newDesc.replaceAll("\\s", "").isEmpty()) throw new IllegalArgumentException("New Description cannot be empty");
         this.description = newDesc;
     }
 
-    public void setDate(Date newDate) {
-        this.date = (Date) newDate.clone();
+    public void setDate(Calendar newDate) {
+        this.date = (Calendar) newDate.clone();
     }
 
     public String getHeader() {
@@ -33,8 +35,8 @@ public class Event {
         return this.description;
     }
 
-    public Date getDate() {
-        return (Date) this.date.clone();
+    public Calendar getDate() {
+        return (Calendar) this.date.clone();
     }
 }
 
