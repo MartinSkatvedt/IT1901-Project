@@ -6,22 +6,22 @@ import java.util.List;
 public class User {
 
     private String username;
-    //private Calendar calendar;
+    private Calendar calendar;
     private List<User> friends = new ArrayList<>();
-    
+
     public User(final String username) {
-        //Sjekke om det er gyldig brukernavn?
+        // Sjekke om det er gyldig brukernavn?
         this.username = username;
-        //this.calendar = new Calendar();
+        this.calendar = new Calendar();
     }
 
     public String getUsername() {
         return username;
     }
 
-   /* public Calendar getCalendar() {
+    public Calendar getCalendar() {
         return calendar;
-    }*/
+    }
 
     public void addFriend(User newFriend) {
         if (friends.contains(newFriend)) {
@@ -30,7 +30,7 @@ public class User {
         friends.add(newFriend);
     }
 
-  /*  public Calendar getFriendsCalendar(User friend) {
+    public Calendar getFriendsCalendar(User friend) {
         if (!friends.contains(friend)) {
             throw new IllegalArgumentException("This user is not a friend");
         }
@@ -39,7 +39,6 @@ public class User {
 
     public void resetCalendar() {
         this.calendar = new Calendar();
-    }*/
- 
-}
+    }
 
+}
