@@ -12,7 +12,7 @@ build:
     - mvn clean package -DskipTests
   artifacts:
     paths:
-      - core/target/*.jar
+      - fxui/target/*.jar
 
 maven_build:
   stage: test
