@@ -1,11 +1,10 @@
 package calendar.core;
-
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -16,6 +15,20 @@ public class EventTest {
     @BeforeEach
     void resetEvent() {
         this.event = new Event("testHeader", "testDesc", new GregorianCalendar());
+    }
+
+    @Test
+    @DisplayName("Test for the class constructor")
+    void testConstructor() {
+        Calendar calendar1 = new GregorianCalendar(1999, 1, 2, 3, 4);
+        Event event1 = new Event("abc", "def", calendar1);
+        assertAll(
+            () -> assertEquals("abc", event1.getHeader()),
+            () -> assertEquals("def", event1.getDescription()),
+            () -> assertEquals(calendar1, event1.getDate())
+        );
+        assertThrows(IllegalArgumentException.class, () -> new Event("", "abc", calendar1));
+        assertThrows(IllegalArgumentException.class, () -> new Event("def", "", calendar1));
     }
 
     @Test
@@ -49,6 +62,4 @@ public class EventTest {
         this.event.setDate(testDate2);
         assertEquals(testDate2, this.event.getDate());
     }
-
-
 }

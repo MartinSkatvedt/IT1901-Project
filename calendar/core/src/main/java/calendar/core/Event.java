@@ -8,9 +8,9 @@ public class Event {
     private Calendar date;
 
     public Event(String headerArg, String descArg, Calendar dateArg) {
-        this.header = headerArg;
-        this.description = descArg;
-        this.date = (Calendar) dateArg.clone();
+        this.setHeader(headerArg);
+        this.setDescription(descArg);
+        this.setDate(dateArg);
     }
 
     public void setHeader(String newHeader) {
