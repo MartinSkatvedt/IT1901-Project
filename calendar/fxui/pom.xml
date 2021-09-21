@@ -105,7 +105,7 @@
                         <artifactId>javafx-maven-plugin</artifactId>
                         <version>0.0.6</version>
                         <configuration>                    
-                            <mainClass>calendar.ui.Controller</mainClass>
+                            <mainClass>calendar.ui.CalendarApp</mainClass>
                         </configuration>
                     </plugin>
                 </plugins>
@@ -136,7 +136,7 @@
                             <JVMArgs>
                                 <!-- <JVMArg>your-args</JVMArg> -->
                             </JVMArgs>
-                            <mainClassName>todolist.ui.TodoApp</mainClassName>
+                            <mainClassName>calendar.ui.CalendarApp</mainClassName>
                             <openingPath>/</openingPath>
                         </configuration>
                     </plugin>
@@ -159,7 +159,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.6</version>
                 <configuration>
-                    <mainClass>todolist.ui.TodoApp</mainClass>
+                    <mainClass>calendar.ui.CalendarApp</mainClass>
                 </configuration>
             </plugin>
 
