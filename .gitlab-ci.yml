@@ -20,7 +20,7 @@ test:
     - echo "Building project with maven"
     - cd calendar
     - mvn verify
-    - cat fxui/target/site/jacoco/index.html | grep -o '<tfoot>.*</tfoot>'
+    - cat $CI_PROJECT_DIR/calendar/fxui/target/site/jacoco/index.html | grep -o '<tfoot>.*</tfoot>'
   artifacts:
     when: always
     reports:
