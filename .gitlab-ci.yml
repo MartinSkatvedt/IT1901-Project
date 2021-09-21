@@ -14,9 +14,14 @@ build:
     paths:
       - fxui/target/*.jar
 
-maven_build:
+test:
   stage: test
   script:
     - echo "Building project with maven"
     - cd calendar
     - mvn verify
+    - cat fxui/target/site/jacoco/index.html | grep -o '<tfoot>.*</tfoot>'
+  artifacts:
+    when: always
+    reports:
+      junit: fxui/target/surefire-reports/TEST-*.xml
