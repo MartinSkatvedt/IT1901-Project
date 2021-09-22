@@ -3,8 +3,8 @@ image:
 
 tasks:
   - init: sdk use java 16.0.1.hs-adpt
-    prebuild: cd todolist; mvn compile
-    command: cd todolist
+    prebuild: cd calendar; mvn compile
+    command: cd calendar
 
 ports:
   # used by virtual desktop and vnc, supports JavaFX
