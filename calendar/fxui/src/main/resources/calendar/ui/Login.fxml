@@ -5,21 +5,20 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Text?>
-
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="405.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calendar.ui.LoginController">
    <children>
-      <ButtonBar layoutX="115.0" layoutY="286.0" prefHeight="40.0" prefWidth="200.0" />
+      <ButtonBar layoutX="115.0" layoutY="286.0" prefHeight="40.0" prefWidth="200.0">
+         <buttons>
+            <ButtonBar prefHeight="40.0" prefWidth="200.0" />
+         </buttons></ButtonBar>
       <ButtonBar layoutX="115.0" layoutY="246.0" prefHeight="40.0" prefWidth="200.0" />
-      <TextField layoutX="225.0" layoutY="210.0">
+      <TextField alignment="CENTER" layoutX="225.0" layoutY="177.0" promptText="Password">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
       </TextField>
-    <Button layoutX="274.0" layoutY="251.0" mnemonicParsing="false" text="Log in" />
-      <TextField layoutX="225.0" layoutY="152.0" />
-      <Text layoutX="271.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
-      <Text layoutX="270.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
+    <Button layoutX="275.0" layoutY="220.0" mnemonicParsing="false" text="Log in" />
+      <TextField alignment="CENTER" layoutX="225.0" layoutY="129.0" promptText="Username" />
    </children>
 </AnchorPane>
