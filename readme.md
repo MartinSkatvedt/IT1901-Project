@@ -20,5 +20,3 @@ mvn javafx:run
 ## Filstruktur
 
 Java prosjektet vårt finner man i calendar-mappen i rot-mappen.
-En oversikt over hele filstrukturen finner man
-[her](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2156/gr2156/blob/master/filestructure.md)
