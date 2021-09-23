@@ -19,4 +19,8 @@ public class Calendar {
         return (events.remove(i));
     }
 
+    public List<Event> getEvents() {
+        return events;  
+    }
+
 }
