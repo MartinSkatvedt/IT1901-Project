@@ -34,9 +34,9 @@ public class UserPersistance {
   }
 
   /**
-   * Loads a TodoModel from the saved file (saveFilePath) in the user.home folder.
+   * Loads a user from the saved file (saveFilePath) in the user.home folder.
    *
-   * @return the loaded TodoModel
+   * @return the loaded user
    */
   public User loadUser() throws IOException, IllegalStateException {
     if (saveFilePath == null) {
@@ -48,11 +48,11 @@ public class UserPersistance {
   }
 
   /**
-   * Saves a TodoModel to the saveFilePath in the user.home folder.
+   * Saves a user to the saveFilePath in the user.home folder.
    *
-   * @param todoModel the TodoModel to save
+   * @param user the user to save
    */
-  public void saveTodoModel(User user) throws IOException, IllegalStateException {
+  public void saveUser(User user) throws IOException, IllegalStateException {
     if (saveFilePath == null) {
       throw new IllegalStateException("Save file path is not set, yet");
     }
