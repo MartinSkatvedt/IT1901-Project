@@ -12,7 +12,7 @@ public class EventPlanner {
 
     }
 
-    private boolean userNameTaken(String userName) {
+    public boolean userNameTaken(String userName) {
         return allUsers.stream().anyMatch(user -> user.getUsername().equals(userName));
     }
 
@@ -27,11 +27,19 @@ public class EventPlanner {
         if (userNameTaken(userName)) {
             throw new IllegalArgumentException("Username is taken.");
         }
-        allUsers.add(new User(userName));
+        addNewUser(new User(userName));
+    }
+
+    public void addNewUser(User user) {
+        allUsers.add(user);
     }
 
     public void removeUser(String userName) {
-        allUsers.remove(getUser(userName));
+        removeUser(getUser(userName));
+    }
+
+    public void removeUser(User user) {
+        allUsers.remove(user);
     }
 
     public Collection<User> getAllUsers() {
