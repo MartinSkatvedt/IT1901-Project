@@ -1,13 +1,13 @@
 package calendar.core;
 
-import java.util.Calendar;
+import java.time.LocalDate;
 
 public class Event {
     private String header;
     private String description;
-    private Calendar date;
+    private LocalDate date;
 
-    public Event(String headerArg, String descArg, Calendar dateArg) {
+    public Event(String headerArg, String descArg, LocalDate dateArg) {
         this.setHeader(headerArg);
         this.setDescription(descArg);
         this.setDate(dateArg);
@@ -23,8 +23,8 @@ public class Event {
         this.description = newDesc;
     }
 
-    public void setDate(Calendar newDate) {
-        this.date = (Calendar) newDate.clone();
+    public void setDate(LocalDate newDate) {
+        this.date = newDate; 
     }
 
     public String getHeader() {
@@ -35,8 +35,8 @@ public class Event {
         return this.description;
     }
 
-    public Calendar getDate() {
-        return (Calendar) this.date.clone();
+    public LocalDate getDate() {
+        return this.date; 
     }
 }
 
