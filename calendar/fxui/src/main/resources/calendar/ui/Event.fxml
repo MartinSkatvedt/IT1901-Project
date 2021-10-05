@@ -1,48 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16">
-  <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" maxWidth="294.4000244140625" minWidth="10.0" prefWidth="263.20001220703125" />
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints maxHeight="208.59998168945313" minHeight="10.0" prefHeight="124.79998626708985" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="296.79999618530275" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="376.79999999999995" minHeight="10.0" prefHeight="376.79999999999995" vgrow="SOMETIMES" />
-  </rowConstraints>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="467.0" prefWidth="353.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <TextField prefHeight="0.0" prefWidth="295.0" promptText="Title" />
-      <TextField promptText="Date" GridPane.rowIndex="1" />
-      <GridPane GridPane.rowIndex="2">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="114.40001220703125" minHeight="10.0" prefHeight="114.40001220703125" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="104.8000244140625" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="260.8" minHeight="10.0" prefHeight="260.8" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <TextField promptText="Time" />
-            <TextField promptText="Description" GridPane.rowIndex="1" />
-            <GridPane GridPane.rowIndex="2">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Button alignment="BOTTOM_RIGHT" mnemonicParsing="false" text="Add Event" textFill="WHITE" GridPane.rowIndex="1" />
-               </children>
-            </GridPane>
-         </children>
-      </GridPane>
+      <TextField fx:id="title" layoutX="22.0" layoutY="31.0" prefHeight="38.0" prefWidth="308.0" promptText="Title" />
+      <TextField fx:id="date" layoutX="22.0" layoutY="98.0" prefHeight="26.0" prefWidth="308.0" promptText="Date" />
+      <TextField fx:id="time" layoutX="23.0" layoutY="154.0" prefHeight="18.0" prefWidth="308.0" promptText="Time" />
+      <TextArea fx:id="description" layoutX="14.0" layoutY="209.0" prefHeight="166.0" prefWidth="326.0" promptText="Description" />
+      <Button fx:id="addEvent" layoutX="23.0" layoutY="414.0" mnemonicParsing="false" onAction="#addEvent" text="Add Event" />
    </children>
-</GridPane>
+</AnchorPane>
