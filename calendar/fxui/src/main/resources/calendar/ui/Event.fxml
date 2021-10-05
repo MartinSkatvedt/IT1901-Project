@@ -12,6 +12,6 @@
       <TextField fx:id="date" layoutX="22.0" layoutY="98.0" prefHeight="26.0" prefWidth="308.0" promptText="Date" />
       <TextField fx:id="time" layoutX="23.0" layoutY="154.0" prefHeight="18.0" prefWidth="308.0" promptText="Time" />
       <TextArea fx:id="description" layoutX="14.0" layoutY="209.0" prefHeight="166.0" prefWidth="326.0" promptText="Description" />
-      <Button fx:id="addEvent" layoutX="23.0" layoutY="414.0" mnemonicParsing="false" onAction="#addEvent" text="Add Event" />
+      <Button fx:id="addEvent" layoutX="23.0" layoutY="414.0" mnemonicParsing="false" onAction="#onAddEvent" text="Add Event" />
    </children>
 </AnchorPane>
