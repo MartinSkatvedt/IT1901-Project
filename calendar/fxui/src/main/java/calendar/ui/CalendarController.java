@@ -6,7 +6,6 @@ import java.time.format.TextStyle;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -32,6 +31,13 @@ public class CalendarController {
 
     private LocalDate currentDate;
 
+    /*
+     * private Calendar calendar;
+     * 
+     * private void setCalendar(final Calendar calendar) { this.calendar = calendar;
+     * }
+     */
+
     @FXML
     void initialize() {
         this.currentDate = LocalDate.now();
@@ -54,5 +60,4 @@ public class CalendarController {
             this.dateCells.get(i).setText(dateNumber++ + ".");
         }
     }
-
 }
