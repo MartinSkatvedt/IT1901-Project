@@ -57,7 +57,7 @@ public class CalendarController {
         // åpne event
     }
 
-    private void updateCalendarView(LocalDate date) { // mye feil her
+    private void updateCalendarView(LocalDate date) {
         // Finne måned og endre tittel til dette
         Month month = date.getMonth();
         this.month.setText(month.getDisplayName(TextStyle.FULL, Locale.ENGLISH));
@@ -67,15 +67,14 @@ public class CalendarController {
         int firstDayOfMonth = LocalDate.ofYearDay(date.getYear(), firstDayOfYear).getDayOfWeek().getValue();
         // Finne lengden på måneden
         int lengthOfMonth = month.length(date.isLeapYear());
-        int dateNumber = 1;
-        for (int i = firstDayOfMonth - 1; i < lengthOfMonth; i++) {
-            String dateString = "";
-            for (Event e : calendar.getEvents().stream()
-                    .filter(e -> e.getDate().equals(LocalDate.of(date.getYear(), month, dateNumber)))
-                    .collect(Collectors.toList())) {
-                dateString += "\n" + e.getHeader();
+        // Henter ut events for hver dato og setter header i riktig celle på kalender
+        String cellString = "";
+        for (int i = 1; i < lengthOfMonth + 1; i++) {
+            for (Event e : calendar.getEvents(LocalDate.of(date.getYear(), month, i))) {
+                cellString += "\n" + e.getHeader();
             }
-            this.dateCells.get(i).setText(dateNumber + "." + dateString);
+            dateCells.get(firstDayOfMonth + i - 1).setText(i + "." + cellString);
         }
+
     }
 }
