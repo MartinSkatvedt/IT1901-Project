@@ -6,6 +6,12 @@ import java.time.format.TextStyle;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
+import calendar.core.Calendar;
+import calendar.core.Event;
+import calendar.core.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -31,15 +37,18 @@ public class CalendarController {
 
     private LocalDate currentDate;
 
-    /*
-     * private Calendar calendar;
-     * 
-     * private void setCalendar(final Calendar calendar) { this.calendar = calendar;
-     * }
-     */
+    private Calendar calendar;
+
+    private User user;
+
+    private void setCalendar(final Calendar calendar) {
+        this.calendar = calendar;
+    }
 
     @FXML
     void initialize() {
+        this.user = new User(""); // fra fil
+        setCalendar(this.user.getCalendar());
         this.currentDate = LocalDate.now();
         updateCalendarView(currentDate);
     }
@@ -49,15 +58,25 @@ public class CalendarController {
         // åpne event
     }
 
-    private void updateCalendarView(LocalDate date) {
+    private void updateCalendarView(LocalDate date) { // mye feil her
+        // Finne måned og endre tittel til dette
         Month month = date.getMonth();
         this.month.setText(month.getDisplayName(TextStyle.FULL, Locale.ENGLISH));
-        int dayOfYear = month.firstDayOfYear(date.isLeapYear());
-        int firstDayOfMonth = LocalDate.ofYearDay(date.getYear(), dayOfYear).getDayOfWeek().getValue();
+        // Finne dagen i året måneden starter på (int verdi)
+        int firstDayOfYear = month.firstDayOfYear(date.isLeapYear());
+        // Finne int verdien til ukedagen måneden starter på (mellom 1 og 7)
+        int firstDayOfMonth = LocalDate.ofYearDay(date.getYear(), firstDayOfYear).getDayOfWeek().getValue();
+        // Finne lengden på måneden
         int lengthOfMonth = month.length(date.isLeapYear());
+        int dateNumber = 1;
         for (int i = firstDayOfMonth - 1; i < lengthOfMonth; i++) {
-            int dateNumber = 1;
-            this.dateCells.get(i).setText(dateNumber++ + ".");
+            String dateString = "";
+            for (Event e : calendar.getEvents().stream()
+                    .filter(e -> e.getDate().equals(LocalDate.of(date.getYear(), month, dateNumber)))
+                    .collect(Collectors.toList())) {
+                dateString += "\n" + e.getHeader();
+            }
+            this.dateCells.get(i).setText(dateNumber + "." + dateString);
         }
     }
 }
