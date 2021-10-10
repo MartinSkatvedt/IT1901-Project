@@ -1,7 +1,9 @@
 package calendar.core;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Calendar {
 
@@ -20,7 +22,11 @@ public class Calendar {
     }
 
     public List<Event> getEvents() {
-        return events;  
+        return events;
+    }
+
+    public List<Event> getEvents(LocalDate date) {
+        return events.stream().filter(e -> e.getDate().equals(date)).collect(Collectors.toList());
     }
 
 }
