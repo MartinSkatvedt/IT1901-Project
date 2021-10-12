@@ -1,6 +1,5 @@
 package calendar.core;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -14,21 +13,21 @@ public class EventTest {
 
     @BeforeEach
     void resetEvent() {
-        this.event = new Event("testHeader", "testDesc", new GregorianCalendar());
+        this.event = new Event("testHeader", "testDesc", LocalDate.now());
     }
 
     @Test
     @DisplayName("Test for the class constructor")
     void testConstructor() {
-        Calendar calendar1 = new GregorianCalendar(1999, 1, 2, 3, 4);
-        Event event1 = new Event("abc", "def", calendar1);
+        LocalDate date1 = LocalDate.now(); 
+        Event event1 = new Event("abc", "def", date1);
         assertAll(
             () -> assertEquals("abc", event1.getHeader()),
             () -> assertEquals("def", event1.getDescription()),
-            () -> assertEquals(calendar1, event1.getDate())
+            () -> assertEquals(date1, event1.getDate())
         );
-        assertThrows(IllegalArgumentException.class, () -> new Event("", "abc", calendar1));
-        assertThrows(IllegalArgumentException.class, () -> new Event("def", "", calendar1));
+        assertThrows(IllegalArgumentException.class, () -> new Event("", "abc", date1));
+        assertThrows(IllegalArgumentException.class, () -> new Event("def", "", date1));
     }
 
     @Test
@@ -55,10 +54,10 @@ public class EventTest {
     @Test
     @DisplayName("Test for the setDate method")
     void setDateTest() {
-        Calendar testDate1 = new GregorianCalendar(2021, 9, 20, 18, 30);
+        LocalDate testDate1 = LocalDate.now(); 
         this.event.setDate(testDate1);
         assertEquals(testDate1, this.event.getDate());
-        Calendar testDate2 = new GregorianCalendar(2021, 10, 10, 10 ,10);
+        LocalDate testDate2 = LocalDate.of(1999, 12, 12); 
         this.event.setDate(testDate2);
         assertEquals(testDate2, this.event.getDate());
     }
