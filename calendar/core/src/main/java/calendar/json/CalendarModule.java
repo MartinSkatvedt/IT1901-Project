@@ -4,22 +4,22 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.core.Version;
 
 import calendar.core.Calendar;
-import calendar.core.Event;
 
 @SuppressWarnings("serial")
-public class UserModule extends SimpleModule {
-    
-    private static final String NAME = "UserModule";
+public class CalendarModule extends SimpleModule {
+    private static final String NAME = "CalendarModule";
 
     /**
      * Initializes this UserModule with appropriate serializers and deserializers.
      */
-    public UserModule(boolean deepTodoModelSerializer) {
+    public CalendarModule(boolean deepTodoModelSerializer) {
       super(NAME, Version.unknownVersion());
-
+      addDeserializer(Calendar.class, new CalendarDeserializer());
+      addSerializer(Calendar.class, new CalendarSerializer());
     }
 
-    public UserModule() {
+    public CalendarModule() {
       this(true);
     }
+    
 }

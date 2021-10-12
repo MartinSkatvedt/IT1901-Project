@@ -9,22 +9,23 @@ import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import calendar.core.User;
 
-public class UserPersistance {
+import calendar.core.Calendar;
+
+public class CalendarPersistence {
     private ObjectMapper mapper;
 
-  public UserPersistance() {
+  public CalendarPersistence() {
     mapper = new ObjectMapper();
-    mapper.registerModule(new UserModule());
+    mapper.registerModule(new CalendarModule());
   }
 
-  public User readUser(Reader reader) throws IOException {
-    return mapper.readValue(reader, User.class);
+  public Calendar readCalendar(Reader reader) throws IOException {
+    return mapper.readValue(reader, Calendar.class);
   }
 
-  public void writeUser(User user, Writer writer) throws IOException {
-    mapper.writerWithDefaultPrettyPrinter().writeValue(writer, user);
+  public void writeCalendar(Calendar calendar, Writer writer) throws IOException {
+    mapper.writerWithDefaultPrettyPrinter().writeValue(writer, calendar);
   }
 
   private Path saveFilePath = null;
@@ -34,30 +35,30 @@ public class UserPersistance {
   }
 
   /**
-   * Loads a user from the saved file (saveFilePath) in the user.home folder.
+   * Loads a calendar from the saved file (saveFilePath) in the calendar.home folder.
    *
-   * @return the loaded user
+   * @return the loaded calendar
    */
-  public User loadUser() throws IOException, IllegalStateException {
+  public Calendar loadCalendar() throws IOException, IllegalStateException {
     if (saveFilePath == null) {
       throw new IllegalStateException("Save file path is not set, yet");
     }
     try (Reader reader = new FileReader(saveFilePath.toFile(), StandardCharsets.UTF_8)) {
-      return readUser(reader);
+      return readCalendar(reader);
     }
   }
 
   /**
-   * Saves a user to the saveFilePath in the user.home folder.
+   * Saves a calendar to the saveFilePath in the calendar.home folder.
    *
-   * @param user the user to save
+   * @param calendar the calendar to save
    */
-  public void saveUser(User user) throws IOException, IllegalStateException {
+  public void saveCalendar(Calendar calendar) throws IOException, IllegalStateException {
     if (saveFilePath == null) {
       throw new IllegalStateException("Save file path is not set, yet");
     }
     try (Writer writer = new FileWriter(saveFilePath.toFile(), StandardCharsets.UTF_8)) {
-      writeUser(user, writer);
+      writeCalendar(calendar, writer);
     }
   }
 }
