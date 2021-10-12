@@ -1,6 +1,8 @@
 package calendar.json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -38,12 +40,15 @@ public class UserPersistence {
    *
    * @return the loaded user
    */
-  public User loadUser() throws IOException, IllegalStateException {
+  public User loadUser() throws IOException, IllegalStateException, FileNotFoundException {
     if (saveFilePath == null) {
       throw new IllegalStateException("Save file path is not set, yet");
     }
     try (Reader reader = new FileReader(saveFilePath.toFile(), StandardCharsets.UTF_8)) {
       return readUser(reader);
+    }
+    catch(FileNotFoundException e) {
+      return null;
     }
   }
 
