@@ -3,6 +3,7 @@ package calendar.ui;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.TextStyle;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -25,10 +26,9 @@ public class CalendarController {
 
     @FXML
     private List<TextArea> dateCells;
-    
 
     @FXML
-    private Label month;
+    private Label month, week_1, week_2, week_3, week_4;
 
     @FXML
     private Button newEvent;
@@ -48,9 +48,9 @@ public class CalendarController {
         this.user = new User(""); // fra fil
         setCalendar(this.user.getCalendar());
         this.currentDate = LocalDate.now();
-        this.dateCells = Arrays.asList(mon_1, tue_1, wed_1, thu_1, fri_1, sat_1, sun_1, mon_2, tue_2,
-        wed_2, thu_2, fri_2, sat_2, sun_2, mon_3, tue_3, wed_3, thu_3, fri_3, sat_3, sun_3, mon_4, tue_4, wed_4,
-        thu_4, fri_4, sat_4, sun_4, mon_5, tue_5, wed_5, thu_5, fri_5, sat_5, sun_5);
+        this.dateCells = Arrays.asList(mon_1, tue_1, wed_1, thu_1, fri_1, sat_1, sun_1, mon_2, tue_2, wed_2, thu_2,
+                fri_2, sat_2, sun_2, mon_3, tue_3, wed_3, thu_3, fri_3, sat_3, sun_3, mon_4, tue_4, wed_4, thu_4, fri_4,
+                sat_4, sun_4, mon_5, tue_5, wed_5, thu_5, fri_5, sat_5, sun_5);
         updateCalendarView(currentDate);
     }
 
@@ -77,6 +77,13 @@ public class CalendarController {
             }
             this.dateCells.get(firstDayOfMonth + i - 1).setText((i+1) + "." + cellString);
         }
-
+        //Finne uketallene
+        double week = firstDayOfYear / date.lengthOfYear();
+        int week1 = (int) week;
+        List<Integer> weekNumbers = new ArrayList<>();
+        for (int i = 1; i < 5; i++) {
+            if (week1)
+        }
+         
     }
 }
