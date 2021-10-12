@@ -11,10 +11,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import calendar.core.User;
 
-public class UserPersistance {
+public class UserPersistence {
     private ObjectMapper mapper;
 
-  public UserPersistance() {
+  public UserPersistence() {
     mapper = new ObjectMapper();
     mapper.registerModule(new UserModule());
   }
