@@ -1,5 +1,4 @@
 package calendar.json;
-import java.util.GregorianCalendar;
 import calendar.core.Calendar;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -12,6 +11,8 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.TextNode;
 import java.io.IOException;
 import calendar.core.Event;
+import java.time.LocalDate;
+
 
 public class CalendarDeserializer extends JsonDeserializer<Calendar> {
     @Override
@@ -27,7 +28,7 @@ public class CalendarDeserializer extends JsonDeserializer<Calendar> {
         ArrayNode events = (ArrayNode)objectNode.get("events");
 
         for (JsonNode event: events) {
-          Event e = new Event("jsonHeader", "descriptionHeader", new GregorianCalendar());
+          Event e = new Event("jsonHeader", "descriptionHeader", LocalDate.of(2021, 10, 10));
           JsonNode headerNode = event.get("header");
           if (headerNode instanceof TextNode) {
             e.setHeader(headerNode.asText());

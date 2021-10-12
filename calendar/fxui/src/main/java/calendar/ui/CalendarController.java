@@ -24,9 +24,8 @@ public class CalendarController {
             tue_5, wed_5, thu_5, fri_5, sat_5, sun_5;
 
     @FXML
-    private List<TextArea> dateCells = Arrays.asList(mon_1, tue_1, wed_1, thu_1, fri_1, sat_1, sun_1, mon_2, tue_2,
-            wed_2, thu_2, fri_2, sat_2, sun_2, mon_3, tue_3, wed_3, thu_3, fri_3, sat_3, sun_3, mon_4, tue_4, wed_4,
-            thu_4, fri_4, sat_4, sun_4, mon_5, tue_5, wed_5, thu_5, fri_5, sat_5, sun_5);
+    private List<TextArea> dateCells;
+    
 
     @FXML
     private Label month;
@@ -49,6 +48,9 @@ public class CalendarController {
         this.user = new User(""); // fra fil
         setCalendar(this.user.getCalendar());
         this.currentDate = LocalDate.now();
+        this.dateCells = Arrays.asList(mon_1, tue_1, wed_1, thu_1, fri_1, sat_1, sun_1, mon_2, tue_2,
+        wed_2, thu_2, fri_2, sat_2, sun_2, mon_3, tue_3, wed_3, thu_3, fri_3, sat_3, sun_3, mon_4, tue_4, wed_4,
+        thu_4, fri_4, sat_4, sun_4, mon_5, tue_5, wed_5, thu_5, fri_5, sat_5, sun_5);
         updateCalendarView(currentDate);
     }
 
@@ -69,11 +71,11 @@ public class CalendarController {
         int lengthOfMonth = month.length(date.isLeapYear());
         // Henter ut events for hver dato og setter header i riktig celle på kalender
         String cellString = "";
-        for (int i = 1; i < lengthOfMonth + 1; i++) {
-            for (Event e : calendar.getEvents(LocalDate.of(date.getYear(), month, i))) {
+        for (int i = 0; i < lengthOfMonth; i++) {
+            for (Event e : calendar.getEvents(LocalDate.of(date.getYear(), month, i+1))) {
                 cellString += "\n" + e.getHeader();
             }
-            dateCells.get(firstDayOfMonth + i - 1).setText(i + "." + cellString);
+            this.dateCells.get(firstDayOfMonth + i - 1).setText((i+1) + "." + cellString);
         }
 
     }
