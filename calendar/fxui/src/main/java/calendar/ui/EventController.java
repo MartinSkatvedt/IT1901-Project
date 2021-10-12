@@ -28,6 +28,7 @@ public class EventController {
        // String time = this.time.getText(); 
         String description = this.description.getText(); 
         Event event = new Event(title, description, date); 
+        System.out.println(event.getHeader());
 
 
     }
