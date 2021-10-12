@@ -29,6 +29,14 @@ public class LoginController {
 
     @FXML private Button loginButton;
 
+    @FXML private Button registerButton;
+
+    @FXML private TextField registerUsername;
+
+    @FXML private TextField registerPassword;
+
+    @FXML private Button registerUserButton;
+
     
     public void  login(ActionEvent event) throws IOException {
         if (username.getText().toString().isEmpty() || password.getText().isEmpty()) {
@@ -42,9 +50,24 @@ public class LoginController {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
-            //userAccess();
+            //userAccess(); 
         }
     }
 
-   
+    
+    public void register(ActionEvent event) throws IOException {
+        Stage stage = (Stage) registerButton.getScene().getWindow();
+            loginReply.setText("Let´s get started!");
+            Parent root = FXMLLoader.load(getClass().getResource("RegistrationForm.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+
+    }
+    
+    
+   // public void registerUser(ActionEvent event) throws IOException {
+    //    if (username.getText().toString().isEmpty() || password.getText().isEmpty()) {
+    //}
 }
+
