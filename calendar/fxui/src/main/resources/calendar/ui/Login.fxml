@@ -56,7 +56,7 @@
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor></Button>
-            <Button blendMode="SOFT_LIGHT" layoutX="216.0" layoutY="357.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Register">
+            <Button fx:id="registerButton" blendMode="SOFT_LIGHT" layoutX="216.0" layoutY="357.0" mnemonicParsing="false" onAction="#register" prefHeight="25.0" prefWidth="80.0" text="Register">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor></Button>
