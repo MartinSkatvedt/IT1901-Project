@@ -28,7 +28,7 @@ public class CalendarController {
     private List<TextArea> dateCells;
 
     @FXML
-    private Label month, week_1, week_2, week_3, week_4;
+    private Label month, week_1, week_2, week_3, week_4, week_5;
 
     @FXML
     private Button newEvent;
@@ -72,18 +72,26 @@ public class CalendarController {
         // Henter ut events for hver dato og setter header i riktig celle på kalender
         String cellString = "";
         for (int i = 0; i < lengthOfMonth; i++) {
-            for (Event e : calendar.getEvents(LocalDate.of(date.getYear(), month, i+1))) {
+            for (Event e : calendar.getEvents(LocalDate.of(date.getYear(), month, i + 1))) {
                 cellString += "\n" + e.getHeader();
             }
-            this.dateCells.get(firstDayOfMonth + i - 1).setText((i+1) + "." + cellString);
+            this.dateCells.get(firstDayOfMonth + i - 1).setText((i + 1) + "." + cellString);
         }
-        //Finne uketallene
-        double week = firstDayOfYear / date.lengthOfYear();
+        // Finne uketallene
+        double week = firstDayOfYear / 7.0;
         int week1 = (int) week;
         List<Integer> weekNumbers = new ArrayList<>();
-        for (int i = 1; i < 5; i++) {
-            if (week1)
+        for (int i = 0; i < 5; i++) {
+            int nextWeek = week1 + i;
+            if (nextWeek > 52) {
+                nextWeek -= 52;
+            }
+            weekNumbers.add(nextWeek);
         }
-         
+        this.week_1.setText(weekNumbers.get(0) + "");
+        this.week_2.setText(weekNumbers.get(1) + "");
+        this.week_3.setText(weekNumbers.get(2) + "");
+        this.week_4.setText(weekNumbers.get(3) + "");
+        this.week_5.setText(weekNumbers.get(4) + "");
     }
 }
