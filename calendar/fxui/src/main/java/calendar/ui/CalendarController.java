@@ -19,17 +19,20 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.scene.control.Hyperlink;
 
 public class CalendarController {
 
     @FXML
-    private TextArea mon_1, tue_1, wed_1, thu_1, fri_1, sat_1, sun_1, mon_2, tue_2, wed_2, thu_2, fri_2, sat_2, sun_2,
+    private VBox mon_1, tue_1, wed_1, thu_1, fri_1, sat_1, sun_1, mon_2, tue_2, wed_2, thu_2, fri_2, sat_2, sun_2,
             mon_3, tue_3, wed_3, thu_3, fri_3, sat_3, sun_3, mon_4, tue_4, wed_4, thu_4, fri_4, sat_4, sun_4, mon_5,
             tue_5, wed_5, thu_5, fri_5, sat_5, sun_5;
 
     @FXML
-    private List<TextArea> dateCells;
+    private List<VBox> dateCells;
 
     @FXML
     private Label month, week_1, week_2, week_3, week_4, week_5;
@@ -90,12 +93,18 @@ public class CalendarController {
         int lengthOfMonth = month.length(date.isLeapYear());
         // Henter ut events for hver dato og setter header i riktig celle på kalender
         for (int i = 0; i < lengthOfMonth; i++) {
-            StringBuilder cellString = new StringBuilder();
+
+        
+            Text text = new Text(" " +  (i+1));
+            this.dateCells.get(firstDayOfMonth + i - 1).getChildren().add(text);
+
             for (Event e : calendar.getEvents(LocalDate.of(date.getYear(), month, i + 1))) {
-                cellString.append("\n" + e.getHeader());
+                Button button = new Button(e.getHeader());
+                this.dateCells.get(firstDayOfMonth + i - 1).getChildren().add(button);
             }
-            this.dateCells.get(firstDayOfMonth + i - 1).setText((i + 1) + "." + cellString.toString());
+           
         }
+
         // Finne uketallene
         double week = firstDayOfYear / 7.0;
         int week1 = (int) week;
