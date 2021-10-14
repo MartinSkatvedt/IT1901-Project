@@ -55,7 +55,7 @@ public class Event implements Comparable<Event> {
         String timeString[] = getTimeString().split(":");
         String hourString = timeString[0];
         if (hourString.charAt(0) == '0') {
-            return (int) hourString.charAt(1);
+            return Integer.valueOf(hourString.substring(1));
         }
         return Integer.valueOf(hourString);
     }
@@ -64,16 +64,24 @@ public class Event implements Comparable<Event> {
         String timeString[] = getTimeString().split(":");
         String minuteString = timeString[1];
         if (minuteString.charAt(0) == '0') {
-            return (int) minuteString.charAt(1);
+            return Integer.valueOf(minuteString.substring(1));
         }
         return Integer.valueOf(minuteString);
     }
 
     @Override
     public int compareTo(Event o) {
-        if (this.getTimeHour() == o.getTimeHour()) {
-            return this.getTimeMinute() - o.getTimeMinute();
+        if (this.getTimeHour() - o.getTimeHour() == 0) {
+            if (this.getTimeMinute() > o.getTimeMinute()) {
+                return 1;
+            } else {
+                return -1;
+            }
         }
-        return this.getTimeHour() - o.getTimeHour();
+        if (this.getTimeHour() - o.getTimeHour() < 0) {
+            return -1;
+        }
+        return 1;
     }
+
 }

@@ -28,7 +28,7 @@ public class CalendarTest {
         Event ev2 = new Event("header2", "desc2", LocalDate.now(), "10:30");
         testCalendar.addEvent(ev1);
         testCalendar.addEvent(ev2);
-        assertEquals(2, testCalendar.getEvents());
+        assertEquals(2, testCalendar.getEvents().size());
     }
 
     @Test
