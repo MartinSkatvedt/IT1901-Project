@@ -9,7 +9,15 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.TextNode;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+import calendar.core.Event;
+
+
 import calendar.core.User;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+
 
 public class UserDeserializer extends JsonDeserializer<User> {
     
@@ -21,8 +29,6 @@ public class UserDeserializer extends JsonDeserializer<User> {
     }
   
     User deserialize(JsonNode jsonNode) {
-        
-        
         User item = new User("init");
 
         JsonNode usernameNode = jsonNode.get("username");
@@ -31,7 +37,28 @@ public class UserDeserializer extends JsonDeserializer<User> {
         }
         JsonNode calendarNode = jsonNode.get("calendar");
         if (calendarNode instanceof ObjectNode) {
-            System.out.println(calendarNode);
+            ArrayNode events = (ArrayNode)calendarNode.get("events");
+
+            for (JsonNode event: events) {
+                Event e = new Event("jsonHeader", "descriptionHeader", LocalDate.of(2021, 10, 10));
+                JsonNode headerNode = event.get("header");
+                if (headerNode instanceof TextNode) {
+                    e.setHeader(headerNode.asText());
+                }
+
+                JsonNode descriptionNode = event.get("description");
+                if (descriptionNode instanceof TextNode) {
+                    e.setDescription(descriptionNode.asText());
+                }
+
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+                JsonNode dateNode = event.get("date");
+                if (dateNode instanceof TextNode) {
+                    e.setDate(LocalDate.parse(dateNode.asText(), formatter));
+                }
+                item.getCalendar().addEvent(e);
+            }
         }
         
         return item;

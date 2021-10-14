@@ -60,7 +60,7 @@ public class LoginController {
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getClassLoader().getResource("calendar/ui/Calendar.fxml"));
         CalendarController calendarController = new CalendarController();
-        //calendarController.setUser(currentUser);
+        calendarController.setUser(currentUser);
         loader.setController(calendarController);
     
         Parent root = loader.load();
