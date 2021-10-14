@@ -70,12 +70,12 @@ public class CalendarController {
         // Finne lengden på måneden
         int lengthOfMonth = month.length(date.isLeapYear());
         // Henter ut events for hver dato og setter header i riktig celle på kalender
-        String cellString = "";
+        StringBuilder cellString = new StringBuilder();
         for (int i = 0; i < lengthOfMonth; i++) {
             for (Event e : calendar.getEvents(LocalDate.of(date.getYear(), month, i + 1))) {
-                cellString += "\n" + e.getHeader();
+                cellString.append("\n" + e.getHeader());
             }
-            this.dateCells.get(firstDayOfMonth + i - 1).setText((i + 1) + "." + cellString);
+            this.dateCells.get(firstDayOfMonth + i - 1).setText((i + 1) + "." + cellString.toString());
         }
         // Finne uketallene
         double week = firstDayOfYear / 7.0;
@@ -88,10 +88,10 @@ public class CalendarController {
             }
             weekNumbers.add(nextWeek);
         }
-        this.week_1.setText(weekNumbers.get(0) + "");
-        this.week_2.setText(weekNumbers.get(1) + "");
-        this.week_3.setText(weekNumbers.get(2) + "");
-        this.week_4.setText(weekNumbers.get(3) + "");
-        this.week_5.setText(weekNumbers.get(4) + "");
+        this.week_1.setText(weekNumbers.get(0).toString());
+        this.week_2.setText(weekNumbers.get(1).toString());
+        this.week_3.setText(weekNumbers.get(2).toString());
+        this.week_4.setText(weekNumbers.get(3).toString());
+        this.week_5.setText(weekNumbers.get(4).toString());
     }
 }
