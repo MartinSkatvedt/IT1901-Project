@@ -1,5 +1,6 @@
 package calendar.ui;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.TextStyle;
@@ -12,10 +13,15 @@ import java.util.stream.Collectors;
 import calendar.core.Calendar;
 import calendar.core.Event;
 import calendar.core.User;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.stage.Stage;
 
 public class CalendarController {
 
@@ -43,9 +49,13 @@ public class CalendarController {
         this.calendar = calendar;
     }
 
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @FXML
     void initialize() {
-        this.user = new User(""); // fra fil
+
         setCalendar(this.user.getCalendar());
         this.currentDate = LocalDate.now();
         this.dateCells = Arrays.asList(mon_1, tue_1, wed_1, thu_1, fri_1, sat_1, sun_1, mon_2, tue_2, wed_2, thu_2,
@@ -55,8 +65,17 @@ public class CalendarController {
     }
 
     @FXML
-    private void onNewEvent() {
-        // åpne event
+    private void onNewEvent() throws IOException {
+        Stage stage = (Stage) newEvent.getScene().getWindow();
+        stage.close();
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("calendar/ui/Event.fxml"));
+        EventController controller = new EventController();
+        controller.setUser(this.user);
+        loader.setController(controller);
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     private void updateCalendarView(LocalDate date) {
