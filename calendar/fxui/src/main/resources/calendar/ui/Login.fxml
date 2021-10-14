@@ -46,17 +46,13 @@
             <TextField fx:id="username" alignment="CENTER" layoutX="108.0" layoutY="171.0" prefHeight="41.0" prefWidth="176.0" promptText="Username" style="-fx-background-color: snow; -fx-border-color: #708090#708090;">
                <font>
                   <Font name="Arial" size="13.0" />
-               </font></TextField>
-            <PasswordField fx:id="password" alignment="CENTER" layoutX="108.0" layoutY="252.0" prefHeight="40.0" prefWidth="176.0" promptText="Password" style="-fx-background-color: snow; -fx-border-color: #708090#708090;" />
+               </font>
+            </TextField>
             <Label fx:id="loginReply" alignment="CENTER" contentDisplay="CENTER" layoutX="37.0" layoutY="74.0" prefHeight="79.0" prefWidth="317.0" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="Arial Black" size="15.0" />
                </font></Label>
             <Button fx:id="loginButton" blendMode="SOFT_LIGHT" cache="true" layoutX="96.0" layoutY="356.0" mnemonicParsing="false" onAction="#login" prefHeight="25.0" prefWidth="80.0" text="Log In" textAlignment="CENTER">
-               <cursor>
-                  <Cursor fx:constant="OPEN_HAND" />
-               </cursor></Button>
-            <Button fx:id="registerButton" blendMode="SOFT_LIGHT" layoutX="216.0" layoutY="357.0" mnemonicParsing="false" onAction="#register" prefHeight="25.0" prefWidth="80.0" text="Register">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor></Button>
