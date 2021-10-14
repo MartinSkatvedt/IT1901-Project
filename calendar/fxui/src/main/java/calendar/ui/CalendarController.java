@@ -8,12 +8,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
-import java.util.stream.Collectors;
 
 import calendar.core.Calendar;
 import calendar.core.Event;
 import calendar.core.User;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -57,6 +55,8 @@ public class CalendarController {
     void initialize() {
 
         setCalendar(this.user.getCalendar());
+
+        
         this.currentDate = LocalDate.now();
         this.dateCells = Arrays.asList(mon_1, tue_1, wed_1, thu_1, fri_1, sat_1, sun_1, mon_2, tue_2, wed_2, thu_2,
                 fri_2, sat_2, sun_2, mon_3, tue_3, wed_3, thu_3, fri_3, sat_3, sun_3, mon_4, tue_4, wed_4, thu_4, fri_4,
@@ -89,8 +89,8 @@ public class CalendarController {
         // Finne lengden på måneden
         int lengthOfMonth = month.length(date.isLeapYear());
         // Henter ut events for hver dato og setter header i riktig celle på kalender
-        StringBuilder cellString = new StringBuilder();
         for (int i = 0; i < lengthOfMonth; i++) {
+            StringBuilder cellString = new StringBuilder();
             for (Event e : calendar.getEvents(LocalDate.of(date.getYear(), month, i + 1))) {
                 cellString.append("\n" + e.getHeader());
             }

@@ -23,9 +23,8 @@ public class CalendarDeserializer extends JsonDeserializer<Calendar> {
     }
   
     Calendar deserialize(JsonNode jsonNode) {
-      if (jsonNode instanceof ObjectNode objectNode) {
         Calendar item = new Calendar();
-        ArrayNode events = (ArrayNode)objectNode.get("events");
+        ArrayNode events = (ArrayNode)jsonNode.get("events");
 
         for (JsonNode event: events) {
           Event e = new Event("jsonHeader", "descriptionHeader", LocalDate.of(2021, 10, 10));
@@ -33,14 +32,12 @@ public class CalendarDeserializer extends JsonDeserializer<Calendar> {
           if (headerNode instanceof TextNode) {
             e.setHeader(headerNode.asText());
           }
-          JsonNode descriptionNode = objectNode.get("description");
+          JsonNode descriptionNode = jsonNode.get("description");
           if (descriptionNode instanceof TextNode) {
             e.setDescription(descriptionNode.asText());
           }
           item.addEvent(e);
         }
         return item;
-      }
-      return null;
     } 
 }

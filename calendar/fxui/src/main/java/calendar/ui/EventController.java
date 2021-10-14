@@ -2,13 +2,11 @@ package calendar.ui;
 
 import java.io.IOException;
 import java.time.LocalDate;
-
+import calendar.json.UserPersistence;
 import calendar.core.Event;
 import calendar.core.User;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -47,11 +45,16 @@ public class EventController {
         String description = this.description.getText();
         Event event = new Event(title, description, date);
         this.user.getCalendar().addEvent(event);
+
+        UserPersistence userPersistence = new UserPersistence();
+        userPersistence.setSaveFile(user.getUsername() + ".json");
+        userPersistence.saveUser(this.user);
+        
         switchScene();
     }
 
     @FXML
-    private void onCancelEvent() throws IOException {
+    private void cancelEvent() throws IOException {
         switchScene();
     }
 
