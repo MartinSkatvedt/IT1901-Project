@@ -47,7 +47,16 @@ public class EventController {
         String description = this.description.getText();
         Event event = new Event(title, description, date);
         this.user.getCalendar().addEvent(event);
+        switchScene();
+    }
 
+    @FXML
+    private void onCancelEvent() throws IOException {
+        switchScene();
+    }
+
+    @FXML
+    private void switchScene() throws IOException {
         Stage stage = (Stage) addEvent.getScene().getWindow();
         stage.close();
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("calendar/ui/Calendar.fxml"));
