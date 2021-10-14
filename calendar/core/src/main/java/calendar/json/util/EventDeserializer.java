@@ -1,4 +1,4 @@
-package calendar.json;
+package calendar.json.util;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;

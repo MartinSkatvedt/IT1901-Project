@@ -37,45 +37,36 @@ public class LoginController {
     @FXML private Button registerUserButton;
 
     
-    public void  login(ActionEvent event) throws IOException {
+    public void login(ActionEvent event) throws IOException {
         if (username.getText().toString().isEmpty()) {
             loginReply.setText("Please input username");
+            return;
+        }
+        
+        UserPersistence userPersistence = new UserPersistence();
+        userPersistence.setSaveFile(username.getText() + ".json");
+        User currentUser = userPersistence.loadUser();
+
+        if (currentUser != null)  {
+            loginReply.setText(currentUser.getUsername());
         }
         else {
-
-            UserPersistence userPersistence = new UserPersistence();
-            userPersistence.setSaveFile(username.getText());
-            User currentUser = userPersistence.loadUser();
-            if (currentUser != null)  loginReply.setText(currentUser.getUsername());
-            else {
-                loginReply.setText("Fant ikke fil");
-                currentUser = new User(username.getText());
-                userPersistence.saveUser(currentUser);
-            }
-            /*
-            Stage stage = (Stage) loginButton.getScene().getWindow();
-            loginReply.setText("Welcome");
-            Parent root = FXMLLoader.load(getClass().getResource("Calendar.fxml"));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();*/
+            currentUser = new User(username.getText());
+            userPersistence.saveUser(currentUser);
         }
-    }
 
+        Stage stage = (Stage) loginButton.getScene().getWindow();
+        stage.close();
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getClassLoader().getResource("calendar/ui/Calendar.fxml"));
+        CalendarController calendarController = new CalendarController();
+        //calendarController.setUser(currentUser);
+        loader.setController(calendarController);
     
-    public void register(ActionEvent event) throws IOException {
-        Stage stage = (Stage) registerButton.getScene().getWindow();
-            loginReply.setText("Let´s get started!");
-            Parent root = FXMLLoader.load(getClass().getResource("RegistrationForm.fxml"));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-
+        Parent root = loader.load();
+        Scene scene = new Scene(root); 
+        stage.setScene(scene);
+        stage.show();
     }
-    
-    
-   // public void registerUser(ActionEvent event) throws IOException {
-    //    if (username.getText().toString().isEmpty() || password.getText().isEmpty()) {
-    //}
 }
 

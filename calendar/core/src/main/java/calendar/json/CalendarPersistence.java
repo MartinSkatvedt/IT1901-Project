@@ -9,7 +9,6 @@ import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import calendar.json.CalendarModule;
 import calendar.core.Calendar;
 
 public class CalendarPersistence {

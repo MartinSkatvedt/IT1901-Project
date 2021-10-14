@@ -1,10 +1,11 @@
 package calendar.json;
 
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import calendar.core.User;
+import calendar.json.util.UserDeserializer;
+import calendar.json.util.UserSerializer;
 import com.fasterxml.jackson.core.Version;
 
-import calendar.core.Calendar;
-import calendar.core.Event;
 
 @SuppressWarnings("serial")
 public class UserModule extends SimpleModule {
@@ -16,7 +17,8 @@ public class UserModule extends SimpleModule {
      */
     public UserModule(boolean deepTodoModelSerializer) {
       super(NAME, Version.unknownVersion());
-
+      addSerializer(User.class, new UserSerializer());
+      addDeserializer(User.class, new UserDeserializer());
     }
 
     public UserModule() {
