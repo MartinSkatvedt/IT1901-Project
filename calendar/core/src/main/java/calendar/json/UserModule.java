@@ -13,7 +13,7 @@ public class UserModule extends SimpleModule {
     private static final String NAME = "UserModule";
 
     /**
-     * Initializes this UserModule with appropriate serializers and deserializers.
+     * Initializes this UserModule with serializers and deserializers.
      */
     public UserModule(boolean deepTodoModelSerializer) {
       super(NAME, Version.unknownVersion());
