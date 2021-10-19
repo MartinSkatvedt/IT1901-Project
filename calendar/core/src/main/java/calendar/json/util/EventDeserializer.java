@@ -13,30 +13,28 @@ import java.time.LocalDate;
 
 import calendar.core.Event;
 
-
 public class EventDeserializer extends JsonDeserializer<Event> {
-    @Override
-    public Event deserialize(JsonParser parser, DeserializationContext ctxt)
-        throws IOException, JsonProcessingException {
-      TreeNode treeNode = parser.getCodec().readTree(parser);
-      return deserialize((JsonNode) treeNode);
-    }
-  
-    Event deserialize(JsonNode jsonNode) {
-        Event item = new Event("jsonHeader", "descriptionHeader", LocalDate.now());
-        JsonNode headerNode = jsonNode.get("header");
-        if (headerNode instanceof TextNode) {
-          item.setHeader(headerNode.asText());
-        }
-        JsonNode descriptionNode = jsonNode.get("description");
-        if (descriptionNode instanceof TextNode) {
-          item.setDescription(descriptionNode.asText());
-        }
-        JsonNode dateNode = jsonNode.get("date");
-        if (dateNode instanceof TextNode) {
-          item.setDate(LocalDate.parse(dateNode.asText()));
-        }
-        return item;
+  @Override
+  public Event deserialize(JsonParser parser, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+    TreeNode treeNode = parser.getCodec().readTree(parser);
+    return deserialize((JsonNode) treeNode);
+  }
 
-    } 
+  Event deserialize(JsonNode jsonNode) {
+    Event item = new Event("jsonHeader", "descriptionHeader", LocalDate.now(), "00:00");
+    JsonNode headerNode = jsonNode.get("header");
+    if (headerNode instanceof TextNode) {
+      item.setHeader(headerNode.asText());
+    }
+    JsonNode descriptionNode = jsonNode.get("description");
+    if (descriptionNode instanceof TextNode) {
+      item.setDescription(descriptionNode.asText());
+    }
+    JsonNode dateNode = jsonNode.get("date");
+    if (dateNode instanceof TextNode) {
+      item.setDate(LocalDate.parse(dateNode.asText()));
+    }
+    return item;
+
+  }
 }

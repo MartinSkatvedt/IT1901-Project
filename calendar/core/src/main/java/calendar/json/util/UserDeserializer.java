@@ -14,20 +14,18 @@ import java.time.format.DateTimeFormatter;
 
 import calendar.core.Event;
 
-
 import calendar.core.User;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 
-
 public class UserDeserializer extends JsonDeserializer<User> {
-    
+
     @Override
     public User deserialize(JsonParser parser, DeserializationContext ctxt)
-        throws IOException, JsonProcessingException {
-      TreeNode treeNode = parser.getCodec().readTree(parser);
-      return deserialize((JsonNode) treeNode);
+            throws IOException, JsonProcessingException {
+        TreeNode treeNode = parser.getCodec().readTree(parser);
+        return deserialize((JsonNode) treeNode);
     }
-  
+
     User deserialize(JsonNode jsonNode) {
         User item = new User("init");
 
@@ -37,10 +35,10 @@ public class UserDeserializer extends JsonDeserializer<User> {
         }
         JsonNode calendarNode = jsonNode.get("calendar");
         if (calendarNode instanceof ObjectNode) {
-            ArrayNode events = (ArrayNode)calendarNode.get("events");
+            ArrayNode events = (ArrayNode) calendarNode.get("events");
 
-            for (JsonNode event: events) {
-                Event e = new Event("jsonHeader", "descriptionHeader", LocalDate.of(2021, 10, 10));
+            for (JsonNode event : events) {
+                Event e = new Event("jsonHeader", "descriptionHeader", LocalDate.of(2021, 10, 10), "00:00");
                 JsonNode headerNode = event.get("header");
                 if (headerNode instanceof TextNode) {
                     e.setHeader(headerNode.asText());
@@ -57,10 +55,16 @@ public class UserDeserializer extends JsonDeserializer<User> {
                 if (dateNode instanceof TextNode) {
                     e.setDate(LocalDate.parse(dateNode.asText(), formatter));
                 }
+
+                JsonNode timeNode = event.get("time");
+                if (timeNode instanceof TextNode) {
+                    e.setTime(timeNode.asText());
+                }
+
                 item.getCalendar().addEvent(e);
             }
         }
-        
+
         return item;
-    } 
+    }
 }

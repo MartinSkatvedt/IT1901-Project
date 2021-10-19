@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -18,19 +19,29 @@ import javafx.stage.Stage;
 public class EventController {
 
     @FXML
-    private TextField title, time;
+    private TextField title;
     @FXML
     private DatePicker date;
     @FXML
     private TextArea description;
     @FXML
     private Button addEvent;
+    @FXML
+    private ChoiceBox<String> hours, minutes;
 
     private User user;
 
+    private final static String[] HOURS = { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11",
+            "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" };
+    private final static String[] MINUTES = { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11",
+            "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29",
+            "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47",
+            "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" };
+
     @FXML
     void initialize() {
-
+        this.hours.getItems().setAll(HOURS);
+        this.minutes.getItems().setAll(MINUTES);
     }
 
     @FXML
@@ -43,13 +54,16 @@ public class EventController {
         LocalDate date = this.date.getValue();
         // String time = this.time.getText();
         String description = this.description.getText();
-        Event event = new Event(title, description, date);
+        StringBuilder time = new StringBuilder();
+        time.append(this.hours.getSelectionModel().getSelectedItem() + ":"
+                + this.minutes.getSelectionModel().getSelectedItem());
+        Event event = new Event(title, description, date, time.toString());
         this.user.getCalendar().addEvent(event);
 
         UserPersistence userPersistence = new UserPersistence();
         userPersistence.setSaveFile(user.getUsername() + ".json");
         userPersistence.saveUser(this.user);
-        
+
         switchScene();
     }
 
