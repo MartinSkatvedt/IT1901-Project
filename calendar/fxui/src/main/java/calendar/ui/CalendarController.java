@@ -82,7 +82,7 @@ public class CalendarController {
 
     @FXML
     private void onClickedEvent(ActionEvent e) {
-        String buttonText = ((Button)e.getSource()).getText();
+        String buttonText = ((Button)e.getSource()).getId();
         
         Event current = this.user.getCalendar().getEvents().stream()
             .filter((Event event) -> event.getHeader().equals(buttonText))
@@ -126,7 +126,10 @@ public class CalendarController {
             this.dateCells.get(firstDayOfMonth + i - 1).getChildren().add(text);
 
             for (Event e : calendar.getEvents(LocalDate.of(date.getYear(), month, i + 1))) {
-                Button button = new Button(e.getHeader());
+                Button button = new Button();
+                String buttonString = e.getTimeString() + " " + e.getHeader();
+                button.setText(buttonString);
+                button.setId(e.getHeader());
                 button.setOnAction(ev -> onClickedEvent(ev));
                 this.dateCells.get(firstDayOfMonth + i - 1).getChildren().add(button);
             }

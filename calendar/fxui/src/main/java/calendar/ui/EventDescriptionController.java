@@ -33,12 +33,23 @@ public class EventDescriptionController {
 
         this.eventHeadlineLabel.setText(this.currentEvent.getHeader());
         this.dateLabel.setText(this.currentEvent.getDate().toString());
+        this.timeLabel.setText(this.currentEvent.getTimeString());
         this.eventDescriptionLabel.setText(this.currentEvent.getDescription());
     }
 
     @FXML
-    void onEditEvent() {
-
+    void onEditEvent() throws IOException {
+        Stage stage = (Stage) backButton.getScene().getWindow();
+        stage.close();
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("calendar/ui/Event.fxml"));
+        EventController controller = new EventController();
+        controller.setUser(this.user);
+        controller.setEvent(this.currentEvent);
+        loader.setController(controller);
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     @FXML
