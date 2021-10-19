@@ -2,7 +2,7 @@ package calendar.core;
 
 import java.time.LocalDate;
 
-public class Event implements Comparable<Event> {
+public class Event {
     private String header;
     private String description;
     private LocalDate date;
@@ -67,21 +67,6 @@ public class Event implements Comparable<Event> {
             return Integer.valueOf(minuteString.substring(1));
         }
         return Integer.valueOf(minuteString);
-    }
-
-    @Override
-    public int compareTo(Event o) {
-        if (this.getTimeHour() - o.getTimeHour() == 0) {
-            if (this.getTimeMinute() > o.getTimeMinute()) {
-                return 1;
-            } else {
-                return -1;
-            }
-        }
-        if (this.getTimeHour() - o.getTimeHour() < 0) {
-            return -1;
-        }
-        return 1;
     }
 
 }
