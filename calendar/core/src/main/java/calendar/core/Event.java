@@ -1,6 +1,7 @@
 package calendar.core;
 
 import java.time.LocalDate;
+
 /**
  * Class that contains an event with header, description, date, time
  */
@@ -10,13 +11,13 @@ public class Event {
     private LocalDate date;
     private String time;
 
-
     /**
      * Constructor which sets the inital values for the event
+     * 
      * @param headerArg header for the event
-     * @param descArg description for the event
-     * @param dateArg date for the event
-     * @param timeArg time for the event
+     * @param descArg   description for the event
+     * @param dateArg   date for the event
+     * @param timeArg   time for the event
      */
     public Event(String headerArg, String descArg, LocalDate dateArg, String timeArg) {
         this.setHeader(headerArg);
@@ -27,26 +28,28 @@ public class Event {
 
     /**
      * Sets the header for the event
+     * 
      * @param newHeader the new header for the event
      */
     public void setHeader(String newHeader) {
-        if (newHeader.replaceAll("\\s", "").isEmpty())
+        if (newHeader.replaceAll("\\s", "").isEmpty()) {
             throw new IllegalArgumentException("New Header cannot be empty");
+        }
         this.header = newHeader;
     }
 
     /**
      * Sets the description for the event
+     * 
      * @param newDesc the new description for the event
      */
     public void setDescription(String newDesc) {
-        if (newDesc.replaceAll("\\s", "").isEmpty())
-            throw new IllegalArgumentException("New Description cannot be empty");
         this.description = newDesc;
     }
 
     /**
      * Sets the date for the event
+     * 
      * @param newDate the new date for the event
      */
     public void setDate(LocalDate newDate) {
@@ -55,14 +58,19 @@ public class Event {
 
     /**
      * Sets the time for the event
+     * 
      * @param newTime the new time for the event
      */
     public void setTime(String newTime) {
+        if (newTime.replaceAll("\\s", "").isEmpty()) {
+            throw new IllegalArgumentException("New Time cannot be empty");
+        }
         this.time = newTime;
     }
 
     /**
      * Returns the header
+     * 
      * @return header for event
      */
 
@@ -72,6 +80,7 @@ public class Event {
 
     /**
      * Returns the description
+     * 
      * @return description for event
      */
     public String getDescription() {
@@ -79,7 +88,8 @@ public class Event {
     }
 
     /**
-     * Returns the date of the event 
+     * Returns the date of the event
+     * 
      * @return date for event (LocalDate)
      */
     public LocalDate getDate() {
@@ -88,6 +98,7 @@ public class Event {
 
     /**
      * Returns the timestring of the event
+     * 
      * @return timestring for event
      */
     public String getTimeString() {
@@ -96,6 +107,7 @@ public class Event {
 
     /**
      * Returns the time hour
+     * 
      * @return hour (Integer)
      */
     public Integer getTimeHour() {
@@ -109,6 +121,7 @@ public class Event {
 
     /**
      * Returns the minute hour
+     * 
      * @return minute (Integer)
      */
     public Integer getTimeMinute() {

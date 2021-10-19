@@ -77,6 +77,7 @@ public class EventController {
             }
             if (this.hours.getSelectionModel().isEmpty() || this.minutes.getSelectionModel().isEmpty()) {
                 errorMessage.setText("Set a time for the event.");
+                return;
             }
             String title = this.title.getText();
             LocalDate date = this.date.getValue();
