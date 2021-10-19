@@ -12,17 +12,16 @@ import java.util.Locale;
 import calendar.core.Calendar;
 import calendar.core.Event;
 import calendar.core.User;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.scene.control.Hyperlink;
 
 public class CalendarController {
 
@@ -81,7 +80,35 @@ public class CalendarController {
         stage.show();
     }
 
-    private void updateCalendarView(LocalDate date) {
+    @FXML
+    private void onClickedEvent(ActionEvent e) {
+        String buttonText = ((Button)e.getSource()).getText();
+        
+        Event current = this.user.getCalendar().getEvents().stream()
+            .filter((Event event) -> event.getHeader().equals(buttonText))
+            .findFirst()
+            .orElse(null);
+        
+        Stage stage = (Stage) newEvent.getScene().getWindow();
+        stage.close();
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("calendar/ui/EventDescription.fxml"));
+        EventDescriptionController controller = new EventDescriptionController();
+        controller.setEvent(current);
+        controller.setUser(this.user);
+
+        loader.setController(controller);
+        Parent root;
+        try {
+            root = loader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+    }
+
+    private void updateCalendarView(LocalDate date)  {
         // Finne måned og endre tittel til dette
         Month month = date.getMonth();
         this.month.setText(month.getDisplayName(TextStyle.FULL, Locale.ENGLISH));
@@ -100,6 +127,7 @@ public class CalendarController {
 
             for (Event e : calendar.getEvents(LocalDate.of(date.getYear(), month, i + 1))) {
                 Button button = new Button(e.getHeader());
+                button.setOnAction(ev -> onClickedEvent(ev));
                 this.dateCells.get(firstDayOfMonth + i - 1).getChildren().add(button);
             }
            

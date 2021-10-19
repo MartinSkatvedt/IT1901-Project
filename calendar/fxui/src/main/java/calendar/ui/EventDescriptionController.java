@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import calendar.json.UserPersistence;
 
 public class EventDescriptionController {
 
@@ -28,6 +29,8 @@ public class EventDescriptionController {
 
     @FXML
     void initialize() {
+        eventDescriptionLabel.setEditable(false);
+
         this.eventHeadlineLabel.setText(this.currentEvent.getHeader());
         this.dateLabel.setText(this.currentEvent.getDate().toString());
         this.eventDescriptionLabel.setText(this.currentEvent.getDescription());
@@ -41,6 +44,11 @@ public class EventDescriptionController {
     @FXML
     void onDeleteEvent() throws IOException {
         this.user.getCalendar().getEvents().remove(this.currentEvent);
+
+        UserPersistence userPersistence = new UserPersistence();
+        userPersistence.setSaveFile(user.getUsername() + ".json");
+        userPersistence.saveUser(this.user);
+
         onGoBack();
     }
 
