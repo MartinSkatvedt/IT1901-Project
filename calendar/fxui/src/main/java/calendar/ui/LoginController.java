@@ -37,6 +37,10 @@ public class LoginController {
     @FXML private Button registerUserButton;
 
     
+    /**
+     * Logs user in
+     * @param event ActionEvent from javafx button
+     */
     public void login(ActionEvent event) throws IOException {
         if (username.getText().toString().isEmpty()) {
             loginReply.setText("Please input username");
