@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.TextStyle;
+import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -28,18 +29,20 @@ public class CalendarController {
     @FXML
     private VBox mon_1, tue_1, wed_1, thu_1, fri_1, sat_1, sun_1, mon_2, tue_2, wed_2, thu_2, fri_2, sat_2, sun_2,
             mon_3, tue_3, wed_3, thu_3, fri_3, sat_3, sun_3, mon_4, tue_4, wed_4, thu_4, fri_4, sat_4, sun_4, mon_5,
-            tue_5, wed_5, thu_5, fri_5, sat_5, sun_5;
+            tue_5, wed_5, thu_5, fri_5, sat_5, sun_5, mon_6, tue_6, wed_6, thu_6, fri_6, sat_6, sun_6;
 
     @FXML
     private List<VBox> dateCells;
 
     @FXML
-    private Label month, week_1, week_2, week_3, week_4, week_5;
+    private Label monthLabel, week_1, week_2, week_3, week_4, week_5, week_6;
 
     @FXML
-    private Button newEvent;
+    private Button newEvent, prev_month, next_month;
 
-    private LocalDate currentDate;
+    private LocalDate currentDate = LocalDate.now();
+
+    private LocalDate displayedDate;
 
     private Calendar calendar;
 
@@ -57,13 +60,12 @@ public class CalendarController {
     void initialize() {
 
         setCalendar(this.user.getCalendar());
-
-        
-        this.currentDate = LocalDate.now();
+        this.displayedDate = this.currentDate;
         this.dateCells = Arrays.asList(mon_1, tue_1, wed_1, thu_1, fri_1, sat_1, sun_1, mon_2, tue_2, wed_2, thu_2,
                 fri_2, sat_2, sun_2, mon_3, tue_3, wed_3, thu_3, fri_3, sat_3, sun_3, mon_4, tue_4, wed_4, thu_4, fri_4,
-                sat_4, sun_4, mon_5, tue_5, wed_5, thu_5, fri_5, sat_5, sun_5);
-        updateCalendarView(currentDate);
+                sat_4, sun_4, mon_5, tue_5, wed_5, thu_5, fri_5, sat_5, sun_5, mon_6, tue_6, wed_6, thu_6, fri_6, sat_6,
+                sun_6);
+        updateCalendarView(this.currentDate);
     }
 
     @FXML
@@ -82,16 +84,15 @@ public class CalendarController {
 
     @FXML
     private void onClickedEvent(ActionEvent e) {
-        String buttonText = ((Button)e.getSource()).getId();
-        
+        String buttonText = ((Button) e.getSource()).getId();
+
         Event current = this.user.getCalendar().getEvents().stream()
-            .filter((Event event) -> event.getHeader().equals(buttonText))
-            .findFirst()
-            .orElse(null);
-        
+                .filter((Event event) -> event.getHeader().equals(buttonText)).findFirst().orElse(null);
+
         Stage stage = (Stage) newEvent.getScene().getWindow();
         stage.close();
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("calendar/ui/EventDescription.fxml"));
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getClassLoader().getResource("calendar/ui/EventDescription.fxml"));
         EventDescriptionController controller = new EventDescriptionController();
         controller.setEvent(current);
         controller.setUser(this.user);
@@ -108,21 +109,25 @@ public class CalendarController {
         }
     }
 
-    private void updateCalendarView(LocalDate date)  {
+    private void updateCalendarView(LocalDate date) {
+        this.displayedDate = date;
         // Finne måned og endre tittel til dette
         Month month = date.getMonth();
-        this.month.setText(month.getDisplayName(TextStyle.FULL, Locale.ENGLISH));
+        this.monthLabel.setText(month.getDisplayName(TextStyle.FULL, Locale.ENGLISH) + " " + date.getYear());
         // Finne dagen i året måneden starter på (int verdi)
-        int firstDayOfYear = month.firstDayOfYear(date.isLeapYear());
+        // int firstDayOfYear = month.firstDayOfYear(date.isLeapYear());
+
         // Finne int verdien til ukedagen måneden starter på (mellom 1 og 7)
-        int firstDayOfMonth = LocalDate.ofYearDay(date.getYear(), firstDayOfYear).getDayOfWeek().getValue();
+        int firstDayOfMonth = date.withDayOfMonth(1).getDayOfWeek().getValue();
         // Finne lengden på måneden
         int lengthOfMonth = month.length(date.isLeapYear());
         // Henter ut events for hver dato og setter header i riktig celle på kalender
+        for (VBox cell : this.dateCells) {
+            cell.getChildren().clear();
+        }
         for (int i = 0; i < lengthOfMonth; i++) {
 
-        
-            Text text = new Text(" " +  (i+1));
+            Text text = new Text(" " + (i + 1));
             this.dateCells.get(firstDayOfMonth + i - 1).getChildren().add(text);
 
             for (Event e : calendar.getEvents(LocalDate.of(date.getYear(), month, i + 1))) {
@@ -133,24 +138,33 @@ public class CalendarController {
                 button.setOnAction(ev -> onClickedEvent(ev));
                 this.dateCells.get(firstDayOfMonth + i - 1).getChildren().add(button);
             }
-           
+
         }
 
         // Finne uketallene
-        double week = firstDayOfYear / 7.0;
-        int week1 = (int) week;
-        List<Integer> weekNumbers = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            int nextWeek = week1 + i;
-            if (nextWeek > 52) {
-                nextWeek -= 52;
-            }
-            weekNumbers.add(nextWeek);
-        }
-        this.week_1.setText(weekNumbers.get(0).toString());
-        this.week_2.setText(weekNumbers.get(1).toString());
-        this.week_3.setText(weekNumbers.get(2).toString());
-        this.week_4.setText(weekNumbers.get(3).toString());
-        this.week_5.setText(weekNumbers.get(4).toString());
+        LocalDate monthStart = date.withDayOfMonth(1);
+        int week1 = monthStart.get(WeekFields.ISO.weekOfWeekBasedYear());
+        int week2 = monthStart.plusWeeks(1).get(WeekFields.ISO.weekOfWeekBasedYear());
+        int week3 = monthStart.plusWeeks(2).get(WeekFields.ISO.weekOfWeekBasedYear());
+        int week4 = monthStart.plusWeeks(3).get(WeekFields.ISO.weekOfWeekBasedYear());
+        int week5 = monthStart.plusWeeks(4).get(WeekFields.ISO.weekOfWeekBasedYear());
+        int week6 = monthStart.plusWeeks(5).get(WeekFields.ISO.weekOfWeekBasedYear());
+
+        this.week_1.setText("" + week1);
+        this.week_2.setText("" + week2);
+        this.week_3.setText("" + week3);
+        this.week_4.setText("" + week4);
+        this.week_5.setText("" + week5);
+        this.week_6.setText("" + week6);
+    }
+
+    @FXML
+    private void onPrevMonth() {
+        updateCalendarView(this.displayedDate.minusMonths(1));
+    }
+
+    @FXML
+    private void onNextMonth() {
+        updateCalendarView(this.displayedDate.plusMonths(1));
     }
 }
