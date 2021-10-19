@@ -29,6 +29,8 @@ public class EventController {
     @FXML
     private ChoiceBox<String> hours, minutes;
 
+    private Event currentEvent = null;
+
     private User user;
 
     private final static String[] HOURS = { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11",
@@ -42,6 +44,24 @@ public class EventController {
     void initialize() {
         this.hours.getItems().setAll(HOURS);
         this.minutes.getItems().setAll(MINUTES);
+
+        if (this.currentEvent != null) {
+            this.title.setText(this.currentEvent.getHeader());
+            this.description.setText(this.currentEvent.getDescription());
+
+
+            if (this.currentEvent.getTimeHour() == 0) {
+                this.hours.setValue("00");
+            }
+            else this.hours.setValue(String.valueOf(this.currentEvent.getTimeHour()));
+
+            if (this.currentEvent.getTimeMinute() == 0) {
+                this.minutes.setValue("00");
+            }
+            else this.minutes.setValue(String.valueOf(this.currentEvent.getTimeMinute()));
+
+            this.date.setValue(this.currentEvent.getDate());
+        }
     }
 
     @FXML
@@ -58,6 +78,7 @@ public class EventController {
         time.append(this.hours.getSelectionModel().getSelectedItem() + ":"
                 + this.minutes.getSelectionModel().getSelectedItem());
         Event event = new Event(title, description, date, time.toString());
+        this.user.getCalendar().getEvents().remove(this.currentEvent);
         this.user.getCalendar().addEvent(event);
 
         UserPersistence userPersistence = new UserPersistence();
@@ -89,4 +110,9 @@ public class EventController {
     public void setUser(User user) {
         this.user = user;
     }
+
+    public void setEvent(Event event) {
+        this.currentEvent = event;
+    }
 }
+
