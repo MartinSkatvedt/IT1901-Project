@@ -34,14 +34,11 @@
                   <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="137.8" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
-                  <VBox fx:id="mon_1" prefHeight="137.0" prefWidth="108.0" spacing="5.0" style="-fx-border-style: solid; -fx-border-color: rgba(0,0,0,.2);">
+                  <VBox fx:id="tue_1" prefHeight="91.0" prefWidth="128.0" spacing="5.0" style="-fx-border-style: solid; -fx-border-color: rgba(0,0,0,.2);" GridPane.columnIndex="1">
                      <padding>
                         <Insets left="5.0" />
-                     </padding></VBox>
-                  <VBox fx:id="tue_1" prefHeight="200.0" prefWidth="200.0" spacing="5.0" style="-fx-border-style: solid; -fx-border-color: rgba(0,0,0,.2);" GridPane.columnIndex="1">
-                     <padding>
-                        <Insets left="5.0" />
-                     </padding></VBox>
+                     </padding>
+                  </VBox>
                   <VBox fx:id="wed_1" prefHeight="200.0" prefWidth="200.0" spacing="5.0" style="-fx-border-style: solid; -fx-border-color: rgba(0,0,0,.2);" GridPane.columnIndex="2">
                      <padding>
                         <Insets left="5.0" />
@@ -202,6 +199,11 @@
                      <padding>
                         <Insets left="5.0" />
                      </padding></VBox>
+                  <VBox fx:id="mon_1" prefHeight="92.0" prefWidth="132.0" spacing="5.0" style="-fx-border-style: solid; -fx-border-color: rgba(0,0,0,.2);">
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </VBox>
                </children>
             </GridPane>
             <Button fx:id="newEvent" layoutX="437.0" layoutY="544.0" mnemonicParsing="false" onAction="#onNewEvent" prefHeight="48.0" prefWidth="142.0" style="-fx-background-color: white; -fx-border-color: #ff8700; -fx-border-style: solid; -fx-border-width: 3;" text="ADD EVENT" textFill="#000000e3">
