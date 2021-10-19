@@ -15,11 +15,13 @@ import calendar.core.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -132,9 +134,17 @@ public class CalendarController {
                 button.setText(buttonString);
                 button.setId(e.getHeader());
                 button.setOnAction(ev -> onClickedEvent(ev));
+                button.setFont(new Font("Calibri", 12));
+                button.setPadding(new Insets(-2, 0, -2, 4));
+                button.setStyle(
+                        "-fx-background-color: white; -fx-border-color: #ff8700;  -fx-border-style: hidden hidden hidden solid; -fx-border-width: 2;");
                 this.dateCells.get(firstDayOfMonth + i - 1).getChildren().add(button);
             }
 
+        }
+        if (month.equals(this.currentDate.getMonth())) {
+            this.dateCells.get(firstDayOfMonth - 2 + date.getDayOfMonth())
+                    .setStyle("-fx-border-width: 2; -fx-border-color: #ff8700;");
         }
 
         // Finne uketallene
