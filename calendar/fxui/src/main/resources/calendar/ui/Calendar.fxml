@@ -286,9 +286,14 @@
             <Font size="17.0" />
          </font>
       </Button>
-      <Button fx:id="next_month" layoutX="833.0" layoutY="41.0" mnemonicParsing="false" onAction="#onNextMonth" prefHeight="39.0" prefWidth="114.0" style="-fx-background-color: white; -fx-border-style: solid; -fx-border-color: #ff8700#ff8700;" text="Next &gt;">
+      <Button fx:id="next_month" layoutX="833.0" layoutY="41.0" mnemonicParsing="false" onAction="#onNextMonth" prefHeight="39.0" prefWidth="114.0" style="-fx-background-color: white; -fx-border-style: solid; -fx-border-color: #ff8700;" text="Next &gt;">
          <font>
             <Font name="Arial" size="17.0" />
+         </font>
+      </Button>
+      <Button fx:id="today" layoutX="224.0" layoutY="43.0" mnemonicParsing="false" onAction="#onToday" prefHeight="30.0" prefWidth="70.0" style="-fx-background-color: white; -fx-border-style: solid; -fx-border-color: #ff8700 #ff8700;" text="Today">
+         <font>
+            <Font name="Calibri Light" size="17.0" />
          </font>
       </Button>
    </children>

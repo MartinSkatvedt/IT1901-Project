@@ -39,7 +39,7 @@ public class CalendarController {
     private Label monthLabel, week_1, week_2, week_3, week_4, week_5, week_6;
 
     @FXML
-    private Button newEvent, prev_month, next_month;
+    private Button newEvent, prev_month, next_month, today;
 
     private LocalDate currentDate = LocalDate.now();
 
@@ -122,11 +122,14 @@ public class CalendarController {
         // Henter ut events for hver dato og setter header i riktig celle på kalender
         for (VBox cell : this.dateCells) {
             cell.getChildren().clear();
+            cell.setStyle("-fx-background-color: #F5F5F5;");
         }
         for (int i = 0; i < lengthOfMonth; i++) {
-
+            VBox targetCell = this.dateCells.get(firstDayOfMonth + i - 1);
+            targetCell.setStyle(
+                    "-fx-background-color: white; -fx-border-style: solid; -fx-border-color: rgba(0,0,0,.2);");
             Text text = new Text(" " + (i + 1));
-            this.dateCells.get(firstDayOfMonth + i - 1).getChildren().add(text);
+            targetCell.getChildren().add(text);
 
             for (Event e : calendar.getEvents(LocalDate.of(date.getYear(), month, i + 1))) {
                 Button button = new Button();
@@ -138,11 +141,11 @@ public class CalendarController {
                 button.setPadding(new Insets(-2, 0, -2, 4));
                 button.setStyle(
                         "-fx-background-color: white; -fx-border-color: #ff8700;  -fx-border-style: hidden hidden hidden solid; -fx-border-width: 2;");
-                this.dateCells.get(firstDayOfMonth + i - 1).getChildren().add(button);
+                targetCell.getChildren().add(button);
             }
 
         }
-        if (month.equals(this.currentDate.getMonth())) {
+        if (this.displayedDate.equals(this.currentDate)) {
             this.dateCells.get(firstDayOfMonth - 2 + date.getDayOfMonth())
                     .setStyle("-fx-border-width: 2; -fx-border-color: #ff8700;");
         }
@@ -172,5 +175,10 @@ public class CalendarController {
     @FXML
     private void onNextMonth() {
         updateCalendarView(this.displayedDate.plusMonths(1));
+    }
+
+    @FXML
+    private void onToday() {
+        updateCalendarView(this.currentDate);
     }
 }
