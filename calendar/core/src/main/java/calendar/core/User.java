@@ -14,6 +14,7 @@ public class User {
      * @param username username for user
      */
     public User(final String username) {
+        if (username == "" || !username.matches("[A-Za-z0-9]+")) throw new IllegalArgumentException("Username can not be empty or have illegal characters");
         this.username = username;
         this.calendar = new Calendar();
     }
