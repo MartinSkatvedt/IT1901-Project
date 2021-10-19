@@ -1,0 +1,28 @@
+@startuml
+component core {
+	package calendar.core
+	package calendar.json
+}
+
+component jackson {
+}
+
+calendar.json ..> jackson
+
+
+component fxui {
+	package calendar.ui
+}
+
+
+calendar.ui ..> calendar.core
+calendar.ui ..> calendar.json
+
+component javafx {
+	component fxml {
+        }
+}
+
+fxui ..> javafx
+fxui ..> fxml
+@enduml

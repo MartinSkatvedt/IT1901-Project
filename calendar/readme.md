@@ -11,3 +11,8 @@ Brukerhistorene våre finner du her(legg inn link her)
 ## Bilder
 
 ![informerende_skjermbilde](../resources/Illustrerende_skjermbilde.jpg)
+
+
+## Arkitektur
+Koden til plantUML diagrammet finner du [her](../resources/structure.puml)
+![Arkitektur](../resources/arkitektur.png)
