@@ -114,9 +114,6 @@ public class CalendarController {
         // Finne måned og endre tittel til dette
         Month month = date.getMonth();
         this.monthLabel.setText(month.getDisplayName(TextStyle.FULL, Locale.ENGLISH) + " " + date.getYear());
-        // Finne dagen i året måneden starter på (int verdi)
-        // int firstDayOfYear = month.firstDayOfYear(date.isLeapYear());
-
         // Finne int verdien til ukedagen måneden starter på (mellom 1 og 7)
         int firstDayOfMonth = date.withDayOfMonth(1).getDayOfWeek().getValue();
         // Finne lengden på måneden
