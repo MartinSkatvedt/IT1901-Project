@@ -25,7 +25,7 @@ public class EventTest {
         assertAll(() -> assertEquals("abc", event1.getHeader()), () -> assertEquals("def", event1.getDescription()),
                 () -> assertEquals(date1, event1.getDate()), () -> assertEquals("13:30", event1.getTimeString()));
         assertThrows(IllegalArgumentException.class, () -> new Event("", "abc", date1, "12:00"));
-        assertThrows(IllegalArgumentException.class, () -> new Event("def", "", date1, "12:00"));
+        assertThrows(IllegalArgumentException.class, () -> new Event("def", "abc", date1, ""));
     }
 
     @Test
@@ -45,8 +45,6 @@ public class EventTest {
         assertEquals("testDesc", this.event.getDescription());
         this.event.setDescription("newDesc");
         assertEquals("newDesc", this.event.getDescription());
-        assertThrows(IllegalArgumentException.class, () -> this.event.setDescription(""));
-        assertThrows(IllegalArgumentException.class, () -> this.event.setDescription("  "));
     }
 
     @Test
@@ -67,5 +65,6 @@ public class EventTest {
         assertEquals("11:20", this.event.getTimeString());
         this.event.setTime("23:45");
         assertEquals("23:45", this.event.getTimeString());
+        assertThrows(IllegalArgumentException.class, () -> this.event.setTime(""));
     }
 }
