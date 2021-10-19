@@ -13,24 +13,44 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import calendar.core.User;
 
+/**
+ * Class for having persistance with json
+ */
 public class UserPersistence {
-    private ObjectMapper mapper;
+  private ObjectMapper mapper;
+  private Path saveFilePath = null;
 
+  /**
+   * COnstructor which sets up objectMapper
+   */
   public UserPersistence() {
     mapper = new ObjectMapper();
     mapper.registerModule(new UserModule());
   }
 
+  /**
+   * @param reader
+   * @return the user read for file
+   * @throws IOException
+   */
   public User readUser(Reader reader) throws IOException {
     return mapper.readValue(reader, User.class);
   }
 
+  /**
+   * @param user
+   * @param writer
+   * @throws IOException
+   */
   public void writeUser(User user, Writer writer) throws IOException {
     mapper.writerWithDefaultPrettyPrinter().writeValue(writer, user);
   }
 
-  private Path saveFilePath = null;
 
+  /**
+   * Sets the path to the savefile
+   * @param saveFile path to savefile
+   */
   public void setSaveFile(String saveFile) {
     this.saveFilePath = Paths.get(System.getProperty("user.home"), saveFile);
   }
