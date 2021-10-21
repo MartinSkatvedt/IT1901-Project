@@ -126,8 +126,8 @@ public class CalendarController {
         }
         for (int i = 0; i < lengthOfMonth; i++) {
             VBox targetCell = this.dateCells.get(firstDayOfMonth + i - 1);
-            targetCell.setStyle(
-                    "-fx-background-color: white; -fx-border-style: solid; -fx-border-color: rgba(0,0,0,.2);");
+            targetCell
+                    .setStyle("-fx-background-color: white; -fx-border-style: solid; -fx-border-color:rgba(0,0,0,.2);");
             Text text = new Text(" " + (i + 1));
             targetCell.getChildren().add(text);
 
@@ -147,7 +147,7 @@ public class CalendarController {
         }
         if (this.displayedDate.equals(this.currentDate)) {
             this.dateCells.get(firstDayOfMonth - 2 + date.getDayOfMonth())
-                    .setStyle("-fx-border-width: 2; -fx-border-color: #ff8700;");
+                    .setStyle("-fx-border-width: 2; -fx-border-color: #ff8700; -fx-background-color: white;");
         }
 
         // Finne uketallene
