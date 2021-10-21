@@ -1,44 +1,44 @@
 package calendar.core;
 
-import java.util.ArrayList;
-import java.util.List;
 
+/**
+ * User class which contains a username and a calendar
+ */
 public class User {
-
     private String username;
     private Calendar calendar;
-    private List<User> friends = new ArrayList<>();
 
+
+    /**
+     * Constructor for user which sets the username
+     * @param username username for user
+     */
     public User(final String username) {
-        // Sjekke om det er gyldig brukernavn?
+        if (username.equals("") || !username.matches("[A-Za-z0-9]+")) throw new IllegalArgumentException("Username can not be empty or have illegal characters");
         this.username = username;
         this.calendar = new Calendar();
     }
 
+    /**
+     * Returns the username of the user
+     * @return username
+     */
     public String getUsername() {
         return username;
     }
 
+    /**
+     * Returns the calendar of the user
+     * @return calendar
+     */
     public Calendar getCalendar() {
         return calendar;
     }
 
-    public void addFriend(User newFriend) {
-        if (friends.contains(newFriend)) {
-            throw new IllegalArgumentException("This user is already a friend");
-        }
-        friends.add(newFriend);
-    }
-
-    public Calendar getFriendsCalendar(User friend) {
-        if (!friends.contains(friend)) {
-            throw new IllegalArgumentException("This user is not a friend");
-        }
-        return friend.getCalendar();
-    }
-
+    /**
+     * Resets the calendar for the user
+     */
     public void resetCalendar() {
         this.calendar = new Calendar();
     }
-
 }
