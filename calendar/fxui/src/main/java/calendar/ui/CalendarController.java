@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.time.format.TextStyle;
 import java.time.temporal.WeekFields;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -16,11 +15,13 @@ import calendar.core.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -38,7 +39,7 @@ public class CalendarController {
     private Label monthLabel, week_1, week_2, week_3, week_4, week_5, week_6;
 
     @FXML
-    private Button newEvent, prev_month, next_month;
+    private Button newEvent, prev_month, next_month, today;
 
     private LocalDate currentDate = LocalDate.now();
 
@@ -121,11 +122,14 @@ public class CalendarController {
         // Henter ut events for hver dato og setter header i riktig celle på kalender
         for (VBox cell : this.dateCells) {
             cell.getChildren().clear();
+            cell.setStyle("-fx-background-color: #F5F5F5;");
         }
         for (int i = 0; i < lengthOfMonth; i++) {
-
+            VBox targetCell = this.dateCells.get(firstDayOfMonth + i - 1);
+            targetCell
+                    .setStyle("-fx-background-color: white; -fx-border-style: solid; -fx-border-color:rgba(0,0,0,.2);");
             Text text = new Text(" " + (i + 1));
-            this.dateCells.get(firstDayOfMonth + i - 1).getChildren().add(text);
+            targetCell.getChildren().add(text);
 
             for (Event e : calendar.getEvents(LocalDate.of(date.getYear(), month, i + 1))) {
                 Button button = new Button();
@@ -133,9 +137,17 @@ public class CalendarController {
                 button.setText(buttonString);
                 button.setId(e.getHeader());
                 button.setOnAction(ev -> onClickedEvent(ev));
-                this.dateCells.get(firstDayOfMonth + i - 1).getChildren().add(button);
+                button.setFont(new Font("Calibri", 12));
+                button.setPadding(new Insets(-2, 0, -2, 4));
+                button.setStyle(
+                        "-fx-background-color: white; -fx-border-color: #ff8700;  -fx-border-style: hidden hidden hidden solid; -fx-border-width: 2;");
+                targetCell.getChildren().add(button);
             }
 
+        }
+        if (this.displayedDate.equals(this.currentDate)) {
+            this.dateCells.get(firstDayOfMonth - 2 + date.getDayOfMonth())
+                    .setStyle("-fx-border-width: 2; -fx-border-color: #ff8700; -fx-background-color: white;");
         }
 
         // Finne uketallene
@@ -163,5 +175,10 @@ public class CalendarController {
     @FXML
     private void onNextMonth() {
         updateCalendarView(this.displayedDate.plusMonths(1));
+    }
+
+    @FXML
+    private void onToday() {
+        updateCalendarView(this.currentDate);
     }
 }
