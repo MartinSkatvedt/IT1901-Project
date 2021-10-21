@@ -94,7 +94,7 @@
                <font>
                   <Font name="Calibri Light" size="15.0" />
                </font></Label>
-            <Button fx:id="loginButton" cache="true" layoutX="151.0" layoutY="355.0" mnemonicParsing="false" onAction="#login" prefHeight="31.0" prefWidth="91.0" style="-fx-border-color: #ff8700#ff8700; -fx-background-color: white; -fx-border-style: solid;" text="Log In" textAlignment="CENTER">
+            <Button fx:id="loginButton" cache="true" layoutX="150.0" layoutY="354.0" mnemonicParsing="false" onAction="#login" prefHeight="31.0" prefWidth="91.0" style="-fx-border-color: #ff8700#ff8700; -fx-background-color: white; -fx-border-style: solid; -fx-border-width: 2;" text="Log In" textAlignment="CENTER">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
