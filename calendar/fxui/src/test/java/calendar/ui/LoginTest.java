@@ -26,14 +26,14 @@ import org.testfx.api.FxToolkit;
 import org.testfx.framework.junit5.ApplicationTest;
 //import org.testfx.matcher.control.LabeledMatchers;
 
-/**
- * TestFX App test
- */
+import calendar.core.User;
+
 
 public class LoginTest extends ApplicationTest {
 
     private LoginController controller;
     private Parent root;
+    private User currentUser;
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -55,14 +55,16 @@ public class LoginTest extends ApplicationTest {
     
     @Test
     public void successfulLogin() {
-        // given started application and opened login dialog
         sleep(1000);
         clickOn("#loginButton");
         assertEquals("Please input username", getLabelString());
         sleep(1000);
         clickOn("#username");
-        write("Mohammed");
+        write("Ola");
         clickOn("#loginButton");
+
+        
 }
     
 }
+
