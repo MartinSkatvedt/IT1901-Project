@@ -22,38 +22,39 @@
    <center>
       <AnchorPane prefHeight="401.0" prefWidth="400.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
-            <Pane layoutX="254.0" layoutY="30.0" prefHeight="73.0" prefWidth="29.0" style="-fx-background-color: snow;">
+            <Pane layoutX="108.0" layoutY="28.0" prefHeight="75.0" prefWidth="29.0" style="-fx-background-color: snow;">
                <effect>
-                  <Lighting diffuseConstant="0.86" specularConstant="1.57" specularExponent="40.0" surfaceScale="10.0">
+                  <Lighting diffuseConstant="0.0" specularConstant="2.0" specularExponent="14.44" surfaceScale="10.0">
                      <bumpInput>
                         <Shadow />
                      </bumpInput>
                      <light>
-                        <Light.Distant>
+                        <Light.Distant elevation="55.38">
                            <color>
-                              <Color red="1.0" green="1.0" blue="1.0" opacity="0.7182795405387878" />
-                           </color>
-                        </Light.Distant>
-                     </light>
-                  </Lighting>
-               </effect></Pane>
-            <Pane layoutX="108.0" layoutY="25.0" prefHeight="78.0" prefWidth="29.0" style="-fx-background-color: snow;">
-               <effect>
-                  <Lighting diffuseConstant="0.86" specularConstant="1.57" specularExponent="40.0" surfaceScale="10.0">
-                     <bumpInput>
-                        <Shadow />
-                     </bumpInput>
-                     <light>
-                        <Light.Distant>
-                           <color>
-                              <Color red="1.0" green="1.0" blue="1.0" opacity="0.7182795405387878" />
+                              <Color red="1.0" green="0.9907407164573669" blue="0.9907407164573669" opacity="0.7200000286102295" />
                            </color>
                         </Light.Distant>
                      </light>
                   </Lighting>
                </effect>
             </Pane>
-            <GridPane blendMode="SRC_ATOP" gridLinesVisible="true" layoutX="61.0" layoutY="131.0" prefHeight="196.0" prefWidth="269.0" style="-fx-background-color: white; -fx-border-color: #ff8700#ff8700; -fx-border-width: 2;">
+            <Pane layoutX="256.0" layoutY="29.0" prefHeight="74.0" prefWidth="27.0" style="-fx-background-color: snow;">
+               <effect>
+                  <Lighting diffuseConstant="0.0" specularConstant="2.0" specularExponent="14.44" surfaceScale="10.0">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant elevation="55.38">
+                           <color>
+                              <Color red="1.0" green="0.9907407164573669" blue="0.9907407164573669" opacity="0.7200000286102295" />
+                           </color>
+                        </Light.Distant>
+                     </light>
+                  </Lighting>
+               </effect>
+            </Pane>
+            <GridPane blendMode="SRC_ATOP" gridLinesVisible="true" layoutX="61.0" layoutY="131.0" prefHeight="196.0" prefWidth="269.0" style="-fx-background-color: white; -fx-border-color: black; -fx-border-width: 2;">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="40.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="170.0" minWidth="10.0" prefWidth="40.0" />
@@ -74,10 +75,24 @@
                <image>
                   <Image url="@../../img/favpng_calendar-icon.png" />
                </image>
+               <effect>
+                  <Lighting diffuseConstant="0.45" specularConstant="1.68" specularExponent="7.68" surfaceScale="8.11">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant azimuth="0.0" elevation="53.53">
+                           <color>
+                              <Color red="1.0" green="0.5166666507720947" opacity="0.7548387050628662" />
+                           </color>
+                        </Light.Distant>
+                     </light>
+                  </Lighting>
+               </effect>
             </ImageView>
             <TextField fx:id="username" alignment="CENTER" layoutX="108.0" layoutY="211.0" prefHeight="38.0" prefWidth="176.0" promptText="Username" style="-fx-background-color: white; -fx-border-color: black;">
                <font>
-                  <Font name="Calibri Light" size="13.0" />
+                  <Font name="Corsiva Hebrew" size="13.0" />
                </font>
                <effect>
                   <Lighting diffuseConstant="1.26" specularConstant="0.0" specularExponent="0.0" surfaceScale="10.0">
@@ -85,7 +100,7 @@
                         <Shadow />
                      </bumpInput>
                      <light>
-                        <Light.Distant azimuth="57.78" />
+                        <Light.Distant azimuth="50.0" />
                      </light>
                   </Lighting>
                </effect>
@@ -94,26 +109,26 @@
                <font>
                   <Font name="Calibri Light" size="15.0" />
                </font></Label>
-            <Button fx:id="loginButton" cache="true" layoutX="150.0" layoutY="354.0" mnemonicParsing="false" onAction="#login" prefHeight="31.0" prefWidth="91.0" style="-fx-border-color: #ff8700#ff8700; -fx-background-color: white; -fx-border-style: solid; -fx-border-width: 2;" text="Log In" textAlignment="CENTER">
+            <Button fx:id="loginButton" blendMode="MULTIPLY" cache="true" layoutX="159.0" layoutY="353.0" mnemonicParsing="false" onAction="#login" prefHeight="27.0" prefWidth="74.0" style="-fx-border-color: #ff8700#ff8700; -fx-background-color: white; -fx-border-style: solid; -fx-border-width: 2;" text="Log In" textAlignment="CENTER">
                <cursor>
                   <Cursor fx:constant="OPEN_HAND" />
                </cursor>
                <font>
-                  <Font name="Calibri Light" size="15.0" />
+                  <Font name="Corsiva Hebrew" size="15.0" />
                </font></Button>
          </children>
       </AnchorPane>
    </center>
    <top>
-      <Pane prefHeight="5.0" prefWidth="350.0" style="-fx-background-color: #708090#708090 #708090#708090;" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="5.0" prefWidth="350.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER" />
    </top>
    <left>
-      <Pane prefHeight="394.0" prefWidth="5.0" style="-fx-background-color: #708090#708090 #708090#708090;" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="394.0" prefWidth="5.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER" />
    </left>
    <right>
-      <Pane prefHeight="200.0" prefWidth="5.0" style="-fx-background-color: #708090#708090 #708090#708090;" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="200.0" prefWidth="5.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER" />
    </right>
    <bottom>
-      <Pane prefHeight="5.0" prefWidth="200.0" style="-fx-background-color: #708090#708090 #708090#708090;" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="5.0" prefWidth="200.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER" />
    </bottom>
 </BorderPane>
