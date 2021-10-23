@@ -20,9 +20,9 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calendar.ui.LoginController">
    <center>
-      <AnchorPane prefHeight="401.0" prefWidth="400.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="401.0" prefWidth="400.0" style="-fx-background-color: snowwhite;" BorderPane.alignment="CENTER">
          <children>
-            <Pane layoutX="108.0" layoutY="28.0" prefHeight="75.0" prefWidth="29.0" style="-fx-background-color: snow;">
+            <Pane layoutX="109.0" layoutY="28.0" prefHeight="74.0" prefWidth="29.0" style="-fx-background-color: snow;">
                <effect>
                   <Lighting diffuseConstant="0.0" specularConstant="2.0" specularExponent="14.44" surfaceScale="10.0">
                      <bumpInput>
@@ -31,7 +31,7 @@
                      <light>
                         <Light.Distant elevation="55.38">
                            <color>
-                              <Color red="1.0" green="0.9907407164573669" blue="0.9907407164573669" opacity="0.7200000286102295" />
+                              <Color red="1.0" green="1.0" blue="1.0" opacity="0.7200000286102295" />
                            </color>
                         </Light.Distant>
                      </light>
@@ -47,7 +47,7 @@
                      <light>
                         <Light.Distant elevation="55.38">
                            <color>
-                              <Color red="1.0" green="0.9907407164573669" blue="0.9907407164573669" opacity="0.7200000286102295" />
+                              <Color red="1.0" green="1.0" blue="1.0" opacity="0.7200000286102295" />
                            </color>
                         </Light.Distant>
                      </light>
@@ -83,7 +83,7 @@
                      <light>
                         <Light.Distant azimuth="0.0" elevation="53.53">
                            <color>
-                              <Color red="1.0" green="0.5166666507720947" opacity="0.7548387050628662" />
+                              <Color red="0.5460526347160339" green="0.5460526347160339" blue="0.5460526347160339" opacity="0.75" />
                            </color>
                         </Light.Distant>
                      </light>
