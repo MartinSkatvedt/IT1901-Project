@@ -31,7 +31,7 @@
                      <light>
                         <Light.Distant elevation="55.38">
                            <color>
-                              <Color red="1.0" green="1.0" blue="1.0" opacity="0.7200000286102295" />
+                              <Color red="0.8486841917037964" green="0.8396472930908203" blue="0.8251096606254578" opacity="0.7200000286102295" />
                            </color>
                         </Light.Distant>
                      </light>
@@ -47,7 +47,7 @@
                      <light>
                         <Light.Distant elevation="55.38">
                            <color>
-                              <Color red="1.0" green="1.0" blue="1.0" opacity="0.7200000286102295" />
+                              <Color red="0.8618420958518982" green="0.8578521013259888" blue="0.8578521013259888" opacity="0.7200000286102295" />
                            </color>
                         </Light.Distant>
                      </light>
@@ -76,14 +76,14 @@
                   <Image url="@../../img/favpng_calendar-icon.png" />
                </image>
                <effect>
-                  <Lighting diffuseConstant="0.45" specularConstant="1.68" specularExponent="7.68" surfaceScale="8.11">
+                  <Lighting diffuseConstant="0.71" specularConstant="1.64" specularExponent="9.1" surfaceScale="10.0">
                      <bumpInput>
                         <Shadow />
                      </bumpInput>
                      <light>
-                        <Light.Distant azimuth="0.0" elevation="53.53">
+                        <Light.Distant azimuth="0.0" elevation="49.27">
                            <color>
-                              <Color red="0.5460526347160339" green="0.5460526347160339" blue="0.5460526347160339" opacity="0.75" />
+                              <Color red="0.6100000143051147" green="0.8700000047683716" blue="1.0" opacity="0.9220430254936218" />
                            </color>
                         </Light.Distant>
                      </light>
