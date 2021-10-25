@@ -1,12 +1,11 @@
-image: maven:latest
-
 stages:
   - build
   - test
   - deploy
 
-build:
+build-API:
   stage: build
+  image: maven:latest
   script:
     - cd calendar
     - mvn clean package -DskipTests
@@ -14,14 +13,33 @@ build:
     paths:
       - $CI_PROJECT_DIR/calendar/fxui/target/*.jar
 
-test:
+build-client:
+  stage: build
+  image: node:latest
+  script:
+    - cd calendar-client
+    - npm install
+    - npm run build
+  artifacts:
+    paths:
+      - $CI_PROJECT_DIR/calendar-client/build
+
+test-API:
   stage: test
+  image: maven:latest
   script:
     - echo "Building project with maven"
     - cd calendar
-    - mvn verify
+    - mvn test
     - cat $CI_PROJECT_DIR/calendar/fxui/target/site/jacoco-aggregate/index.html | grep -o '<tfoot>.*</tfoot>'
   artifacts:
     when: always
     reports:
       junit: $CI_PROJECT_DIR/calendar/fxui/target/surefire-reports/TEST-*.xml
+
+test-client:
+  stage: test
+  image: node:latest
+  script:
+    - cd calendar-client
+    - npm test

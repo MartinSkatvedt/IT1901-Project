@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 
 
-public class LoginTest extends ApplicationTest {
+public class LoginTestIT extends ApplicationTest {
 
     private LoginController controller;
     private Parent root;
