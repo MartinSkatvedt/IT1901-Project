@@ -1,10 +1,11 @@
 stages:
-  - build
-  - test
-  - deploy
+  - build-backend
+  - build-client
+  - test-backend
+  - test-client
 
 build-API:
-  stage: build
+  stage: build-backend
   image: maven:latest
   script:
     - cd calendar
@@ -14,7 +15,7 @@ build-API:
       - $CI_PROJECT_DIR/calendar/fxui/target/*.jar
 
 build-client:
-  stage: build
+  stage: build-client
   image: node:latest
   script:
     - cd calendar-client
@@ -25,21 +26,22 @@ build-client:
       - $CI_PROJECT_DIR/calendar-client/build
 
 test-API:
-  stage: test
+  stage: test-backend
   image: maven:latest
   script:
     - echo "Building project with maven"
     - cd calendar
     - mvn test
-    - cat $CI_PROJECT_DIR/calendar/fxui/target/site/jacoco-aggregate/index.html | grep -o '<tfoot>.*</tfoot>'
-  artifacts:
-    when: always
-    reports:
-      junit: $CI_PROJECT_DIR/calendar/fxui/target/surefire-reports/TEST-*.xml
+#    - cat $CI_PROJECT_DIR/calendar/fxui/target/site/jacoco-aggregate/index.html | grep -o '<tfoot>.*</tfoot>'
+#  artifacts:
+#    when: always
+#    reports:
+#      junit: $CI_PROJECT_DIR/calendar/fxui/target/surefire-reports/TEST-*.xml
 
 test-client:
-  stage: test
+  stage: test-client
   image: node:latest
   script:
     - cd calendar-client
+    - npm install
     - npm test
