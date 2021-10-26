@@ -1,12 +1,10 @@
-image: maven:latest
-
 stages:
-  - build
-  - test
-  - deploy
+ - build
+ - test
 
-build:
+build-API:
   stage: build
+  image: maven:latest
   script:
     - cd calendar
     - mvn clean package -DskipTests
@@ -14,14 +12,45 @@ build:
     paths:
       - $CI_PROJECT_DIR/calendar/fxui/target/*.jar
 
-test:
-  stage: test
+build-client:
+  stage: build
+  image: node:14.15.3
   script:
-    - echo "Building project with maven"
-    - cd calendar
-    - mvn verify
-    - cat $CI_PROJECT_DIR/calendar/fxui/target/site/jacoco-aggregate/index.html | grep -o '<tfoot>.*</tfoot>'
+    - cd calendar-client
+    - npm ci
+    - npm run build
   artifacts:
-    when: always
-    reports:
-      junit: $CI_PROJECT_DIR/calendar/fxui/target/surefire-reports/TEST-*.xml
+    paths:
+      - $CI_PROJECT_DIR/calendar-client/build
+      - $CI_PROJECT_DIR/calendar-client/node_modules
+
+test-API:
+  stage: test
+  needs: ["build-API"]
+  image: maven:latest
+  script:
+    - echo "Testing project with maven"
+    - cd calendar
+    - mvn test
+#    - cat $CI_PROJECT_DIR/calendar/fxui/target/site/jacoco-aggregate/index.html | grep -o '<tfoot>.*</tfoot>'
+#  artifacts:
+#    when: always
+#    reports:
+#      junit: $CI_PROJECT_DIR/calendar/fxui/target/surefire-reports/TEST-*.xml
+
+test-client:
+  stage: test
+  needs: ["build-client"]
+  image: node:14.15.3
+  script:
+    - cd calendar-client
+    - npm test
+
+lint-client:
+  stage: test
+  needs: ["build-client"]
+  image: node:14.15.3
+  script:
+    - cd calendar-client
+    - npm run lint
+

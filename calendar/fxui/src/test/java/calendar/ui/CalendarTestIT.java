@@ -14,7 +14,7 @@ import org.testfx.framework.junit5.ApplicationTest;
 
 
 
-public class CalendarTest extends ApplicationTest {
+public class CalendarTestIT extends ApplicationTest {
 
     private LoginController controller;
     private Parent root;
