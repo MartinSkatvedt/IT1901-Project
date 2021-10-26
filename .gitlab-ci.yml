@@ -31,13 +31,9 @@ test-API:
   script:
     - echo "Testing project with maven"
     - cd calendar
-    - mvn test
-#    - cat $CI_PROJECT_DIR/calendar/fxui/target/site/jacoco-aggregate/index.html | grep -o '<tfoot>.*</tfoot>'
-#  artifacts:
-#    when: always
-#    reports:
-#      junit: $CI_PROJECT_DIR/calendar/fxui/target/surefire-reports/TEST-*.xml
-
+    - mvn verify
+    - cat $CI_PROJECT_DIR/calendar/fxui/target/site/jacoco-aggregate/index.html | grep -o '<tfoot>.*</tfoot>'
+    
 test-client:
   stage: test
   needs: ["build-client"]
