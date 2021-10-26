@@ -1,13 +1,13 @@
 export type User = {
     username: string;
-    calendar: Calendar;
+    calendar: CalendarType;
 }
 
-export type Calendar = {
+export type CalendarType = {
     events: Event[] | undefined;
 }
 
-export type Event = {
+export type EventType = {
     header: string;
     description: string;
     date: string;
