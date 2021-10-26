@@ -1,4 +1,4 @@
-import React from "react";
+import React, {FC} from "react";
 import {
 	BrowserRouter as Router,
 	Switch,
@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import Login from "./pages/Login";
 
-function App() {
+const App:FC = () => {
 	return (
 		<Router>
 			<Switch>
@@ -18,6 +18,6 @@ function App() {
 			</Switch>
 		</Router>
 	);
-}
+};
 
 export default App;
