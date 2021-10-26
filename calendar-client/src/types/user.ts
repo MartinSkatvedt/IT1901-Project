@@ -1,5 +1,5 @@
 export type User = {
-    username: String;
+    username: string;
     calendar: Calendar;
 }
 

@@ -10,18 +10,18 @@ const initialState: State = {
 };
 
 const StateReducer = (state: State, action: Action): State => {
-  switch (action.type) {
-    case ActionTypes.SET_USER:
-      return { ...state, user: action.payload };
-    case ActionTypes.LOGOUT_USER:
-      return {
-        ...state,
-        user: undefined,
-      };
+	switch (action.type) {
+	case ActionTypes.SET_USER:
+		return { ...state, user: action.payload };
+	case ActionTypes.LOGOUT_USER:
+		return {
+			...state,
+			user: undefined,
+		};
     
-    default:
-      return { ...state };
-  }
+	default:
+		return { ...state };
+	}
 };
 
 type StateContextProps = {
@@ -30,8 +30,8 @@ type StateContextProps = {
 };
 
 const initialContext: StateContextProps = {
-  state: initialState,
-  dispatch: () => null,
+	state: initialState,
+	dispatch: () => null,
 };
 
 export const StateContext = createContext<StateContextProps>(initialContext);
@@ -41,12 +41,12 @@ type StateProviderProps = {
 };
 
 export const StateProvider = (props: StateProviderProps): JSX.Element => {
-  const [state, dispatch] = useReducer(StateReducer, initialState);
-  const { children } = props;
+	const [state, dispatch] = useReducer(StateReducer, initialState);
+	const { children } = props;
 
-  return (
-    <StateContext.Provider value={{ state, dispatch }}>
-      {children}
-    </StateContext.Provider>
-  );
+	return (
+		<StateContext.Provider value={{ state, dispatch }}>
+			{children}
+		</StateContext.Provider>
+	);
 };

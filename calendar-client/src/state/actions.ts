@@ -14,11 +14,11 @@ export type Action =
   | LogoutUserAction
 
 export const setUser = (user: User): SetUserAction => ({
-  type: ActionTypes.SET_USER,
-  payload: user,
+	type: ActionTypes.SET_USER,
+	payload: user,
 });
 
 export const logoutUser = (): LogoutUserAction => ({
-  type: ActionTypes.LOGOUT_USER,
+	type: ActionTypes.LOGOUT_USER,
 });
 
