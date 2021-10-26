@@ -2,11 +2,6 @@ stages:
  - build
  - test
 
-cache:
-  key: "$CI_COMMIT_REF_SLUG"
-  paths:
-    - .npm/
-    
 build-API:
   stage: build
   image: maven:latest
@@ -21,16 +16,17 @@ build-API:
 
 build-client:
   stage: build
-  image: node:latest
+  image: node:14.15.3
   script:
     - echo "Building react project..."
     - cd calendar-client
-    - npm ci --cache .npm --prefer-offline
+    - npm ci
     - npm run build
     - echo "Finished build"
   artifacts:
     paths:
       - $CI_PROJECT_DIR/calendar-client/build
+      - $CI_PROJECT_DIR/calendar-client/node_modules
 
 test-API:
   stage: test
@@ -49,7 +45,7 @@ test-API:
 test-client:
   stage: test
   needs: ["build-client"]
-  image: node:latest
+  image: node:14.15.3
   script:
     - cd calendar-client
     - npm test
