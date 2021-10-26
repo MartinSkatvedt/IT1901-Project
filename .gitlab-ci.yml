@@ -33,11 +33,7 @@ test-API:
     - cd calendar
     - mvn verify
     - cat $CI_PROJECT_DIR/calendar/fxui/target/site/jacoco-aggregate/index.html | grep -o '<tfoot>.*</tfoot>'
-  artifacts:
-    when: always
-    reports:
-      junit: $CI_PROJECT_DIR/calendar/fxui/target/surefire-reports/TEST-*.xml
-
+    
 test-client:
   stage: test
   needs: ["build-client"]
