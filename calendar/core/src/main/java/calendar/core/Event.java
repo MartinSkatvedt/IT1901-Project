@@ -10,6 +10,7 @@ public class Event {
     private String description;
     private LocalDate date;
     private String time;
+    private int id;
 
     /**
      * Constructor which sets the inital values for the event
@@ -133,4 +134,21 @@ public class Event {
         return Integer.valueOf(minuteString);
     }
 
+    /**
+     * Sets a int id
+     * 
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * Gets the int id
+     * 
+     * @return id (int)
+     */
+    public int getId() {
+        return this.id;
+    }
 }
