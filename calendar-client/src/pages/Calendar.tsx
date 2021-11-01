@@ -1,13 +1,17 @@
 import React, { FC, useState, useEffect } from "react";
-import { Grid, GridItem, Box, Heading, Button } from "@chakra-ui/react";
+import { Grid, GridItem, Box, Heading, Button, HStack, Center, Divider  } from "@chakra-ui/react";
+import {ArrowForwardIcon, ArrowBackIcon} from "@chakra-ui/icons";
+import { BrowserRouter as Router, Switch, Route, Link, useRouteMatch } from "react-router-dom";
+import Event from "./Event";
 const Calendar: FC = () => {
+	const match = useRouteMatch();
 	const [currentYear, setCurrentYear] = useState(2021);
 	const [currentMonth, setCurrentMonth] = useState(10);
 
 	useEffect(() => {
-		const date = new Date(), y: number = date.getFullYear(), m: number = date.getMonth();
-		setCurrentMonth(m);
-		setCurrentYear(y);
+		const date = new Date();
+		setCurrentMonth(date.getMonth());
+		setCurrentYear(date.getFullYear());
 	}, []);
 
 	const month = new Date(currentYear, currentMonth, 1).toLocaleString("default", { month: "long" });
@@ -49,8 +53,14 @@ const Calendar: FC = () => {
 	return (
 		<Box>
 			<Heading textAlign="center">{month} {currentYear}</Heading>
-			<Button onClick={prevMonth}>{"<--"}</Button>
-			<Button onClick={nextMonth}>{"-->"}</Button>
+			<Center>	
+				<HStack spacing={500}> 
+					<Button leftIcon={<ArrowBackIcon/>} onClick={prevMonth}>Forige måned</Button>
+					<Button rightIcon={<ArrowForwardIcon/>} onClick={nextMonth}>Neste måned</Button>
+				</HStack>
+			</Center>
+			<Divider w="90%" m={5} ml="auto" mr="auto"/>
+			
 			<Grid templateColumns="repeat(7, 1fr)" 
 				templateRows="repeat(5, 1fr)" 
 				gap={2} 
@@ -59,8 +69,19 @@ const Calendar: FC = () => {
 				mr ="auto">
 				{gridItems}
 			</Grid>
-		</Box>
+			<Divider w="90%" m={5} ml="auto" mr="auto"/>
+			<Center>
+				<Button>
+					<Link to="/event">Ny hendelse</Link>
+				</Button>
+			</Center>
 
+			<Switch>
+				<Route path="/event">
+					<Event />
+				</Route>
+			</Switch>
+		</Box>
 	);
 };
 
