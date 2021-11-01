@@ -2,8 +2,7 @@ import React, { FC, useContext } from "react";
 import { StateContext } from "../state/state";
 import { setUser } from "../state/actions";
 import { getUser } from "../api/index";
-import "./styles/login.css";
-
+import { Box, Heading, Input, Button, Center} from "@chakra-ui/react";
 const Login: FC = () => {
 	const { dispatch } = useContext(StateContext);
 
@@ -13,11 +12,19 @@ const Login: FC = () => {
 	};
 
 	return (
-		<div className="inputContainer">
-			<h1>Cool Calendar</h1>
-			<input type="text" placeholder="username" />
-			<button onClick={() => onLogin}>Login</button>
-		</div>
+		<Box w="100%" 
+			h="100%"
+			ml="auto"
+			mr="auto"
+			textAlign="center">
+			<Center>
+				<Box>	
+					<Heading>Cool Calendar</Heading>
+					<Input type="text" placeholder="username" />
+					<Button onClick={() => onLogin}>Login</Button></Box>	
+			</Center>
+		
+		</Box>
 	);
 };
 
