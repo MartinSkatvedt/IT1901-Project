@@ -40,7 +40,8 @@ test-client:
   image: node:14.15.3
   script:
     - cd calendar-client
-    - npm test
+    - npm run test -- --coverage --watchAll=false
+    - cat $CI_PROJECT_DIR/calendar-client/coverage/lcov-report/index.html | grep -o -m 1 '<span class="strong">.*</span>' | head -1
 
 lint-client:
   stage: test
