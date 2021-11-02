@@ -111,12 +111,7 @@ public class CalendarController {
     public ResponseEntity<Void> putEvent(@RequestBody Event editedEvent, @PathVariable int id) {
         try {
             checkEvent(id);
-            // Flytte dette til calendar?
-            Event event = calendar.getEvent(id);
-            event.setDate(editedEvent.getDate());
-            event.setDescription(editedEvent.getDescription());
-            event.setTime(editedEvent.getTimeString());
-            event.setHeader(editedEvent.getHeader());
+            calendar.editEvent(id, editedEvent);
             autoSaveUser();
             return ResponseEntity.ok().build();
         } catch (IllegalArgumentException e) {

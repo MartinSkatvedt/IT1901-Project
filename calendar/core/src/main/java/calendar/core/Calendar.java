@@ -93,4 +93,20 @@ public class Calendar {
         return null;
     }
 
+    /**
+     * Edit an event based on the attributes of a template event
+     * 
+     * @param id            id of event to edit
+     * @param templateEvent template event
+     */
+    public void editEvent(int id, Event templateEvent) {
+        if (getEvent(id) == null) {
+            throw new IllegalArgumentException("No event with id \"" + id + "\"");
+        }
+        getEvent(id).setHeader(templateEvent.getHeader());
+        getEvent(id).setDate(templateEvent.getDate());
+        getEvent(id).setTime(templateEvent.getTimeString());
+        getEvent(id).setDescription(templateEvent.getTimeString());
+    }
+
 }
