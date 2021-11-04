@@ -1,7 +1,6 @@
 package calendar.core;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,17 +34,6 @@ public class Calendar {
         eventMap.put(event.getId(), event);
         return event;
     }
-
-    /**
-     * Method that removes an event from a calendar by index
-     * 
-     * @param i index of event to be removed
-     * @return the removed event
-     */
-    // public Event removeEvent(int i) {
-    // return eventMap.remove(events.get(i).getId());
-    // return (events.remove(i));
-    // }
 
     /**
      * Method that deletes an event from a calendar by id
