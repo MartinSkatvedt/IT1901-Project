@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
  */
 public class Calendar {
 
-    // private List<Event> events = new ArrayList<Event>();
     private Map<Integer, Event> eventMap = new HashMap<>();
     private int idCounter;
 
@@ -30,7 +29,6 @@ public class Calendar {
             event.setId(idCounter);
             idCounter++;
         }
-        // events.add(event);
         eventMap.put(event.getId(), event);
         return event;
     }
@@ -43,7 +41,6 @@ public class Calendar {
      */
     public Event deleteEvent(int id) {
         return eventMap.remove(id);
-        // return events.remove(getEvent(id));
     }
 
     /**
