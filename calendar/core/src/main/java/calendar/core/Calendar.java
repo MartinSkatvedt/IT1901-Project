@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
  */
 public class Calendar {
 
-    private List<Event> events = new ArrayList<Event>();
+    // private List<Event> events = new ArrayList<Event>();
     private Map<Integer, Event> eventMap = new HashMap<>();
     private int idCounter;
 
@@ -31,7 +31,7 @@ public class Calendar {
             event.setId(idCounter);
             idCounter++;
         }
-        events.add(event);
+        // events.add(event);
         eventMap.put(event.getId(), event);
         return event;
     }
@@ -42,20 +42,20 @@ public class Calendar {
      * @param i index of event to be removed
      * @return the removed event
      */
-    public Event removeEvent(int i) {
-        eventMap.remove(events.get(i).getId());
-        return (events.remove(i));
-    }
+    // public Event removeEvent(int i) {
+    // return eventMap.remove(events.get(i).getId());
+    // return (events.remove(i));
+    // }
 
     /**
      * Method that deletes an event from a calendar by id
      * 
      * @param id id of event to be removed
-     * @return true if event existed and was removed
+     * @return event existed and was removed, or null
      */
-    public boolean deleteEvent(int id) {
-        eventMap.remove(id);
-        return events.remove(getEvent(id));
+    public Event deleteEvent(int id) {
+        return eventMap.remove(id);
+        // return events.remove(getEvent(id));
     }
 
     /**
@@ -64,7 +64,7 @@ public class Calendar {
      * @return list of events
      */
     public List<Event> getEvents() {
-        return events;
+        return eventMap.values().stream().toList();
     }
 
     /**
@@ -75,7 +75,7 @@ public class Calendar {
      */
 
     public List<Event> getEvents(LocalDate date) {
-        List<Event> eventList = events.stream().filter(e -> e.getDate().equals(date)).sorted((e1, e2) -> {
+        List<Event> eventList = eventMap.values().stream().filter(e -> e.getDate().equals(date)).sorted((e1, e2) -> {
             if (e1.getTimeHour() - e2.getTimeHour() == 0) {
                 return e1.getTimeMinute().compareTo(e2.getTimeMinute());
             } else {
