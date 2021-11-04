@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RestController;
 import calendar.core.User;
 import calendar.json.UserPersistence;
 
+    /**
+     * Controller that loads exiting user or creates a new one
+     */
+
 @RestController
 public class UserController {
     
@@ -22,6 +26,13 @@ public class UserController {
 public UserController() {
     this.userPersistence = new UserPersistence();
 }
+
+/**
+     * Get a specific user based on username
+     * 
+     * @param username
+     * @return user
+     */
 
 @GetMapping ("/user/{username}")
 public ResponseEntity<User> getUser(@PathVariable String username){
@@ -41,9 +52,6 @@ public ResponseEntity<User> getUser(@PathVariable String username){
     
 
 }
-
-
-
        
 }
 
