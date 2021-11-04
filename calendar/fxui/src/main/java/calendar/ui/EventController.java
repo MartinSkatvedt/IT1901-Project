@@ -1,10 +1,10 @@
 package calendar.ui;
 
-import java.io.IOException;
-import java.time.LocalDate;
-import calendar.json.UserPersistence;
 import calendar.core.Event;
 import calendar.core.User;
+import calendar.json.UserPersistence;
+import java.io.IOException;
+import java.time.LocalDate;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -36,12 +36,12 @@ public class EventController {
 
     private User user;
 
-    private final static String[] HOURS = { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11",
-            "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" };
-    private final static String[] MINUTES = { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11",
-            "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29",
-            "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47",
-            "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" };
+    private static final String[] HOURS = {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11",
+        "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" };
+    private static final String[] MINUTES = {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11",
+        "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29",
+        "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47",
+        "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" };
 
     @FXML
     void initialize() {

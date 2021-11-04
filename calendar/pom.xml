@@ -14,7 +14,6 @@
 
     <dependencyManagement>
         <dependencies>
-
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter-api</artifactId>
@@ -88,11 +87,11 @@
                         <dependency>
                             <groupId>com.puppycrawl.tools</groupId>
                             <artifactId>checkstyle</artifactId>
-                            <version>8.41.1</version>
+                            <version>9.1</version>
                         </dependency>
                     </dependencies>
                     <configuration>
-                        <configLocation>google_checks.xml</configLocation>
+                        <configLocation>/config/checkstyle/checkstyle.xml</configLocation>
                         <encoding>UTF-8</encoding>
                         <consoleOutput>true</consoleOutput>
                         <failsOnError>true</failsOnError>

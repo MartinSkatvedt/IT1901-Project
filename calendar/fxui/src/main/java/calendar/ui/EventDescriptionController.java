@@ -1,17 +1,17 @@
 package calendar.ui;
 
-import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
-import java.io.IOException;
 import calendar.core.Event;
 import calendar.core.User;
+import calendar.json.UserPersistence;
+import java.io.IOException;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
-import calendar.json.UserPersistence;
 
 public class EventDescriptionController {
 
@@ -90,8 +90,3 @@ public class EventDescriptionController {
         this.currentEvent = event;
     }
 }
-
-
-
-
-
