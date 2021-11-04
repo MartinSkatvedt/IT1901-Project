@@ -1,5 +1,8 @@
 package calendar.ui;
 
+import calendar.core.Calendar;
+import calendar.core.Event;
+import calendar.core.User;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Month;
@@ -8,10 +11,6 @@ import java.time.temporal.WeekFields;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
-
-import calendar.core.Calendar;
-import calendar.core.Event;
-import calendar.core.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

@@ -1,10 +1,8 @@
 package calendar.ui;
 
-
-import java.io.IOException;
-
 import calendar.core.User;
 import calendar.json.UserPersistence;
+import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,8 +16,7 @@ import javafx.stage.Stage;
 
 public class LoginController {
 
-    public LoginController(){
-
+    public LoginController() {
     }
 
     @FXML private Label loginReply;
@@ -53,8 +50,7 @@ public class LoginController {
 
         if (currentUser != null)  {
             loginReply.setText(currentUser.getUsername());
-        }
-        else {
+        } else {
             currentUser = new User(username.getText());
             userPersistence.saveUser(currentUser);
         }

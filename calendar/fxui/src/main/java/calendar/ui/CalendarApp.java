@@ -1,20 +1,15 @@
 package calendar.ui;
 
-
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-//import jdk.javadoc.internal.doclets.formats.html.resources.standard;
 
 public class CalendarApp extends Application {
-
     private Stage stage;
     
-
-
     @Override
     public void start(Stage firstStage) throws Exception {
         this.stage = firstStage;
@@ -25,17 +20,13 @@ public class CalendarApp extends Application {
         firstStage.show();
     }
     
-     public void changeScene(String fxml) throws IOException {
+    public void changeScene(String fxml) throws IOException {
         Parent parent = FXMLLoader.load(getClass().getResource(fxml));
         Scene scene = new Scene(parent, 600, 500);
         this.stage.setScene(scene);
-
     } 
-
-
 
     public static void main(String[] args) {
         launch(CalendarApp.class, args);
     }
-
 }
