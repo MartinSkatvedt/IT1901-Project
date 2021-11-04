@@ -29,6 +29,7 @@ public class Event {
     }
 
     public Event() {
+        this.id = 0;
     }
 
     /**

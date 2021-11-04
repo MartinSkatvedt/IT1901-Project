@@ -4,11 +4,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,17 +14,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import calendar.core.Calendar;
 import calendar.core.Event;
+import calendar.core.RequestEvent;
 import calendar.core.User;
 import calendar.json.UserPersistence;
 
 /**
- * Used for requests for a users calendar. PUT for handling editing of event.
- * POST for adding new event. DELETE for deleting event.
+ * Used for requests for a users calendar. PUT for replacing an event. POST for
+ * adding a new event. DELETE for deleting an event.
  */
 
 @RestController
@@ -62,6 +60,7 @@ public class CalendarController {
     }
 
     private void loadUser(String username) throws IllegalStateException, FileNotFoundException, IOException {
+        LOG.info("Loading user: " + username);
         userPersistence.setSaveFile(username + ".json");
         User user = userPersistence.loadUser();
         if (user == null) {
@@ -74,10 +73,11 @@ public class CalendarController {
      * Return calendar of user
      * 
      * @param username username of user
-     * @return users calendar with HTTP response
+     * @return the calendar
      */
-    @GetMapping(path = "/calendar/{username}")
-    public ResponseEntity<Calendar> getAllEvents(@PathVariable String username) {
+    @GetMapping("/calendar/{username}")
+    public ResponseEntity<Calendar> getCalendar(@PathVariable String username) {
+        LOG.info("getCalendar({})", username);
         try {
             loadUser(username);
         } catch (IOException e) {
@@ -94,10 +94,11 @@ public class CalendarController {
      * Get a specific event based on id
      * 
      * @param id id of event
-     * @return HTTP response with the event if it exists
+     * @return the event
      */
     @GetMapping("/calendar/{username}/{id}")
     public ResponseEntity<Event> getEvent(@PathVariable String username, @PathVariable int id) {
+        LOG.info("getEvent({}, {})", username, id);
         try {
             loadUser(username);
             checkEvent(id);
@@ -113,16 +114,18 @@ public class CalendarController {
     }
 
     /**
-     * Edit a specific event based on id
+     * Replace event with specific id
      * 
-     * @param newEvent the edited event
+     * @param event    edited event (class RequestEvent)
      * @param id       id of event to edit
      * @param username username
-     * @return HTTP response
+     * @return HTTP response 200 (OK) if event was replaced, 404 (Not Found) if
+     *         event with id does not exist
      */
     @PutMapping("/calendar/{username}/{id}")
-    public ResponseEntity<Void> replaceEvent(@RequestBody Event event, @PathVariable int id,
+    public ResponseEntity<Void> replaceEvent(@RequestBody RequestEvent event, @PathVariable int id,
             @PathVariable String username) {
+        LOG.info("replaceEvent({}, {})", id, username);
         try {
             loadUser(username);
             checkEvent(id);
@@ -130,8 +133,8 @@ public class CalendarController {
             newEvent.setHeader(event.getHeader());
             newEvent.setDescription(event.getDescription());
             newEvent.setId(id);
-            newEvent.setTime(event.getTimeString());
-            newEvent.setDate(event.getDate());
+            newEvent.setTime(event.getTime());
+            newEvent.setDate(event.getLocalDate());
             this.user.getCalendar().replaceEvent(newEvent);
             autoSaveUser();
             return ResponseEntity.ok().build();
@@ -147,18 +150,30 @@ public class CalendarController {
     /**
      * Add a new event to calendar
      * 
-     * @param newEvent the event to add
+     * @param event    the event to add (class RequestEvent)
      * @param username username
      * @return HTTP response code 201 (Created), location header (URI) and the new
      *         event
      * @throws URISyntaxException
      */
     @PostMapping("/calendar/{username}")
-    public ResponseEntity<Event> postEvent(@RequestBody Event newEvent, @PathVariable String username)
+    public ResponseEntity<Event> postEvent(@RequestBody RequestEvent event, @PathVariable String username)
             throws URISyntaxException {
-        Event event = this.user.getCalendar().addEvent(newEvent);
-        autoSaveUser();
-        return ResponseEntity.created(new URI("/calendar/{username}/" + event.getId())).body(event);
+        LOG.info("postEvent({})", username);
+        try {
+            loadUser(username);
+            Event newEvent = new Event();
+            newEvent.setHeader(event.getHeader());
+            newEvent.setDescription(event.getDescription());
+            newEvent.setTime(event.getTime());
+            newEvent.setDate(event.getLocalDate());
+            this.user.getCalendar().addEvent(newEvent);
+            autoSaveUser();
+            return ResponseEntity.created(new URI("/calendar/" + username + "/" + newEvent.getId())).body(newEvent);
+        } catch (IOException e) {
+            LOG.error(e.getMessage());
+            return ResponseEntity.internalServerError().build();
+        }
     }
 
     /**
@@ -170,6 +185,7 @@ public class CalendarController {
      */
     @DeleteMapping("/calendar/{username}/{id}")
     public ResponseEntity<Void> deleteEvent(@PathVariable String username, @PathVariable int id) {
+        LOG.info("deleteEvent({}, {})", username, id);
         try {
             loadUser(username);
             checkEvent(id);
