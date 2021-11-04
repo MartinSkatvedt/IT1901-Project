@@ -1,6 +1,7 @@
 package calendar.core;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 /**
  * A placeholder for events with date represented as string. Used for PUT and
@@ -52,6 +53,9 @@ public class RequestEvent {
      * @param date date to be set (String)
      */
     public void setDate(String date) {
+        if (!date.matches("yyyy-MM-dd")) {
+            throw new IllegalArgumentException("Date String is in the wrong format");
+        }
         this.date = date;
     }
 
@@ -61,6 +65,12 @@ public class RequestEvent {
      * @param time time to be set (String)
      */
     public void setTime(String time) {
+        if (time.replaceAll("\\s", "").isEmpty()) {
+            throw new IllegalArgumentException("New Time cannot be empty");
+        }
+        if (time.matches("([01]?[0-9]|2[0-3]):[0-5][0-9]")) {
+            throw new IllegalArgumentException("Invalid string format");
+        }
         this.time = time;
     }
 
@@ -115,7 +125,8 @@ public class RequestEvent {
      * @return date as LocalDate
      */
     public LocalDate getLocalDate() {
-        return LocalDate.parse(getDateString());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        return LocalDate.parse(getDateString(), formatter);
     }
 
 }
