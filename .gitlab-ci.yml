@@ -32,7 +32,7 @@ test-API:
     - echo "Testing project with maven"
     - cd calendar
     - mvn verify
-    - cat $CI_PROJECT_DIR/calendar/fxui/target/site/jacoco-aggregate/index.html | grep -o '<tfoot>.*</tfoot>'
+    - cat $CI_PROJECT_DIR/calendar/fxui/target/site/jacoco-aggregate/index.html | grep -o -m 1 '<td class="ctr2">.*%</td><td class="bar">' | head -1
     
 test-client:
   stage: test
