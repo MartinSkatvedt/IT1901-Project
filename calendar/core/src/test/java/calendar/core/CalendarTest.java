@@ -32,10 +32,10 @@ public class CalendarTest {
     }
 
     @Test
-    public void testRemoveEvent() {
+    public void testDeleteEvent() {
         Event e = new Event("header", "desc", LocalDate.now(), "10:00");
         testCalendar.addEvent(e);
-        testCalendar.removeEvent(0);
+        testCalendar.deleteEvent(e.getId());
         assertTrue(testCalendar.getEvents().isEmpty());
     }
 
