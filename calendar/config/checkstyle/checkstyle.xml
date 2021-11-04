@@ -68,7 +68,7 @@
     </module>
     <module name="NeedBraces">
       <property name="tokens"
-               value="LITERAL_DO, LITERAL_ELSE, LITERAL_FOR, LITERAL_IF, LITERAL_WHILE"/>
+               value="LITERAL_DO, LITERAL_FOR, LITERAL_WHILE"/>
     </module>
     <module name="LeftCurly">
       <property name="tokens"
@@ -303,7 +303,6 @@
       <property name="tokens" value="VARIABLE_DEF"/>
       <property name="allowSamelineMultipleAnnotations" value="true"/>
     </module>
-    <module name="NonEmptyAtclauseDescription"/>
     <module name="MethodName">
       <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9_]*$"/>
       <message key="name.invalidPattern"

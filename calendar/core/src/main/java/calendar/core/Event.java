@@ -111,7 +111,7 @@ public class Event {
      * @return hour (Integer)
      */
     public Integer getTimeHour() {
-        String timeString[] = getTimeString().split(":");
+        String[] timeString = getTimeString().split(":");
         String hourString = timeString[0];
         if (hourString.charAt(0) == '0') {
             return Integer.valueOf(hourString.substring(1));
@@ -125,7 +125,7 @@ public class Event {
      * @return minute (Integer)
      */
     public Integer getTimeMinute() {
-        String timeString[] = getTimeString().split(":");
+        String[] timeString = getTimeString().split(":");
         String minuteString = timeString[1];
         if (minuteString.charAt(0) == '0') {
             return Integer.valueOf(minuteString.substring(1));
