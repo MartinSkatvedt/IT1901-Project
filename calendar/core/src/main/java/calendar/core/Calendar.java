@@ -2,7 +2,9 @@ package calendar.core;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -11,6 +13,7 @@ import java.util.stream.Collectors;
 public class Calendar {
 
     private List<Event> events = new ArrayList<Event>();
+    private Map<Integer, Event> eventMap = new HashMap<>();
     private int idCounter;
 
     public Calendar() {
@@ -24,9 +27,12 @@ public class Calendar {
      * @return added event
      */
     public Event addEvent(Event event) {
-        event.setId(idCounter);
-        idCounter++;
+        if (event.getId() == 0) {
+            event.setId(idCounter);
+            idCounter++;
+        }
         events.add(event);
+        eventMap.put(event.getId(), event);
         return event;
     }
 
@@ -37,6 +43,7 @@ public class Calendar {
      * @return the removed event
      */
     public Event removeEvent(int i) {
+        eventMap.remove(events.get(i).getId());
         return (events.remove(i));
     }
 
@@ -47,6 +54,7 @@ public class Calendar {
      * @return true if event existed and was removed
      */
     public boolean deleteEvent(int id) {
+        eventMap.remove(id);
         return events.remove(getEvent(id));
     }
 
@@ -85,12 +93,7 @@ public class Calendar {
      */
 
     public Event getEvent(int id) {
-        for (Event e : events) {
-            if (e.getId() == id) {
-                return e;
-            }
-        }
-        return null;
+        return eventMap.get(id);
     }
 
     /**
@@ -99,14 +102,11 @@ public class Calendar {
      * @param id            id of event to edit
      * @param templateEvent template event
      */
-    public void editEvent(int id, Event templateEvent) {
-        if (getEvent(id) == null) {
-            throw new IllegalArgumentException("No event with id \"" + id + "\"");
+    public void replaceEvent(Event newEvent) {
+        if (getEvent(newEvent.getId()) == null) {
+            throw new IllegalArgumentException("No event with id \"" + newEvent.getId() + "\"");
         }
-        getEvent(id).setHeader(templateEvent.getHeader());
-        getEvent(id).setDate(templateEvent.getDate());
-        getEvent(id).setTime(templateEvent.getTimeString());
-        getEvent(id).setDescription(templateEvent.getTimeString());
+        eventMap.put(newEvent.getId(), newEvent);
     }
 
 }

@@ -25,6 +25,10 @@ public class Event {
         this.setDescription(descArg);
         this.setDate(dateArg);
         this.setTime(timeArg);
+        this.id = 0;
+    }
+
+    public Event() {
     }
 
     /**
