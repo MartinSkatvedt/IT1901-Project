@@ -2,10 +2,10 @@ import axios from "axios";
 import { User, EventType, CalendarType } from "../types/user";
 import {createCalendarResponseType} from "../types/api";
 
-export const DEFAULT_URL = "localhost:8080/api/";
-export const USER_URI = (username: string) => `${DEFAULT_URL}/user/${username}`;
-export const CALENDAR_URI = (username: string) => `${DEFAULT_URL}/calendar/${username}`;
-export const CALENDAR_ID_URI = (username: string, id: number) => `${CALENDAR_URI(username)}/${id}`;
+export const DEFAULT_URL = "http://www.localhost:8080/api";
+export const USER_URI = (username: string): string => `${DEFAULT_URL}/user/${username}`;
+export const CALENDAR_URI = (username: string): string => `${DEFAULT_URL}/calendar/${username}`;
+export const CALENDAR_ID_URI = (username: string, id: number): string => `${CALENDAR_URI(username)}/${id}`;
 
 
 export const getUser = async (username: string): Promise<User | undefined> => {
