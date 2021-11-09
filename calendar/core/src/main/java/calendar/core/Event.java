@@ -71,6 +71,9 @@ public class Event {
         if (newTime.replaceAll("\\s", "").isEmpty()) {
             throw new IllegalArgumentException("New Time cannot be empty");
         }
+        if (!newTime.matches("([01]?[0-9]|2[0-3]):[0-5][0-9]")) {
+            throw new IllegalArgumentException("Invalid string format");
+        }
         this.time = newTime;
     }
 
