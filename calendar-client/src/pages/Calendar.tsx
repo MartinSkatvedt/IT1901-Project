@@ -1,14 +1,19 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState, useEffect, useContext } from "react";
+import { StateContext } from "../state/state";
 import { Grid, Box, Heading, Button, HStack, Center, Divider, SimpleGrid } from "@chakra-ui/react";
 import {ArrowForwardIcon, ArrowBackIcon} from "@chakra-ui/icons";
-import { BrowserRouter as Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Switch, Route, Link, Redirect } from "react-router-dom";
 import Event from "./Event";
 import CalendarItem from "../components/CalendarItem";
 
 const Calendar: FC = () => {
 	const [currentYear, setCurrentYear] = useState(2021);
 	const [currentMonth, setCurrentMonth] = useState(10);
+	const { state } = useContext(StateContext);
+	const {user} = state;
+	if (!user) return <Redirect to={"/"} />;
 
+	console.log(user);
 	useEffect(() => {
 		const date = new Date();
 		setCurrentMonth(date.getMonth());

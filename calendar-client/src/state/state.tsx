@@ -7,6 +7,7 @@ type State = {
 };
 
 const initialState: State = {
+	user: undefined,
 };
 
 const StateReducer = (state: State, action: Action): State => {
@@ -18,7 +19,6 @@ const StateReducer = (state: State, action: Action): State => {
 			...state,
 			user: undefined,
 		};
-    
 	default:
 		return { ...state };
 	}

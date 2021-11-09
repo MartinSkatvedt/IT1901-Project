@@ -3,15 +3,20 @@ import { StateContext } from "../state/state";
 import { setUser } from "../state/actions";
 import { getUser } from "../api/index";
 import { Box, Heading, Input, Button, Center} from "@chakra-ui/react";
+import { Redirect } from "react-router-dom";
+
 const Login: FC = () => {
 	const [currentUsername, setCurrentUsername] = useState("");
-	const { dispatch } = useContext(StateContext);
+	const { state, dispatch } = useContext(StateContext);
+	const {user} = state;
+	if (user) return <Redirect to="/calendar"/>;
 
 	const onLogin = async () => {
-		const user = await getUser(currentUsername);
-		if (user) dispatch(setUser(user));
+		const reqUser = await getUser(currentUsername);
+		if (reqUser) {
+			dispatch(setUser(reqUser));
+		}
 	};
-
 	return (
 		<Box w="100%" 
 			h="100%"
