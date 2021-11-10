@@ -53,7 +53,7 @@ public class RequestEvent {
      * @param date date to be set (String)
      */
     public void setDate(String date) {
-        if (!date.matches("yyyy-MM-dd")) {
+        if (!date.matches("\\d{4}-\\d{2}-\\d{2}")) {
             throw new IllegalArgumentException("Date String is in the wrong format");
         }
         this.date = date;
@@ -68,7 +68,7 @@ public class RequestEvent {
         if (time.replaceAll("\\s", "").isEmpty()) {
             throw new IllegalArgumentException("New Time cannot be empty");
         }
-        if (time.matches("([01]?[0-9]|2[0-3]):[0-5][0-9]")) {
+        if (!time.matches("^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$")) {
             throw new IllegalArgumentException("Invalid string format");
         }
         this.time = time;
