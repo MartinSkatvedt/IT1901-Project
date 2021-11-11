@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import { ChakraProvider } from "@chakra-ui/react";
 import Login from "./pages/Login";
 import Calendar from "./pages/Calendar";
 import Event from "./pages/Event";
-
+/*
 const theme = extendTheme({
 	styles: {
 		global: {
@@ -14,11 +14,13 @@ const theme = extendTheme({
 			},
 		},
 	},
+	initialColorMode: "dark",
+	useSystemColorMode: false,
 });
-
+*/
 const App: FC = () => {
 	return (
-		<ChakraProvider theme={theme}>
+		<ChakraProvider >
 			<Router>
 				<Switch>
 					<Route path="/event">

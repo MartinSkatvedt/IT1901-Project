@@ -38,7 +38,7 @@ const Event: FC = () => {
 			header: currentHeader,
 			description: currentDesc,
 			date: currentDay.toDateString(),
-			time: parseTime(),
+			timeString: parseTime(),
 		};
 		console.log(eventObj);
 		return eventObj;

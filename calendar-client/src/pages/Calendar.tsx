@@ -9,10 +9,15 @@ import CalendarItem from "../components/CalendarItem";
 const Calendar: FC = () => {
 	const [currentYear, setCurrentYear] = useState(2021);
 	const [currentMonth, setCurrentMonth] = useState(10);
+	const [gridItems, setGridItems] = useState<(JSX.Element | undefined)[]>();
+
 	const { state } = useContext(StateContext);
 	const {user} = state;
-	if (!user) return <Redirect to={"/"} />;
 
+	const currentDate = new Date(currentYear, currentMonth, 1);
+	const month = currentDate.toLocaleString("default", { month: "long" });
+
+	if (!user) return <Redirect to={"/"} />;
 	console.log(user);
 	useEffect(() => {
 		const date = new Date();
@@ -20,34 +25,32 @@ const Calendar: FC = () => {
 		setCurrentYear(date.getFullYear());
 	}, []);
 
-	const thisDate = new Date();
-	const currentDate = new Date(currentYear, currentMonth, 1);
-	const firstDay = new Date(currentYear, currentMonth, 1).getDay();
-	const lastDay = new Date(currentYear, currentMonth + 1, 0).getDate();
-	const month = currentDate.toLocaleString("default", { month: "long" });
-	const gridItems: JSX.Element[] = [];
 
-	let currentIndex = 0;
-	let dateIndex = 1;
-	for (let i = 0; i < 7; i++) {
-		for (let j = 0; j < 5; j++) {
-			const isToday = dateIndex == thisDate.getDay() && thisDate.getMonth() == currentMonth? true : false;
-			if (currentIndex + 1 >= firstDay && dateIndex <= lastDay) {
-				gridItems.push(<CalendarItem 
+	useEffect(() => {
+		const thisDate = new Date();
+		const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+		const lastDay = new Date(currentYear, currentMonth + 1, 0).getDate();
+		const items: JSX.Element[] = [];
+	
+		let currentIndex = 0;
+		let dateIndex = 1;
+		for (let i = 0; i < 7; i++) {
+			for (let j = 0; j < 5; j++) {
+				const isToday = dateIndex == thisDate.getDay() && thisDate.getMonth() == currentMonth? true : false;
+				items.push(<CalendarItem 
 					isCurrent={isToday} 
 					key={currentIndex} 
 					col={i} 
 					row={j} 
-					date={dateIndex}
+					date={(currentIndex + 1 >= firstDay && dateIndex <= lastDay) ? new Date(currentYear, currentMonth, dateIndex): undefined}
 				/>);
-				dateIndex++;
+				if (currentIndex + 1 >= firstDay && dateIndex <= lastDay) dateIndex++;
+				currentIndex++;
 			}
-			else {
-				gridItems.push(<CalendarItem key={currentIndex} isCurrent={isToday} col={i} row={j}/>);
-			}
-			currentIndex++;
 		}
-	}
+		setGridItems(items);
+	}, [currentMonth]);
+
 
 	const nextMonth = () => {
 		if (currentMonth + 1 >= 12) {

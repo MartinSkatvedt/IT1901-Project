@@ -4,12 +4,12 @@ export type User = {
 }
 
 export type CalendarType = {
-    events: Event[] | undefined;
+    events: EventType[] | undefined;
 }
 
 export type EventType = {
     header: string;
     description: string;
     date: string;
-    time: string;
+    timeString: string;
 }
