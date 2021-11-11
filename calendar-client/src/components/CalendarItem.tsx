@@ -1,6 +1,7 @@
-import React, {FC, useContext, useEffect, useState} from "react";
-import { Box, GridItem } from "@chakra-ui/react";
+import React, {FC, useContext} from "react";
+import { GridItem } from "@chakra-ui/react";
 import { StateContext } from "../state/state";
+import EventItem from "./EventItem";
 
 type CalendarItemProps = {
     col: number;
@@ -20,13 +21,11 @@ const CalendarItem: FC<CalendarItemProps> = ({col, row, isCurrent, date}: Calend
 			const currentEvent = events[Number(key)];
 			const currentDate = new Date(currentEvent.date);
 
-			if (currentDate.getDate() == date.getDate() && currentDate.getMonth() == date.getMonth()) {
-				return <Box key={key}>{currentEvent.timeString} {currentEvent.header}</Box>;
+			if (currentDate.getDate() == date.getDate() && currentDate.getMonth() == date.getMonth() &&  currentDate.getFullYear() == date.getFullYear()) {
+				return <EventItem key={key} event={currentEvent}/>;
 			}
 		});
 	}
-
-	// &&  &&  currentDate.getFullYear() == date.getFullYear()
 	return <GridItem border={isCurrent ?"3px solid black" : "none"} 
 		bg="tomato" 
 		h={100} 
