@@ -1,13 +1,15 @@
 import React, { createContext, Dispatch, ReactNode, useReducer } from "react";
-import { User } from "../types/user";
+import { User, EventType } from "../types/user";
 import { Action, ActionTypes } from "./actions";
 
 type State = {
   user?: User;
+  currentEvent?: EventType;
 };
 
 const initialState: State = {
 	user: undefined,
+	currentEvent: undefined
 };
 
 const StateReducer = (state: State, action: Action): State => {
@@ -19,6 +21,8 @@ const StateReducer = (state: State, action: Action): State => {
 			...state,
 			user: undefined,
 		};
+	case ActionTypes.SET_EVENT:
+		return {...state, currentEvent: action.payload};
 	default:
 		return { ...state };
 	}

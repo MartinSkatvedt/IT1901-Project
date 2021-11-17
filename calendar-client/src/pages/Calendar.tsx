@@ -2,15 +2,14 @@ import React, { FC, useState, useEffect, useContext } from "react";
 import { StateContext } from "../state/state";
 import { Grid, Box, Heading, Button, HStack, Center, Divider, SimpleGrid } from "@chakra-ui/react";
 import {ArrowForwardIcon, ArrowBackIcon} from "@chakra-ui/icons";
-import { BrowserRouter as Switch, Route, Link, Redirect } from "react-router-dom";
-import Event from "./Event";
+import { useHistory, Redirect } from "react-router-dom";
 import CalendarItem from "../components/CalendarItem";
 
 const Calendar: FC = () => {
 	const [currentYear, setCurrentYear] = useState(2021);
 	const [currentMonth, setCurrentMonth] = useState(10);
 	const [gridItems, setGridItems] = useState<(JSX.Element | undefined)[]>();
-
+	const history = useHistory();
 	const { state } = useContext(StateContext);
 	const {user} = state;
 
@@ -18,7 +17,6 @@ const Calendar: FC = () => {
 	const month = currentDate.toLocaleString("default", { month: "long" });
 
 	if (!user) return <Redirect to={"/"} />;
-	console.log(user);
 	useEffect(() => {
 		const date = new Date();
 		setCurrentMonth(date.getMonth());
@@ -109,16 +107,10 @@ const Calendar: FC = () => {
 			<Divider w="90%" m={5} ml="auto" mr="auto"/>
 
 			<Center>
-				<Button>
-					<Link to="/event">Ny hendelse</Link>
+				<Button onClick={() => history.push("/event")}>
+					Ny hendelse
 				</Button>
 			</Center>
-
-			<Switch>
-				<Route path="/event">
-					<Event />
-				</Route>
-			</Switch>
 		</Box>
 	);
 };
