@@ -8,13 +8,21 @@ Mer info om selve prosjekter finner man
 
 ## Bygging og kjøring av prosjektet
 
-For å kjøre prosjektet:
+For å kjøre api-serveren:
 
 ```bash
 cd calendar
 mvn install
-cd fxui
-mvn javafx:run
+cd rest
+mvn spring-boot:run
+```
+
+For å kjøre klienten:
+
+```bash
+cd calendar-client
+npm install
+npm start
 ```
 
 ## Filstruktur

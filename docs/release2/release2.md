@@ -15,7 +15,6 @@
 
 - Oppgraderte applikasjonens design
 
-- 
 
 
 
