@@ -22,10 +22,13 @@ public class EventTest {
     void testConstructor() {
         LocalDate date1 = LocalDate.now();
         Event event1 = new Event("abc", "def", date1, "13:30");
+        Event event2 = new Event();
         assertAll(() -> assertEquals("abc", event1.getHeader()), () -> assertEquals("def", event1.getDescription()),
                 () -> assertEquals(date1, event1.getDate()), () -> assertEquals("13:30", event1.getTimeString()));
         assertThrows(IllegalArgumentException.class, () -> new Event("", "abc", date1, "12:00"));
         assertThrows(IllegalArgumentException.class, () -> new Event("def", "abc", date1, ""));
+        assertEquals(0, event1.getId(), "ID was not set to 0");
+        assertEquals(0, event2.getId(), "Empty constructor did not set ID to 0");
     }
 
     @Test
@@ -65,6 +68,18 @@ public class EventTest {
         assertEquals("11:20", this.event.getTimeString());
         this.event.setTime("23:45");
         assertEquals("23:45", this.event.getTimeString());
+        assertEquals(23, this.event.getTimeHour(), "Wrong integer value for time hour");
+        assertEquals(45, this.event.getTimeMinute(), "Wrong integer value for time minute");
+        this.event.setTime("01:00");
+        assertEquals(1, this.event.getTimeHour(), "Wrong integer value for time hour");
+        assertEquals(0, this.event.getTimeMinute(), "Wrong integer value for time minute");
         assertThrows(IllegalArgumentException.class, () -> this.event.setTime(""));
+    }
+
+    @Test
+    @DisplayName("Test for the setId method")
+    void setIdTest() {
+        this.event.setId(9);
+        assertEquals(9, this.event.getId(), "ID was not set correctly");
     }
 }

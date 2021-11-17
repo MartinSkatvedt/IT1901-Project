@@ -28,6 +28,9 @@ public class Event {
         this.id = 0;
     }
 
+    /**
+     * Empty constructor
+     */
     public Event() {
         this.id = 0;
     }
