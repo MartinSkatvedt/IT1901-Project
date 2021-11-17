@@ -6,13 +6,13 @@ Prosjektet vårt er en kalender-app med flere brukere. En bruker kan "logge seg 
 
 ## Brukerhistorier
 
-Brukerhistorene våre finner du her(legg inn link her)
+Brukerhistorene våre finner du [her](../docs/resources/brukerhistorier.md)
 
 ## Bilder
 
-![informerende_skjermbilde](../resources/Illustrerende_skjermbilde.jpg)
+![informerende_skjermbilde](../docs/resources/Illustrerende_skjermbilde.jpg)
 
 
 ## Arkitektur
-Koden til plantUML diagrammet finner du [her](../resources/structure.puml)
-![Arkitektur](../resources/arkitektur.png)
+Koden til plantUML diagrammet finner du [her](../docs/resources/structure.puml)
+![Arkitektur](../docs/resources/arkitektur.png)
