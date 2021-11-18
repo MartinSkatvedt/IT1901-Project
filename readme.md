@@ -1,10 +1,13 @@
-[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.stud.ntnu.no/#https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2156/gr2156)
-
 # Kalender app
 
-Prosjektet vårt er en kalender app med flere brukere. En bruker kan "logge seg inn" og få åpnet en kalender med alle hendelsene hen har lagt inn. Brukeren kan også legge inn nye hendelser.
-Mer info om selve prosjekter finner man
-[her](https://gitlab.stud.idi.ntnu.no/it1901/groups-2021/gr2156/gr2156/blob/master/calendar/readme.md)
+Prosjektet vårt er en kalender-app med flere brukere. En bruker kan "logge seg inn" og få åpnet en kalender med alle hendelsene hen har lagt inn. Brukeren kan også legge inn nye hendelser, og oppdatere ekisterende hendelser.
+
+## Oversikt
+
+- [Bygging og kjøring av prosjektet](##bygging-og-kjøring-av-prosjektet)
+- [Filstruktur](##filstruktur)
+- [Dokumentasjon](##dokumentasjon)
+- [Brukerhistorier](##brukerhistorier)
 
 ## Bygging og kjøring av prosjektet
 
@@ -27,4 +30,26 @@ npm start
 
 ## Filstruktur
 
-Java prosjektet vårt finner man i calendar-mappen i rot-mappen.
+I rot-mappen finner man:
+
+- calendar-client: Klient skrevet i typescript med react
+- calendar: Rest-api skrevet i java med maven og spring-boot
+
+## Dokumentasjon
+
+Mer dokumentasjon for hver tjeneste finner man i deres respektive mapper.
+
+- [calendar-client](./calendar-client/README.md)
+- [calendar](./calendar/README.md)
+
+### Pakkediagram
+
+![Pakkediagram](./docs/resources/package_diagram.png)
+
+### Sekvensdiagram
+
+(insert image here)
+
+## Brukerhistorier
+
+Brukerhistor finner du [her](./docs/resources/brukerhistorier.md)
