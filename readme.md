@@ -4,10 +4,10 @@ Prosjektet vårt er en kalender-app med flere brukere. En bruker kan "logge seg 
 
 ## Oversikt
 
-- [Bygging og kjøring av prosjektet](##bygging-og-kjøring-av-prosjektet)
-- [Filstruktur](##filstruktur)
-- [Dokumentasjon](##dokumentasjon)
-- [Brukerhistorier](##brukerhistorier)
+- [Bygging og kjøring av prosjektet](#bygging-og-kjøring-av-prosjektet)
+- [Filstruktur](#filstruktur)
+- [Dokumentasjon](#dokumentasjon)
+- [Brukerhistorier](#brukerhistorier)
 
 ## Bygging og kjøring av prosjektet
 
