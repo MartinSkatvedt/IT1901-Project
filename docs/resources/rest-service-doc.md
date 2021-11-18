@@ -4,11 +4,15 @@ This applications REST-api was build using Spring Boot. It consists of two REST-
 
 ## Endpoint "/user/{username}"
 
-### GET requests
+### `GET`
 
-- Returns the user with the given username, if it exists.
-- Request body (JSON): No request body
-- Response body (JSON):
+- Returns the user with the given username.
+
+#### URL Params
+
+- `username = [string]`
+
+#### Response body (JSON)
 
 ```json
 {
@@ -31,11 +35,15 @@ This applications REST-api was build using Spring Boot. It consists of two REST-
 
 ## Endpoint "/calendar/{username}"
 
-### GET requests
+### `GET`
 
 - Returns the calendar of the user with given username, if the user exists.
-- Request body (JSON): No request body
-- Response body (JSON):
+
+#### URL Params
+
+- `username = [string]`
+
+#### Response body (JSON)
 
 ```json
 {
@@ -49,10 +57,15 @@ This applications REST-api was build using Spring Boot. It consists of two REST-
 }
 ```
 
-### POST requests
+### `POST`
 
 - Adds a new event to the calendar.
-- Request body (JSON):
+
+#### URL Params
+
+- `username = [string]`
+
+#### Request body (JSON)
 
 ```json
 {
@@ -79,11 +92,16 @@ This applications REST-api was build using Spring Boot. It consists of two REST-
 
 ## Endpoint "/calendar/{username}/{id}"
 
-### GET requests
+### `GET`
 
 - Returns event with given id from the calendar of the user with given username, if the event and user exists.
-- Request body (JSON): No request body
-- Response body (JSON):
+
+#### URL Params
+
+- `username = [string]`
+- `id = [int]`
+
+#### Response body (JSON)
 
 ```json
 {
@@ -97,10 +115,16 @@ This applications REST-api was build using Spring Boot. It consists of two REST-
 }
 ```
 
-### PUT requests
+### `PUT`
 
 - Replaces event with given id in the calendar of the user with given username, if the user exists.
-- Request body (JSON):
+
+#### URL Params
+
+- `username = [string]`
+- `id = [int]`
+
+#### Request body (JSON)
 
 ```json
 {
@@ -113,8 +137,11 @@ This applications REST-api was build using Spring Boot. It consists of two REST-
 
 - Response body (JSON): No response body
 
-### DELETE requests
+### `DELETE`
 
 - Deletes event with given id from the calendar of the user with given username, if the event and user exists.
-- Request body (JSON): No request body
-- Response body (JSON): No response body
+
+#### URL Params
+
+- `username = [string]`
+- `id = [int]`
