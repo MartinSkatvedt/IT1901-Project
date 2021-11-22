@@ -14,7 +14,7 @@
 
 ## UML
 Vi lagde forskjellige diagrammer for å illustrere produktets virkemåte. 
- - Pakkediagram finner du FYLL INN
+ - Pakkediagram finner du [her](../resources/Package_diagram.png)
  - Klassediagram finner du [her](../resources/Class_diagram.png)
 
- - Sekvensdiagram finner du FYLL INN
+ - Sekvensdiagram finner du [her](../resources/Sequence_diagram.png)
