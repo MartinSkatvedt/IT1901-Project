@@ -1,3 +1,3 @@
 export type createCalendarResponseType = {
-    path: string;
-}
+	path: string;
+};

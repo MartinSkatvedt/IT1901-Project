@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.NumericNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.TextNode;
 import java.io.IOException;
@@ -57,6 +58,10 @@ public class UserDeserializer extends JsonDeserializer<User> {
                 JsonNode timeNode = event.get("time");
                 if (timeNode instanceof TextNode) {
                     e.setTime(timeNode.asText());
+                }
+                JsonNode idNode = event.get("id");
+                if (timeNode instanceof NumericNode) {
+                    e.setId(timeNode.asInt());
                 }
 
                 item.getCalendar().addEvent(e);

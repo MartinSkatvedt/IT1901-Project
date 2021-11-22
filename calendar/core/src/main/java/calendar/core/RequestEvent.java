@@ -2,6 +2,7 @@ package calendar.core;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.regex.Pattern;
 
 /**
  * A placeholder for events with date represented as string. Used for PUT and
@@ -12,7 +13,6 @@ public class RequestEvent {
 
     private String header;
     private String description;
-    private int id;
     private String date;
     private String time;
 
@@ -38,14 +38,6 @@ public class RequestEvent {
         this.description = description;
     }
 
-    /**
-     * Sets events id
-     * 
-     * @param id id to be set (int)
-     */
-    public void setId(int id) {
-        this.id = id;
-    }
 
     /**
      * Sets events date
@@ -53,9 +45,6 @@ public class RequestEvent {
      * @param date date to be set (String)
      */
     public void setDate(String date) {
-        if (!date.matches("yyyy-MM-dd")) {
-            throw new IllegalArgumentException("Date String is in the wrong format");
-        }
         this.date = date;
     }
 
@@ -68,7 +57,7 @@ public class RequestEvent {
         if (time.replaceAll("\\s", "").isEmpty()) {
             throw new IllegalArgumentException("New Time cannot be empty");
         }
-        if (time.matches("([01]?[0-9]|2[0-3]):[0-5][0-9]")) {
+        if (!time.matches("([01]?[0-9]|2[0-3]):[0-5][0-9]")) {
             throw new IllegalArgumentException("Invalid string format");
         }
         this.time = time;
@@ -92,14 +81,6 @@ public class RequestEvent {
         return description;
     }
 
-    /**
-     * Gets events id
-     * 
-     * @return id (int)
-     */
-    public int getId() {
-        return id;
-    }
 
     /**
      * Gets events date as string

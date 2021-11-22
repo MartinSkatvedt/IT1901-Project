@@ -41,19 +41,16 @@ public class UserController {
             userPersistence.setSaveFile(username + ".json");
             if (userPersistence.loadUser() == null){
                 this.user = new User(username);
+                userPersistence.saveUser(this.user);
             }
             else {
                 this.user = userPersistence.loadUser();
             }
             return ResponseEntity.ok(user);
-            
-        } 
-        
+        }
         catch (IOException e) {
             return ResponseEntity.internalServerError().build();
         }
-        
-
     }
         
 }
