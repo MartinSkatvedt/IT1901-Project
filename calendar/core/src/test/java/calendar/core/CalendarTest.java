@@ -26,9 +26,13 @@ public class CalendarTest {
     public void testAddEvent() {
         Event ev1 = new Event("header1", "desc1", LocalDate.now(), "11:00");
         Event ev2 = new Event("header2", "desc2", LocalDate.now(), "10:30");
+        ev2.setId(5);
         testCalendar.addEvent(ev1);
         testCalendar.addEvent(ev2);
-        assertEquals(2, testCalendar.getEvents().size());
+        assertEquals(2, testCalendar.getEvents().size(), "Events were not added to calendar correctly.");
+        assertEquals(1, testCalendar.getEvents().get(0).getId(), "ID was not set correctly.");
+        assertEquals(5, testCalendar.getEvents().get(1).getId(), "Event with set ID should not get a new ID.");
+        assertEquals(ev1.getHeader(), testCalendar.getEvent(1).getHeader(), "Could not get event by ID");
     }
 
     @Test
