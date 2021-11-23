@@ -75,12 +75,12 @@ export const updateEvent = async (
 export const deleteEvent = async (
 	username: string,
 	id: number
-): Promise<createCalendarResponseType | undefined> => {
+): Promise<boolean | undefined> => {
 	const response = await axios
 		.delete<createCalendarResponseType>(CALENDAR_ID_URI(username, id))
 		.catch(() => Promise.resolve(undefined));
 
 	if (response && response.status === 200) {
-		return response.data as createCalendarResponseType;
-	} else return undefined;
+		return true;
+	} else return false;
 };

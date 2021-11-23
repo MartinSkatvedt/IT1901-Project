@@ -14,7 +14,6 @@ import {
 } from "@chakra-ui/react";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import "react-day-picker/lib/style.css";
-import { EventType } from "../types/user";
 import { StateContext } from "../state/state";
 import {
 	FormikHelpers,
@@ -38,6 +37,7 @@ type Values = {
 export const DatePickerField = ({
 	...props
 }: {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	[x: string]: any;
 	name: string;
 }): JSX.Element => {
@@ -139,6 +139,7 @@ const Event: FC = () => {
 					}, 500);
 				}}
 			>
+				{/*eslint-disable-next-line @typescript-eslint/no-explicit-any */}
 				{(props: FormikProps<any>) => (
 					<Form>
 						<FormControl isRequired>
