@@ -16,6 +16,7 @@ public class EventSerializer extends JsonSerializer<Event> {
         jsonGen.writeStringField("description", event.getDescription());
         jsonGen.writeStringField("date", event.getDate().toString());
         jsonGen.writeStringField("time", event.getTimeString());
+        jsonGen.writeNumberField("id", event.getId());
         jsonGen.writeEndObject();
     }
 }
