@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * Class that contains a list of events
+ * Class that contains a HashMap of events with IDs
  */
 public class Calendar {
 
