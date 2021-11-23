@@ -30,7 +30,6 @@ public class RequestEventTest {
         event.setDate("2021-12-24");
         assertEquals("2021-12-24", event.getDateString(), "Date was not set correctly");
         assertEquals("2021-12-24", event.getLocalDate().toString(), "Date was not converted to LocalDate correctly");
-        assertThrows(IllegalArgumentException.class, () -> event.setDate("hallo"));
     }
 
     @Test
