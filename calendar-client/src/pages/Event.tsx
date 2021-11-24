@@ -11,6 +11,7 @@ import {
 	HStack,
 	NumberInput,
 	NumberInputField,
+	IconButton,
 } from "@chakra-ui/react";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import "react-day-picker/lib/style.css";
@@ -33,6 +34,7 @@ type Values = {
 	hour: number;
 	date: Date;
 };
+import { ArrowBackIcon } from "@chakra-ui/icons";
 
 export const DatePickerField = ({
 	...props
@@ -113,6 +115,13 @@ const Event: FC = () => {
 
 	return (
 		<Box w="60%" ml="auto" mr="auto">
+			<IconButton
+				aria-label="return button"
+				icon={<ArrowBackIcon />}
+				onClick={() => history.goBack()}
+				w="10%"
+				marginTop="10px"
+			/>
 			<Heading textAlign="center">Opprett en ny hendelse</Heading>
 			<Formik
 				initialValues={{
