@@ -3,7 +3,7 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import "@testing-library/jest-dom";
-import { User } from "./types/user";
+import { EventType, User } from "./types/user";
 
 export const mockUser: User = {
 	username: "testUser",
@@ -29,4 +29,14 @@ export const mockUser: User = {
 			},
 		],
 	},
+};
+
+export const MockEvent: EventType = {
+	header: "testEvent1",
+	description: "testDescription1",
+	date: "2021-11-23",
+	timeString: "12:30",
+	timeHour: 12,
+	timeMinute: 30,
+	id: 1,
 };

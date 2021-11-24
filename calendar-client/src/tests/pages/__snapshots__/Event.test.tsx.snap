@@ -1,0 +1,150 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Event renders correctly 1`] = `
+Array [
+  <div
+    className="css-8atqhb"
+  >
+    <button
+      aria-label="logout button"
+      className="chakra-button css-7yzoig"
+      onClick={[Function]}
+      type="button"
+    >
+      Log out
+    </button>
+    <h2
+      className="chakra-heading css-xrxou1"
+    >
+      november
+       
+      2021
+    </h2>
+    <div
+      className="css-gmuwbf"
+    >
+      <div
+        className="chakra-stack css-mxsw1"
+      >
+        <button
+          className="chakra-button css-taj3dd"
+          onClick={[Function]}
+          type="button"
+        >
+          <span
+            className="chakra-button__icon css-1wh2kri"
+          >
+            <svg
+              aria-hidden={true}
+              className="chakra-icon css-onkibi"
+              focusable={false}
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+          Forige måned
+        </button>
+        <button
+          className="chakra-button css-taj3dd"
+          onClick={[Function]}
+          type="button"
+        >
+          I dag
+        </button>
+        <button
+          className="chakra-button css-taj3dd"
+          onClick={[Function]}
+          type="button"
+        >
+          Neste måned
+          <span
+            className="chakra-button__icon css-1hzyiq5"
+          >
+            <svg
+              aria-hidden={true}
+              className="chakra-icon css-onkibi"
+              focusable={false}
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"
+                fill="currentColor"
+              />
+            </svg>
+          </span>
+        </button>
+      </div>
+    </div>
+    <hr
+      aria-orientation="horizontal"
+      className="chakra-divider css-impwoj"
+    />
+    <div
+      className="css-nvbfv9"
+    >
+      <div
+        className="css-0"
+      >
+        Mandag
+      </div>
+      <div
+        className="css-0"
+      >
+        Tirsdag
+      </div>
+      <div
+        className="css-0"
+      >
+        Onsdag
+      </div>
+      <div
+        className="css-0"
+      >
+        Torsdag
+      </div>
+      <div
+        className="css-0"
+      >
+        Fredag
+      </div>
+      <div
+        className="css-0"
+      >
+        Lørdag
+      </div>
+      <div
+        className="css-0"
+      >
+        Søndag
+      </div>
+    </div>
+    <div
+      className="css-gmuwbf"
+    >
+      <div
+        className="css-1vaoh93"
+      />
+    </div>
+    <hr
+      aria-orientation="horizontal"
+      className="chakra-divider css-impwoj"
+    />
+    <div
+      className="css-gmuwbf"
+    >
+      <button
+        className="chakra-button css-taj3dd"
+        onClick={[Function]}
+        type="button"
+      >
+        Ny hendelse
+      </button>
+    </div>
+  </div>,
+  <span />,
+]
+`;
