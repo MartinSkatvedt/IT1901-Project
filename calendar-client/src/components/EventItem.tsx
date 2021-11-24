@@ -54,7 +54,7 @@ const EventItem: FC<EventItemProps> = ({ event }: EventItemProps) => {
 			<Box onClick={() => editEvent()}>
 				{event.timeString} {event.header}
 			</Box>
-			<Popover>
+			<Popover id="pop-id">
 				<PopoverTrigger>
 					<IconButton
 						aria-label="delete"
