@@ -1,4 +1,4 @@
-import React, { FC, useContext } from "react";
+import React, { FC, useContext, useState } from "react";
 import {
 	Box,
 	Heading,
@@ -59,6 +59,7 @@ const Event: FC = () => {
 	const { state, dispatch } = useContext(StateContext);
 	const { user, currentEvent } = state;
 	const history = useHistory();
+	const [statusMessage, setStatusMessage] = useState<string>("");
 
 	if (!user) return <Redirect to={"/"} />;
 
@@ -82,7 +83,6 @@ const Event: FC = () => {
 			date: parseDate(values.date),
 			time: parseTime(values.hour, values.minute),
 		};
-		console.log(eventObj);
 
 		if (currentEvent && currentEvent.id) {
 			const response = await updateEvent(
@@ -90,27 +90,24 @@ const Event: FC = () => {
 				currentEvent.id,
 				eventObj
 			);
-			console.log(response);
 			if (response) {
-				console.log("Event updated");
+				setStatusMessage("Event updated");
 				const reqUser = await getUser(user.username);
 				if (reqUser) {
-					console.log(reqUser);
 					dispatch(setUser(reqUser));
-				}
-				history.push("/calendar");
-			}
+					history.push("/calendar");
+				} else setStatusMessage("Failed to update user, please relogin");
+			} else setStatusMessage("Failed to update event, please try again");
 		} else {
 			const response = await createEvent(user.username, eventObj);
 			if (response) {
-				console.log("Event created");
+				setStatusMessage("Event created");
 				const reqUser = await getUser(user.username);
 				if (reqUser) {
-					console.log(reqUser);
 					dispatch(setUser(reqUser));
-				}
-				history.push("/calendar");
-			}
+					history.push("/calendar");
+				} else setStatusMessage("Failed to update user, please relogin");
+			} else setStatusMessage("Failed to update event, please try again");
 		}
 	};
 
@@ -214,6 +211,8 @@ const Event: FC = () => {
 					</Form>
 				)}
 			</Formik>
+			<br />
+			<Center> {statusMessage} </Center>
 		</Box>
 	);
 };
