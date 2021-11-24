@@ -7,6 +7,8 @@ import { Redirect } from "react-router-dom";
 
 const Login: FC = () => {
 	const [currentUsername, setCurrentUsername] = useState("");
+	const [statusMessage, setStatusMessage] = useState("");
+
 	const { state, dispatch } = useContext(StateContext);
 	const { user } = state;
 	if (user) return <Redirect to="/calendar" />;
@@ -14,9 +16,8 @@ const Login: FC = () => {
 	const onLogin = async () => {
 		const reqUser = await getUser(currentUsername);
 		if (reqUser) {
-			console.log(reqUser);
 			dispatch(setUser(reqUser));
-		}
+		} else setStatusMessage("Failed to fetch user, please try again");
 	};
 	return (
 		<Box w="100%" h="100%" ml="auto" mr="auto" textAlign="center">
@@ -33,6 +34,7 @@ const Login: FC = () => {
 					<Button onClick={onLogin}>Login</Button>
 				</Box>
 			</Center>
+			<Center>{statusMessage}</Center>
 		</Box>
 	);
 };
