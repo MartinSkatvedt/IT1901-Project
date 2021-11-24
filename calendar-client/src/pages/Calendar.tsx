@@ -13,7 +13,7 @@ import {
 import { ArrowForwardIcon, ArrowBackIcon } from "@chakra-ui/icons";
 import { useHistory, Redirect } from "react-router-dom";
 import CalendarItem from "../components/CalendarItem";
-import { clearEvent } from "../state/actions";
+import { clearEvent, logoutUser } from "../state/actions";
 
 const Calendar: FC = () => {
 	const [currentYear, setCurrentYear] = useState(2021);
@@ -90,7 +90,19 @@ const Calendar: FC = () => {
 	};
 
 	return (
-		<Box>
+		<Box w="100%">
+			<Button
+				aria-label="logout button"
+				onClick={() => {
+					dispatch(logoutUser());
+					history.push("/");
+				}}
+				w="10%"
+				marginTop="10px"
+				marginLeft="85%"
+			>
+				Log out
+			</Button>
 			<Heading textAlign="center">
 				{month} {currentYear}
 			</Heading>
@@ -106,7 +118,7 @@ const Calendar: FC = () => {
 				</HStack>
 			</Center>
 			<Divider w="90%" m={5} ml="auto" mr="auto" />
-			<SimpleGrid gap={2} w="90%" ml="auto" mr="auto" columns={7}>
+			<SimpleGrid gap={2} w="95%" ml="auto" mr="auto" columns={7}>
 				<Box>Mandag</Box>
 				<Box>Tirsdag</Box>
 				<Box>Onsdag</Box>
@@ -115,16 +127,16 @@ const Calendar: FC = () => {
 				<Box>Lørdag</Box>
 				<Box>Søndag</Box>
 			</SimpleGrid>
-			<Grid
-				templateColumns="repeat(7, 1fr)"
-				templateRows="repeat(5, 1fr)"
-				gap={2}
-				w="90%"
-				ml="auto"
-				mr="auto"
-			>
-				{gridItems}
-			</Grid>
+			<Center>
+				<Grid
+					templateColumns="repeat(7, 1fr)"
+					templateRows="repeat(5, 1fr)"
+					gap={2}
+					w="95%"
+				>
+					{gridItems}
+				</Grid>
+			</Center>
 			<Divider w="90%" m={5} ml="auto" mr="auto" />
 
 			<Center>

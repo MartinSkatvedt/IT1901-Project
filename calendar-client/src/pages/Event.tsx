@@ -1,4 +1,4 @@
-import React, { FC, useContext } from "react";
+import React, { FC, useContext, useState } from "react";
 import {
 	Box,
 	Heading,
@@ -11,6 +11,7 @@ import {
 	HStack,
 	NumberInput,
 	NumberInputField,
+	IconButton,
 } from "@chakra-ui/react";
 import DayPickerInput from "react-day-picker/DayPickerInput";
 import "react-day-picker/lib/style.css";
@@ -33,6 +34,7 @@ type Values = {
 	hour: number;
 	date: Date;
 };
+import { ArrowBackIcon } from "@chakra-ui/icons";
 
 export const DatePickerField = ({
 	...props
@@ -59,6 +61,7 @@ const Event: FC = () => {
 	const { state, dispatch } = useContext(StateContext);
 	const { user, currentEvent } = state;
 	const history = useHistory();
+	const [statusMessage, setStatusMessage] = useState<string>("");
 
 	if (!user) return <Redirect to={"/"} />;
 
@@ -82,7 +85,6 @@ const Event: FC = () => {
 			date: parseDate(values.date),
 			time: parseTime(values.hour, values.minute),
 		};
-		console.log(eventObj);
 
 		if (currentEvent && currentEvent.id) {
 			const response = await updateEvent(
@@ -90,32 +92,36 @@ const Event: FC = () => {
 				currentEvent.id,
 				eventObj
 			);
-			console.log(response);
 			if (response) {
-				console.log("Event updated");
+				setStatusMessage("Event updated");
 				const reqUser = await getUser(user.username);
 				if (reqUser) {
-					console.log(reqUser);
 					dispatch(setUser(reqUser));
-				}
-				history.push("/calendar");
-			}
+					history.push("/calendar");
+				} else setStatusMessage("Failed to update user, please relogin");
+			} else setStatusMessage("Failed to update event, please try again");
 		} else {
 			const response = await createEvent(user.username, eventObj);
 			if (response) {
-				console.log("Event created");
+				setStatusMessage("Event created");
 				const reqUser = await getUser(user.username);
 				if (reqUser) {
-					console.log(reqUser);
 					dispatch(setUser(reqUser));
-				}
-				history.push("/calendar");
-			}
+					history.push("/calendar");
+				} else setStatusMessage("Failed to update user, please relogin");
+			} else setStatusMessage("Failed to update event, please try again");
 		}
 	};
 
 	return (
-		<Box w="60%" ml="auto" mr="auto">
+		<Box w="50%" ml="auto" mr="auto">
+			<IconButton
+				aria-label="return button"
+				icon={<ArrowBackIcon />}
+				onClick={() => history.goBack()}
+				w="10%"
+				marginTop="10px"
+			/>
 			<Heading textAlign="center">Opprett en ny hendelse</Heading>
 			<Formik
 				initialValues={{
@@ -209,11 +215,13 @@ const Event: FC = () => {
 						<Divider w="90%" m={5} ml="auto" mr="auto" />
 
 						<Center>
-							<Input type="submit" />
+							<Input w="30%" type="submit" />
 						</Center>
 					</Form>
 				)}
 			</Formik>
+			<br />
+			<Center> {statusMessage} </Center>
 		</Box>
 	);
 };
