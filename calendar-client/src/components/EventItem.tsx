@@ -1,4 +1,17 @@
-import { Box, IconButton, HStack } from "@chakra-ui/react";
+import {
+	Box,
+	IconButton,
+	HStack,
+	Popover,
+	PopoverTrigger,
+	PopoverContent,
+	PopoverArrow,
+	PopoverCloseButton,
+	PopoverHeader,
+	PopoverBody,
+	Button,
+	Center,
+} from "@chakra-ui/react";
 import React, { FC, useContext } from "react";
 import { EventType } from "../types/user";
 import { useHistory } from "react-router-dom";
@@ -41,14 +54,28 @@ const EventItem: FC<EventItemProps> = ({ event }: EventItemProps) => {
 			<Box onClick={() => editEvent()}>
 				{event.timeString} {event.header}
 			</Box>
-			<IconButton
-				aria-label="delete"
-				icon={<DeleteIcon />}
-				size="sm"
-				colorScheme="tomato"
-				_hover={{ color: "black" }}
-				onClick={() => onDelete()}
-			/>
+			<Popover>
+				<PopoverTrigger>
+					<IconButton
+						aria-label="delete"
+						icon={<DeleteIcon />}
+						size="sm"
+						colorScheme="tomato"
+						_hover={{ color: "black" }}
+					/>
+				</PopoverTrigger>
+				<PopoverContent>
+					<PopoverArrow />
+					<PopoverCloseButton />
+					<PopoverHeader>Delete event</PopoverHeader>
+					<PopoverBody>
+						{"Are you sure you want to delete that event?"}
+						<Center>
+							<Button onClick={() => onDelete()}>Delete</Button>
+						</Center>
+					</PopoverBody>
+				</PopoverContent>
+			</Popover>
 		</HStack>
 	);
 };

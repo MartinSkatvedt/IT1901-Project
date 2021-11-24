@@ -13,7 +13,7 @@ import {
 import { ArrowForwardIcon, ArrowBackIcon } from "@chakra-ui/icons";
 import { useHistory, Redirect } from "react-router-dom";
 import CalendarItem from "../components/CalendarItem";
-import { clearEvent } from "../state/actions";
+import { clearEvent, logoutUser } from "../state/actions";
 
 const Calendar: FC = () => {
 	const [currentYear, setCurrentYear] = useState(2021);
@@ -91,6 +91,18 @@ const Calendar: FC = () => {
 
 	return (
 		<Box>
+			<Button
+				aria-label="logout button"
+				onClick={() => {
+					dispatch(logoutUser());
+					history.push("/");
+				}}
+				w="10%"
+				marginTop="10px"
+				marginLeft="85%"
+			>
+				Log out
+			</Button>
 			<Heading textAlign="center">
 				{month} {currentYear}
 			</Heading>
