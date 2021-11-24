@@ -114,7 +114,7 @@ const Event: FC = () => {
 	};
 
 	return (
-		<Box w="60%" ml="auto" mr="auto">
+		<Box w="50%" ml="auto" mr="auto">
 			<IconButton
 				aria-label="return button"
 				icon={<ArrowBackIcon />}
@@ -215,7 +215,7 @@ const Event: FC = () => {
 						<Divider w="90%" m={5} ml="auto" mr="auto" />
 
 						<Center>
-							<Input type="submit" />
+							<Input w="30%" type="submit" />
 						</Center>
 					</Form>
 				)}

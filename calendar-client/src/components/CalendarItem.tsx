@@ -40,7 +40,7 @@ const CalendarItem: FC<CalendarItemProps> = ({
 			border={isCurrent ? "3px solid black" : "none"}
 			bg="tomato"
 			h={100}
-			w={150}
+			w="100%"
 			col={col}
 			row={row}
 		>

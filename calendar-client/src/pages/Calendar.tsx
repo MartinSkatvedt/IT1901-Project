@@ -90,7 +90,7 @@ const Calendar: FC = () => {
 	};
 
 	return (
-		<Box>
+		<Box w="100%">
 			<Button
 				aria-label="logout button"
 				onClick={() => {
@@ -118,7 +118,7 @@ const Calendar: FC = () => {
 				</HStack>
 			</Center>
 			<Divider w="90%" m={5} ml="auto" mr="auto" />
-			<SimpleGrid gap={2} w="90%" ml="auto" mr="auto" columns={7}>
+			<SimpleGrid gap={2} w="95%" ml="auto" mr="auto" columns={7}>
 				<Box>Mandag</Box>
 				<Box>Tirsdag</Box>
 				<Box>Onsdag</Box>
@@ -127,16 +127,16 @@ const Calendar: FC = () => {
 				<Box>Lørdag</Box>
 				<Box>Søndag</Box>
 			</SimpleGrid>
-			<Grid
-				templateColumns="repeat(7, 1fr)"
-				templateRows="repeat(5, 1fr)"
-				gap={2}
-				w="90%"
-				ml="auto"
-				mr="auto"
-			>
-				{gridItems}
-			</Grid>
+			<Center>
+				<Grid
+					templateColumns="repeat(7, 1fr)"
+					templateRows="repeat(5, 1fr)"
+					gap={2}
+					w="95%"
+				>
+					{gridItems}
+				</Grid>
+			</Center>
 			<Divider w="90%" m={5} ml="auto" mr="auto" />
 
 			<Center>
