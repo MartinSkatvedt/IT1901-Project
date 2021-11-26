@@ -1,6 +1,5 @@
 package it1901.calendar.rest;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -20,8 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import calendar.core.Calendar;
 import calendar.core.Event;
 import calendar.core.RequestEvent;
-import calendar.core.User;
-import calendar.json.UserPersistence;
 
 /**
  * Used for requests for a users calendar. PUT for replacing an event. POST for
@@ -35,42 +32,15 @@ public class CalendarController {
     @Autowired
     UserService userService = new UserService();
 
-    private User user;
-    private UserPersistence userPersistence;
-
     private static final Logger LOG = LoggerFactory.getLogger(CalendarController.class);
 
     /**
      * Initializes this CalendarController
      * 
-     * @param user the user the calendar belongs to
+     * 
      */
     public CalendarController() {
-        this.userPersistence = new UserPersistence();
-    }
 
-    private void autoSaveUser() {
-        try {
-            userPersistence.saveUser(this.user);
-        } catch (IllegalStateException | IOException e) {
-            LOG.error("Could not save user " + e);
-        }
-    }
-
-    private void checkEvent(int id) {
-        if (this.user.getCalendar().getEvent(id) == null) {
-            throw new IllegalArgumentException("No event with id \"" + id + "\"");
-        }
-    }
-
-    private void loadUser(String username) throws IllegalStateException, FileNotFoundException, IOException {
-        LOG.info("Loading user: " + username);
-        userPersistence.setSaveFile(username + ".json");
-        User user = userPersistence.loadUser();
-        if (user == null) {
-            throw new IllegalArgumentException("No user with username: " + username);
-        }
-        this.user = user;
     }
 
     /**
@@ -87,6 +57,9 @@ public class CalendarController {
         } catch (IllegalArgumentException e) {
             LOG.error(e.getMessage());
             return ResponseEntity.notFound().build();
+        } catch (IllegalStateException | IOException e) {
+            LOG.error(e.getMessage());
+            return ResponseEntity.internalServerError().build();
         }
 
     }
@@ -105,6 +78,9 @@ public class CalendarController {
         } catch (IllegalArgumentException e) {
             LOG.error(e.getMessage());
             return ResponseEntity.notFound().build();
+        } catch (IllegalStateException | IOException e) {
+            LOG.error(e.getMessage());
+            return ResponseEntity.internalServerError().build();
         }
     }
 
@@ -127,6 +103,9 @@ public class CalendarController {
         } catch (IllegalArgumentException e) {
             LOG.error(e.getMessage());
             return ResponseEntity.notFound().build();
+        } catch (IllegalStateException | IOException e) {
+            LOG.error(e.getMessage());
+            return ResponseEntity.internalServerError().build();
         }
     }
 
@@ -149,6 +128,9 @@ public class CalendarController {
         } catch (IllegalArgumentException e) {
             LOG.error(e.getMessage());
             return ResponseEntity.notFound().build();
+        } catch (IllegalStateException | IOException e) {
+            LOG.error(e.getMessage());
+            return ResponseEntity.internalServerError().build();
         }
     }
 
@@ -168,6 +150,9 @@ public class CalendarController {
         } catch (IllegalArgumentException e) {
             LOG.error(e.getMessage());
             return ResponseEntity.notFound().build();
+        } catch (IllegalStateException | IOException e) {
+            LOG.error(e.getMessage());
+            return ResponseEntity.internalServerError().build();
         }
 
     }

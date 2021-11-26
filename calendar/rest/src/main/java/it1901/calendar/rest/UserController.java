@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import calendar.core.User;
-import calendar.json.UserPersistence;
 
 /**
  * Gets exiting user or creates a new one
