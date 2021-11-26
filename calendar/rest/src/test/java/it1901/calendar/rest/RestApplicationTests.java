@@ -1,25 +1,15 @@
 package it1901.calendar.rest;
 
-import java.io.IOException;
-import java.io.Reader;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import org.apache.tomcat.jni.Status;
-import org.apache.tomcat.util.http.parser.MediaType;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
@@ -35,7 +25,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import calendar.core.Event;
 import calendar.core.RequestEvent;
 import calendar.core.User;
-import calendar.json.UserPersistence;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -59,14 +48,6 @@ class RestApplicationTests {
         testUser = new User("testuser");
         testEvent = new Event("event1", "desc1", LocalDate.of(2021, 12, 9), "10:00");
     }
-
-    /*
-     * Event e1 = new Event("event1", "desc1", LocalDate.of(2021, 12, 9), "10:00");
-     * Event e2 = new Event("event2", "desc2", LocalDate.of(2021, 11, 30), "11:00");
-     * Event e3 = new Event("event3", "desc3", LocalDate.of(2022, 1, 5), "10:30");
-     * List<Event> events = new ArrayList<>(); events.add(e1); events.add(e2);
-     * events.add(e3); testEvents = events;
-     */
 
     @Test
     public void testGetUser() throws Exception {
