@@ -28,7 +28,6 @@ const EventItem: FC<EventItemProps> = ({ event }: EventItemProps) => {
 	const { user } = state;
 	const editEvent = () => {
 		dispatch(setEvent(event));
-		console.log(event);
 		history.push("/event");
 	};
 
@@ -38,7 +37,6 @@ const EventItem: FC<EventItemProps> = ({ event }: EventItemProps) => {
 		await deleteEvent(user.username, event.id);
 		const reqUser = await getUser(user.username);
 		if (reqUser) {
-			console.log(reqUser);
 			dispatch(setUser(reqUser));
 		}
 	};
@@ -54,7 +52,7 @@ const EventItem: FC<EventItemProps> = ({ event }: EventItemProps) => {
 			<Box onClick={() => editEvent()}>
 				{event.timeString} {event.header}
 			</Box>
-			<Popover>
+			<Popover id="pop-id">
 				<PopoverTrigger>
 					<IconButton
 						aria-label="delete"

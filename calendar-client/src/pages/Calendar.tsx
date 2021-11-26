@@ -104,7 +104,7 @@ const Calendar: FC = () => {
 				Log out
 			</Button>
 			<Heading textAlign="center">
-				{month} {currentYear}
+				{month.charAt(0).toUpperCase() + month.slice(1)} {currentYear}
 			</Heading>
 			<Center>
 				<HStack spacing={200}>
