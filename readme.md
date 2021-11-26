@@ -46,9 +46,15 @@ Mer dokumentasjon for hver tjeneste finner man i deres respektive mapper.
 
 ![Pakkediagram](./docs/resources/package_diagram.png)
 
+### Klassediagram
+
+![Pakkediagram](./docs/resources/class_diagram.png)
+
+
 ### Sekvensdiagram
 
-(insert image here)
+![Sekvensdiagram](./docs/resources/sequence_diagram.png)
+
 
 ## Brukerhistorier
 

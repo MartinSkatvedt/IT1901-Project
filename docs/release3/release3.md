@@ -9,12 +9,13 @@
 ## Kodekvalitet og testing
 
 - Opprettet testing for den nye klienten.
+- Opprettet tester for Rest-API
 - Oppdaterte checkstyle til å ikke gi feilmeldinger på indentations ved kjøring.
 - Kodekvalitet ved nye frontend skjekkes ved bruk av eslint.
 
-## UML
+## Diagrammer
 Vi lagde forskjellige diagrammer for å illustrere produktets virkemåte. 
- - Pakkediagram finner du FYLL INN
+ - Pakkediagram finner du [her](../resources/Package_diagram.png)
  - Klassediagram finner du [her](../resources/Class_diagram.png)
 
- - Sekvensdiagram finner du FYLL INN
+ - Sekvensdiagram finner du [her](../resources/Sequence_diagram.png)

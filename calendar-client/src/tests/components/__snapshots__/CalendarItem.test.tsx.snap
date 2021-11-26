@@ -1,0 +1,134 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CalendarItem renders correctly 1`] = `
+<div
+  className="css-n6blus"
+  col={0}
+  row={0}
+>
+  23.
+  <button
+    className="chakra-stack css-1pq0kbc"
+  >
+    <div
+      className="css-0"
+      onClick={[Function]}
+    >
+      12:30
+       
+      testEvent1
+    </div>
+    <button
+      aria-controls="popover-content-pop-id"
+      aria-expanded={false}
+      aria-haspopup="dialog"
+      aria-label="delete"
+      className="chakra-button css-ve4un"
+      id="popover-trigger-pop-id"
+      onClick={[Function]}
+      type="button"
+    >
+      <svg
+        aria-hidden={true}
+        className="chakra-icon css-onkibi"
+        focusable={false}
+        viewBox="0 0 24 24"
+      >
+        <g
+          fill="currentColor"
+        >
+          <path
+            d="M19.452 7.5H4.547a.5.5 0 00-.5.545l1.287 14.136A2 2 0 007.326 24h9.347a2 2 0 001.992-1.819L19.95 8.045a.5.5 0 00-.129-.382.5.5 0 00-.369-.163zm-9.2 13a.75.75 0 01-1.5 0v-9a.75.75 0 011.5 0zm5 0a.75.75 0 01-1.5 0v-9a.75.75 0 011.5 0zM22 4h-4.75a.25.25 0 01-.25-.25V2.5A2.5 2.5 0 0014.5 0h-5A2.5 2.5 0 007 2.5v1.25a.25.25 0 01-.25.25H2a1 1 0 000 2h20a1 1 0 000-2zM9 3.75V2.5a.5.5 0 01.5-.5h5a.5.5 0 01.5.5v1.25a.25.25 0 01-.25.25h-5.5A.25.25 0 019 3.75z"
+          />
+        </g>
+      </svg>
+    </button>
+    <div
+      className="chakra-popover__popper css-0"
+      style={
+        Object {
+          "inset": "0 auto auto 0",
+          "minWidth": "max-content",
+          "position": "absolute",
+          "visibility": "hidden",
+        }
+      }
+    >
+      <section
+        className="chakra-popover__content css-1ab1jlb"
+        id="popover-content-pop-id"
+        onBlur={[Function]}
+        onKeyDown={[Function]}
+        role="dialog"
+        style={
+          Object {
+            "--popper-arrow-shadow-color": undefined,
+            "--popper-arrow-size": undefined,
+            "opacity": 0,
+            "transform": "scale(0.95) translateZ(0)",
+            "transformOrigin": "var(--popper-transform-origin)",
+            "visibility": "hidden",
+          }
+        }
+        tabIndex={-1}
+      >
+        <div
+          className="chakra-popover__arrow-positioner css-0"
+          data-popper-arrow=""
+          style={
+            Object {
+              "position": "absolute",
+            }
+          }
+        >
+          <div
+            className="chakra-popover__arrow css-0"
+            data-popper-arrow-inner=""
+          />
+        </div>
+        <button
+          aria-label="Close"
+          className="chakra-popover__close-btn css-6sdaxy"
+          onClick={[Function]}
+          type="button"
+        >
+          <svg
+            aria-hidden={true}
+            className="chakra-icon css-onkibi"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M.439,21.44a1.5,1.5,0,0,0,2.122,2.121L11.823,14.3a.25.25,0,0,1,.354,0l9.262,9.263a1.5,1.5,0,1,0,2.122-2.121L14.3,12.177a.25.25,0,0,1,0-.354l9.263-9.262A1.5,1.5,0,0,0,21.439.44L12.177,9.7a.25.25,0,0,1-.354,0L2.561.44A1.5,1.5,0,0,0,.439,2.561L9.7,11.823a.25.25,0,0,1,0,.354Z"
+              fill="currentColor"
+            />
+          </svg>
+        </button>
+        <header
+          className="chakra-popover__header css-0"
+          id="popover-header-pop-id"
+        >
+          Delete event
+        </header>
+        <div
+          className="chakra-popover__body css-0"
+          id="popover-body-pop-id"
+        >
+          Are you sure you want to delete that event?
+          <div
+            className="css-gmuwbf"
+          >
+            <button
+              className="chakra-button css-5c2176"
+              onClick={[Function]}
+              type="button"
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </button>
+</div>
+`;

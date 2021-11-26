@@ -1,0 +1,10 @@
+{
+	"useTabs": true,
+	"tabSize": 4,
+	"insertSpaces": true,
+	"singleQuote": false,
+	"trimAutoWhitespace": true,
+	"autoClosingQuotes": true,
+	"autoClosingBrackets": true,
+	"autoClosingOvertype": true
+}

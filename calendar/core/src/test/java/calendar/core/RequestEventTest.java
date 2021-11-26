@@ -25,19 +25,11 @@ public class RequestEventTest {
     }
 
     @Test
-    @DisplayName("Test for the setId method")
-    public void testId() {
-        event.setId(1);
-        assertEquals(1, event.getId(), "Id was not set correctly");
-    }
-
-    @Test
     @DisplayName("Test for the setDate method")
     public void testDate() {
         event.setDate("2021-12-24");
         assertEquals("2021-12-24", event.getDateString(), "Date was not set correctly");
         assertEquals("2021-12-24", event.getLocalDate().toString(), "Date was not converted to LocalDate correctly");
-        assertThrows(IllegalArgumentException.class, () -> event.setDate("hallo"));
     }
 
     @Test
