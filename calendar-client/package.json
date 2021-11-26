@@ -64,5 +64,13 @@
 		"eslint-plugin-react": "^7.27.0",
 		"eslint-plugin-react-hooks": "^4.3.0",
 		"typescript": "^4.4.4"
+	},
+	"jest": {
+		"coveragePathIgnorePatterns": [
+			"<rootDir>/src/api",
+			"<rootDir>/src/types",
+			"<rootDir>/src/state",
+			"<rootDir>/src/index.tsx"
+		]
 	}
 }
