@@ -1,4 +1,4 @@
-package it1901.calendar.rest;
+package calendar.rest;
 
 import java.time.LocalDate;
 
@@ -25,6 +25,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import calendar.core.Event;
 import calendar.core.RequestEvent;
 import calendar.core.User;
+import calendar.rest.UserService;
 
 @SpringBootTest
 @AutoConfigureMockMvc

@@ -1,4 +1,4 @@
-package it1901.calendar.rest;
+package calendar.rest;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
