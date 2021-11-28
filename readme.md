@@ -10,6 +10,17 @@ Prosjektet vårt er en kalender-app med flere brukere. En bruker kan "logge seg 
 - [Brukerhistorier](#brukerhistorier)
 
 ## Bygging og kjøring av prosjektet
+Prosjektet kan kjøres gjennom fxui eller som web-applikasjon.
+
+For å kjøre applikasjonen:
+
+```bash
+cd calendar
+mvn install
+cd fxui
+mvn javafx:run
+```
+---
 
 For å kjøre api-serveren:
 
@@ -20,7 +31,7 @@ cd rest
 mvn spring-boot:run
 ```
 
-For å kjøre klienten:
+For å kjøre web-klienten:
 
 ```bash
 cd calendar-client
