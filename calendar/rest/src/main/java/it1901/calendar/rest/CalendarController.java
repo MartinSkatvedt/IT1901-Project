@@ -66,7 +66,7 @@ public class CalendarController {
     }
 
     /**
-     * Get a specific event based on id
+     * Get a specific event based on id.
      * 
      * @param id id of event
      * @return the event
