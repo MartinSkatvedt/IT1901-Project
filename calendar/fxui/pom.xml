@@ -93,8 +93,35 @@
                 <version>0.0.6</version>
                 <configuration>
                     <mainClass>calendar.ui.CalendarApp</mainClass>
+                    <!-- rest of options are for jlink -->
+                    <compress>2</compress>
+                    <noHeaderFiles>true</noHeaderFiles>
+                    <stripDebug>true</stripDebug>
+                    <noManPages>true</noManPages>
+                    <launcher>calendarfx</launcher>
+                    <jlinkImageName>calendarfx</jlinkImageName>
+                    <jlinkZipName>calendarfx</jlinkZipName>
                 </configuration>
             </plugin>
+
+   <!-- config above and below taken from https://dev.to/cherrychain/javafx-jlink-and-jpackage-h9 -->
+            <plugin>
+                <groupId>org.panteleyev</groupId>
+                <artifactId>jpackage-maven-plugin</artifactId>
+                <version>1.4.0</version>
+                <configuration>
+                    <name>CalendarFX</name>
+                    <appVersion>1.0.0</appVersion>
+                    <vendor>it1901</vendor>
+                    <destination>target/dist</destination>
+                    <module>calendar.ui/calendar.ui.CalendarApp</module>
+                    <runtimeImage>target/calendarfx</runtimeImage>
+                    <javaOptions>
+                        <option>-Dfile.encoding=UTF-8</option>
+                    </javaOptions>
+                </configuration>
+            </plugin>
+
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

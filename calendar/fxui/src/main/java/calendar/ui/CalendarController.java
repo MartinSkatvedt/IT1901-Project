@@ -72,7 +72,7 @@ public class CalendarController {
     private void onNewEvent() throws IOException {
         Stage stage = (Stage) newEvent.getScene().getWindow();
         stage.close();
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("calendar/ui/Event.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/calendar/ui/Event.fxml"));
         EventController controller = new EventController();
         controller.setUser(this.user);
         loader.setController(controller);
@@ -92,7 +92,7 @@ public class CalendarController {
         Stage stage = (Stage) newEvent.getScene().getWindow();
         stage.close();
         FXMLLoader loader = new FXMLLoader(
-                getClass().getClassLoader().getResource("calendar/ui/EventDescription.fxml"));
+                getClass().getResource("/calendar/ui/EventDescription.fxml"));
         EventDescriptionController controller = new EventDescriptionController();
         controller.setEvent(current);
         controller.setUser(this.user);

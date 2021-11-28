@@ -18,14 +18,20 @@ public class EventDescriptionController {
     private User user;
     private Event currentEvent;
 
-    @FXML private Label eventHeadlineLabel;
-    @FXML private Label dateLabel;
-    @FXML private Label timeLabel;
-    @FXML private TextArea eventDescriptionLabel;
-    @FXML private Button backButton;
-    @FXML private Button editButton;
-    @FXML private Button deleteButton;
-
+    @FXML
+    private Label eventHeadlineLabel;
+    @FXML
+    private Label dateLabel;
+    @FXML
+    private Label timeLabel;
+    @FXML
+    private TextArea eventDescriptionLabel;
+    @FXML
+    private Button backButton;
+    @FXML
+    private Button editButton;
+    @FXML
+    private Button deleteButton;
 
     @FXML
     void initialize() {
@@ -65,13 +71,13 @@ public class EventDescriptionController {
 
     @FXML
     void onGoBack() throws IOException {
-        this.switchScene("calendar/ui/Calendar.fxml");
+        this.switchScene("/calendar/ui/Calendar.fxml");
     }
 
     private void switchScene(String path) throws IOException {
         Stage stage = (Stage) backButton.getScene().getWindow();
         stage.close();
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource(path));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
         CalendarController controller = new CalendarController();
         controller.setUser(this.user);
         loader.setController(controller);
@@ -80,7 +86,6 @@ public class EventDescriptionController {
         stage.setScene(scene);
         stage.show();
     }
-
 
     public void setUser(User user) {
         this.user = user;

@@ -13,29 +13,35 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-
 public class LoginController {
 
     public LoginController() {
     }
 
-    @FXML private Label loginReply;
+    @FXML
+    private Label loginReply;
 
-    @FXML private TextField username;
+    @FXML
+    private TextField username;
 
-    @FXML private Button loginButton;
+    @FXML
+    private Button loginButton;
 
-    @FXML private Button registerButton;
+    @FXML
+    private Button registerButton;
 
-    @FXML private TextField registerUsername;
+    @FXML
+    private TextField registerUsername;
 
-    @FXML private TextField registerPassword;
+    @FXML
+    private TextField registerPassword;
 
-    @FXML private Button registerUserButton;
+    @FXML
+    private Button registerUserButton;
 
-    
     /**
      * Logs user in
+     * 
      * @param event ActionEvent from javafx button
      */
     public void login(ActionEvent event) throws IOException {
@@ -43,12 +49,12 @@ public class LoginController {
             loginReply.setText("Please input username");
             return;
         }
-        
+
         UserPersistence userPersistence = new UserPersistence();
         userPersistence.setSaveFile(username.getText() + ".json");
         User currentUser = userPersistence.loadUser();
 
-        if (currentUser != null)  {
+        if (currentUser != null) {
             loginReply.setText(currentUser.getUsername());
         } else {
             currentUser = new User(username.getText());
@@ -57,16 +63,14 @@ public class LoginController {
 
         Stage stage = (Stage) loginButton.getScene().getWindow();
         stage.close();
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getClassLoader().getResource("calendar/ui/Calendar.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/calendar/ui/Calendar.fxml"));
         CalendarController calendarController = new CalendarController();
         calendarController.setUser(currentUser);
         loader.setController(calendarController);
-    
+
         Parent root = loader.load();
-        Scene scene = new Scene(root); 
+        Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 }
-
