@@ -1,12 +1,12 @@
 package it1901.calendar.rest;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,8 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import calendar.core.Calendar;
 import calendar.core.Event;
 import calendar.core.RequestEvent;
-import calendar.core.User;
-import calendar.json.UserPersistence;
 
 /**
  * Used for requests for a users calendar. PUT for replacing an event. POST for
@@ -32,42 +30,18 @@ import calendar.json.UserPersistence;
 @CrossOrigin(origins = "http://localhost:3000")
 public class CalendarController {
 
-    private User user;
-    private UserPersistence userPersistence;
+    @Autowired
+    UserService userService = new UserService();
 
     private static final Logger LOG = LoggerFactory.getLogger(CalendarController.class);
 
     /**
      * Initializes this CalendarController
      * 
-     * @param user the user the calendar belongs to
+     * 
      */
     public CalendarController() {
-        this.userPersistence = new UserPersistence();
-    }
 
-    private void autoSaveUser() {
-        try {
-            userPersistence.saveUser(this.user);
-        } catch (IllegalStateException | IOException e) {
-            LOG.error("Could not save user " + e);
-        }
-    }
-
-    private void checkEvent(int id) {
-        if (this.user.getCalendar().getEvent(id) == null) {
-            throw new IllegalArgumentException("No event with id \"" + id + "\"");
-        }
-    }
-
-    private void loadUser(String username) throws IllegalStateException, FileNotFoundException, IOException {
-        LOG.info("Loading user: " + username);
-        userPersistence.setSaveFile(username + ".json");
-        User user = userPersistence.loadUser();
-        if (user == null) {
-            throw new IllegalArgumentException("No user with username: " + username);
-        }
-        this.user = user;
     }
 
     /**
@@ -80,19 +54,19 @@ public class CalendarController {
     public ResponseEntity<Calendar> getCalendar(@PathVariable String username) {
         LOG.info("getCalendar({})", username);
         try {
-            loadUser(username);
-        } catch (IOException e) {
-            LOG.error(e.getMessage());
-            return ResponseEntity.internalServerError().build();
+            return ResponseEntity.ok(userService.getCalendar(username));
         } catch (IllegalArgumentException e) {
             LOG.error(e.getMessage());
             return ResponseEntity.notFound().build();
+        } catch (IllegalStateException | IOException e) {
+            LOG.error(e.getMessage());
+            return ResponseEntity.internalServerError().build();
         }
-        return ResponseEntity.ok(this.user.getCalendar());
+
     }
 
     /**
-     * Get a specific event based on id
+     * Get a specific event based on id.
      * 
      * @param id id of event
      * @return the event
@@ -101,14 +75,11 @@ public class CalendarController {
     public ResponseEntity<Event> getEvent(@PathVariable String username, @PathVariable int id) {
         LOG.info("getEvent({}, {})", username, id);
         try {
-            loadUser(username);
-            checkEvent(id);
-            Event event = this.user.getCalendar().getEvent(id);
-            return ResponseEntity.ok(event);
+            return ResponseEntity.ok(userService.getEvent(username, id));
         } catch (IllegalArgumentException e) {
             LOG.error(e.getMessage());
             return ResponseEntity.notFound().build();
-        } catch (IOException e) {
+        } catch (IllegalStateException | IOException e) {
             LOG.error(e.getMessage());
             return ResponseEntity.internalServerError().build();
         }
@@ -128,21 +99,12 @@ public class CalendarController {
             @PathVariable String username) {
         LOG.info("replaceEvent({}, {})", id, username);
         try {
-            loadUser(username);
-            checkEvent(id);
-            Event newEvent = new Event();
-            newEvent.setHeader(event.getHeader());
-            newEvent.setDescription(event.getDescription());
-            newEvent.setId(id);
-            newEvent.setTime(event.getTime());
-            newEvent.setDate(event.getLocalDate());
-            this.user.getCalendar().replaceEvent(newEvent);
-            autoSaveUser();
+            userService.replaceEvent(event, username, id);
             return ResponseEntity.ok().build();
         } catch (IllegalArgumentException e) {
             LOG.error(e.getMessage());
             return ResponseEntity.notFound().build();
-        } catch (IOException e) {
+        } catch (IllegalStateException | IOException e) {
             LOG.error(e.getMessage());
             return ResponseEntity.internalServerError().build();
         }
@@ -162,16 +124,12 @@ public class CalendarController {
             throws URISyntaxException {
         LOG.info("postEvent({})", username);
         try {
-            loadUser(username);
-            Event newEvent = new Event();
-            newEvent.setHeader(event.getHeader());
-            newEvent.setDescription(event.getDescription());
-            newEvent.setTime(event.getTime());
-            newEvent.setDate(event.getLocalDate());
-            this.user.getCalendar().addEvent(newEvent);
-            autoSaveUser();
+            Event newEvent = userService.postEvent(event, username);
             return ResponseEntity.created(new URI("/calendar/" + username + "/" + newEvent.getId())).body(newEvent);
-        } catch (IOException e) {
+        } catch (IllegalArgumentException e) {
+            LOG.error(e.getMessage());
+            return ResponseEntity.notFound().build();
+        } catch (IllegalStateException | IOException e) {
             LOG.error(e.getMessage());
             return ResponseEntity.internalServerError().build();
         }
@@ -188,15 +146,12 @@ public class CalendarController {
     public ResponseEntity<Void> deleteEvent(@PathVariable String username, @PathVariable int id) {
         LOG.info("deleteEvent({}, {})", username, id);
         try {
-            loadUser(username);
-            checkEvent(id);
-            this.user.getCalendar().deleteEvent(id);
-            autoSaveUser();
+            userService.deleteEvent(username, id);
             return ResponseEntity.ok().build();
         } catch (IllegalArgumentException e) {
             LOG.error(e.getMessage());
             return ResponseEntity.notFound().build();
-        } catch (IOException e) {
+        } catch (IllegalStateException | IOException e) {
             LOG.error(e.getMessage());
             return ResponseEntity.internalServerError().build();
         }
