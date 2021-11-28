@@ -17,7 +17,6 @@ const CalendarItem: FC<CalendarItemProps> = ({
 }: CalendarItemProps) => {
 	const { state } = useContext(StateContext);
 	const { user } = state;
-	console.log(isCurrent);
 
 	let eventItems: (JSX.Element | undefined)[] = [];
 

@@ -50,7 +50,6 @@ const Calendar: FC = () => {
 					thisDate.getMonth() == currentMonth
 						? true
 						: false;
-				console.log(dateIndex + "/" + thisDate.getDay());
 				items.push(
 					<CalendarItem
 						isCurrent={isToday}
