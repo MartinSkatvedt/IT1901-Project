@@ -453,6 +453,11 @@
                   <Font name="Calibri Light" size="20.0" />
                </font>
             </Label>
+            <Button fx:id="logout" layoutX="132.0" layoutY="551.0" mnemonicParsing="false" onAction="#onLogOut" prefHeight="35.0" prefWidth="107.0" style="-fx-background-color: white; -fx-border-style: solid; -fx-border-color: #ff8700 #ff8700;" text="Log out">
+               <font>
+                  <Font name="Calibri Light" size="17.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
       <Label fx:id="monthLabel" layoutX="365.0" layoutY="31.0" text="Month 2021" textAlignment="CENTER" textFill="#ff8700">
