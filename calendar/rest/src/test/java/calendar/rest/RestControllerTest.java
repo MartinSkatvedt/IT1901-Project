@@ -29,7 +29,7 @@ import calendar.rest.UserService;
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class RestApplicationTests {
+class RestControllerTest {
 
     @Autowired
     private MockMvc mvc;
