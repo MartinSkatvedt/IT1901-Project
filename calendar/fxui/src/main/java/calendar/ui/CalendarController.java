@@ -38,7 +38,7 @@ public class CalendarController {
     private Label monthLabel, week_1, week_2, week_3, week_4, week_5, week_6;
 
     @FXML
-    private Button newEvent, prev_month, next_month, today;
+    private Button newEvent, prev_month, next_month, today, logout;
 
     private LocalDate currentDate = LocalDate.now();
 
@@ -179,5 +179,24 @@ public class CalendarController {
     @FXML
     private void onToday() {
         updateCalendarView(this.currentDate);
+    }
+
+    @FXML
+    private void onLogOut() {
+        Stage stage = (Stage) logout.getScene().getWindow();
+        stage.close();
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/calendar/ui/Login.fxml"));
+        LoginController controller = new LoginController();
+        loader.setController(controller);
+        Parent root;
+        try {
+            root = loader.load();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
     }
 }
