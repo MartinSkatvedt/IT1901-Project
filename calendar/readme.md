@@ -8,17 +8,19 @@ Dette prosjektet er et REST-api bygget på java, maven og spring-boot. REST-apie
 
 ### Moduler
 
-#### core
+
+### core
 
 Modul for kjerneklassene til REST-apiet. Inneholder også klasser for å håndtere JSON.
 
-#### rest
+### rest
 
 Modul for REST-apiet. Bygget ved hjelp av spring-boot og spring-boot-web.
 
-#### fxui
+### fxui
 
 Ble tidligere brukt som klient, men byttet ut med egen react-klient.
+
 
 ### Rest-dokumentasjon
 
