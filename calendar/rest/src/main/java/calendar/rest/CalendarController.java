@@ -1,9 +1,11 @@
 package calendar.rest;
 
+import calendar.core.Calendar;
+import calendar.core.Event;
+import calendar.core.RequestEvent;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import calendar.core.Calendar;
-import calendar.core.Event;
-import calendar.core.RequestEvent;
 
 /**
  * Used for requests for a users calendar. PUT for replacing an event. POST for
