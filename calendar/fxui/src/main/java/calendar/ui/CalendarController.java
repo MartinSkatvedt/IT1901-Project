@@ -186,7 +186,7 @@ public class CalendarController {
         Stage stage = (Stage) logout.getScene().getWindow();
         stage.close();
         FXMLLoader loader = new FXMLLoader(
-                getClass().getClassLoader().getResource("calendar/ui/Login.fxml"));
+                getClass().getResource("/calendar/ui/Login.fxml"));
         LoginController controller = new LoginController();
         loader.setController(controller);
         Parent root;
