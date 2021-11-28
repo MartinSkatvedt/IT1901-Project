@@ -1,17 +1,15 @@
 package calendar.rest;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Service;
-
 import calendar.core.Calendar;
 import calendar.core.Event;
 import calendar.core.RequestEvent;
 import calendar.core.User;
 import calendar.json.UserPersistence;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Service;
 
 /**
  * REST-service class that handles requests from REST-controllers
