@@ -36,12 +36,12 @@ public class EventController {
 
     private User user;
 
-    private static final String[] HOURS = {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11",
-        "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" };
-    private static final String[] MINUTES = {"00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11",
-        "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29",
-        "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47",
-        "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" };
+    private static final String[] HOURS = { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11",
+            "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" };
+    private static final String[] MINUTES = { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11",
+            "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29",
+            "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47",
+            "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" };
 
     @FXML
     void initialize() {
@@ -116,7 +116,7 @@ public class EventController {
     private void switchScene() throws IOException {
         Stage stage = (Stage) addEvent.getScene().getWindow();
         stage.close();
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("calendar/ui/Calendar.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/calendar/ui/Calendar.fxml"));
         CalendarController controller = new CalendarController();
         controller.setUser(this.user);
         loader.setController(controller);
